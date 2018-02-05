@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/apply_info.css"/>
+		<title>申请办卡</title>
+		<style type="text/css">
+			/*vue编译结束,再渲染数据*/
+        	[v-cloak] {
+			  display: none;
+		    }
+		</style>
+	</head>
+	<body>
+		<section id="apply_info" v-cloak>
+		<!--<div id="shade">-->
+			<div v-if="team_type==1" class="apply_hint">您选择的个人业务卡需要您填写真实的个人信息</div>
+			<div v-if="team_type==2" class="apply_hint">公司名称：<span>{{team_name}}</span></div>
+			<!--基本信息-->
+			<div class="basic_info">
+				<div class="info_row">
+					<div class="name">真实姓名</div>
+					<input class="really_name" type="text" placeholder="请输入身份证上的姓名"/>
+				</div>
+				<div class="info_row">
+					<div class="name">身份证号</div>
+					<input class="identity_number"  type="text" placeholder="请输入二代身份证号码"/>
+				</div>
+				<div class="info_row">
+					<div class="name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</div>
+					<div class="radio_wrap">
+				        <div class="sex">           
+				            <input class="sex_radio" type="radio" name="sex" id="female">
+				            <div class="user-defined">
+				                <span class="circle"></span>
+				            </div>
+				            <label for="female">女</label>
+				        </div>
+				        <div class="sex">           
+				            <input class="sex_radio" type="radio" name="sex" id="male">
+				            <div class="user-defined">
+				                <span class="circle"></span>
+				            </div>
+				            <label for="male">男</label>
+				        </div>
+				    </div>
+				</div>
+			</div>
+			<!--上传头像-->
+			<div class="upload_wrap">
+				<div class="upload_title">上传头像</div>
+				<div class="photo_content">
+					<div class="upload_photo" id="view">
+						<!--<a href="photo_clip.html">-->
+							<!--<img src="img/avatar_empty.png"/>-->
+							<input type="file" name="file" id="file" value="" />
+						<!--</a>-->					
+					</div>
+					<div class="upload_des">上传的头像的尺寸为620*910px，1M以内请确保人像清晰</div>
+					<div class="refer_img">
+						<img src="img/avatar_person.png"/>
+					</div>
+					<div class="refer_des">参考图</div>
+				</div>
+			</div>
+			<!--上传身份证-->
+			<div class="upload_identity">
+				<div class="identity_title">上传身份证</div>
+				<div class="identity_content">
+					<div id="click1" class="identity_border">
+						<img id="one" src="img/identity_f.png"/>
+						<input type="file" id="photo" class="photo" :data-id="1" accept="image/*" style="opacity: 0;width: 100%;" @change="uploadImg($event)"/>
+						<!--<div class="upload_picture" onclick="picture_upload(this)" data-id='4'></div>-->					
+					</div>
+					<div id="click2" class="identity_border">
+						<img id="two" src="img/identity_b.png"/>
+						<input type="file" id="photo" class="photo" :data-id="2" accept="image/*" style="opacity: 0;width: 100%;" @change="uploadImg($event)"/>
+						<!--<div class="upload_picture" onclick="picture_upload(this)" data-id='4'></div>-->
+						<!--<a v-if="is_service==1" :href="service_url"><img class="consult_service" src="img/consult_service.png"/></a>-->
+					</div>
+				</div>
+			</div>
+		
+			<!--地址信息-->
+			<div v-if="team_type==1" class="address_info_wrap">
+				<div class="get_card_wrap">
+					<div class="get_card">领取地址</div>
+					<div class="select_bank">
+						<div class="radio_wrap bank_wrap">
+					        <div class="bank" v-for="(item,index) in bank_list" @click="select_bank(index,item.id)" :data-id="item.id">           
+					            <input class="bank_radio" type="radio" name="bank" :id="item.name">
+					            <div class="user-defined">
+					                <span class="circle" :class="{'active' :index==bank_index}"></span>
+					            </div>
+					            <label>{{item.name}}</label>
+					        </div>
+					    </div>
+					</div>
+				</div>
+				<div class="address_info" id="picker3" @click="is_bank">
+					<span>所在地区</span>
+					<span id="province"></span><span>省</span>
+					<span id="city"></span><span>市</span>
+					<span id="area"></span><span>区</span>
+					<!--<div id="picker3">点击选择</div>-->
+				</div>
+				<div class="detail_address">
+					<a href="javascript:void(0);" onclick="jump_page()">
+						<span>详细信息</span>
+						<div>{{bank_detail==false?'选择领卡网点':name}}
+							<p v-if="bank_detail">
+								<span>门店地址：</span>
+								<span>{{bank_address}}</span>
+							</p>
+							<p v-if="bank_detail">联系方式：{{bank_phone}}</p>
+						</div>
+						<img src="img/arrow.png"/>
+					</a>				
+				</div>
+			</div>
+			<!--手机号码-->
+			<div class="phone_number_wrap">
+				<div class="phone_number">
+					<div class="phone_des">手机号码</div><input class="phone_number" type="number"  value="" placeholder="请输入号码"/>
+				</div>
+				<div class="phone_number">
+					<div class="phone_des phone_code">验&nbsp; 证&nbsp; 码 </div>
+					<input class="code" type="text" value="" placeholder="请输入验证码"/>
+					<div class="auth_code">获取验证码</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<!--立即支付-->
+			<div v-if="team_type==1" class="pay_now">{{personal_pay_diy}}</div>
+			<div v-if="team_type==2" class="pay_now">{{team_pay_diy}}</div>
+			<form class="to_pay" :action="'/weixinpl/mshop/choose_paytype.php?customer_id='+customer_id" method="post">
+				<input name="post_data" :value="pay_data"  type="hidden"/>
+				<input type="submit"/>
+			</form>
+			<!--该身份证用户已经办理了电子卡，不能进行重复办理！-->
+			<div class="mask_wrap" >
+				<!--弹窗-->
+				<div v-cloak v-if="capion_status" class="capion_wrap" >
+					<div class="capion">
+						<img @click="know" src="img/close.png"/>
+						<img src="img/sad.png"/>
+						<p>{{cue_text}}</p>
+						<div @click="know">知道了</div>
+					</div>
+				</div>
+				<!--遮罩层-->
+				<div v-cloak v-if="mask_status" class="mask_capion"></div>
+			</div>
+			<!--<div id="view"></div>-->
+			
+			<div class="mask">
+				<div id="clipArea"></div>
+				<div class="clip_bottom">
+					<span id="clipBtn11">取消</span>
+					<span id="clipBtn">完成</span>
+				</div>
+			</div>
+		<!--</div>-->
+		<a v-if="is_service==1" :href="service_url" class="consult_service"><img src="img/consult_service.png"/></a>
+		</section>
+	</body>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/vue2.1.6.js"></script>
+	<script src="js/picker.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/iscroll-zoom.js"></script>
+	<script src="js/hammer.js"></script>
+	<script src="js/lrz.all.bundle.js"></script>
+	<script src="js/jquery.photoClip.js"></script>
+	<script src="js/apply_info.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script src="js/weixinInterface.js"></script>
+</html>

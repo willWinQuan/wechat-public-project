@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<title>订单详情</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/order-detail.css"/>
+		
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+	    <script type="text/javascript" src="js/vue2.1.6.js" ></script>
+	    <script type="text/javascript" src="js/set_rem.js" ></script>
+	    <script type="text/javascript" src="js/common.js" ></script>
+	    
+	</head>
+	<body>
+	 <div class="main">
+		<div class="order_detail_h" style="background: url(img/order.png) 50% 50% no-repeat; background-size: cover;">
+			<!--待付款-->
+			<div class="order_detail_obligation">
+				<div class="order_detail_obligationMsg" v-if='orderDetail_data.status==0'>待付款</div>
+				<div class="order_detail_obligationMsg" v-if='orderDetail_data.status==1'>已付款</div>
+				<div class="order_detail_obligationMsg" v-if='orderDetail_data.status==2'>已失效</div>
+				
+				<div class="order_detail_obligationTime" >
+					<label v-if='orderDetail_data.status==0'>
+						请在<span v-text='hour'></span>小时<span v-text='min'></span>分<span v-text='second'></span>秒完成支付
+					</label>
+					<label v-if='orderDetail_data.status==1'>你的订单已经完成付款</label>
+					<label v-if='orderDetail_data.status==2'>你的订单已失效</label>
+				</div>
+				
+			   <div class="look_ecard" @click='look_ecard()' v-if='orderDetail_data.status==1'>
+			   	 <div class="look_ecard_c" style="width: 1.4rem;">查看电子卡</div>
+			   </div>	
+			</div>
+			
+		</div>
+		
+		<div class="order_detail_card">
+			<div class="order_detailCard_l" >
+				<img :src="orderDetail_data.cover_img"/>
+			</div>
+			<div class="order_detailCard_r">
+				<div class="order_detailCard_title">套餐：{{orderDetail_data.packname}}</div>
+				<div class="order_detailCard_money">
+					<i>¥</i>
+					<em v-text='orderDetail_data.price'></em>
+				</div>
+				
+				<div class="order_detailCard_time" v-if='orderDetail_data.status==1'>
+				     <div class="order_detailCard_timemsg">有效时间</div>
+				     <div class="order_detailCardTime">{{orderDetail_data.validity_begin}}-{{orderDetail_data.validity_end}}</div>
+				</div>
+				
+				<div class="order_detailCard_time"  v-if='orderDetail_data.status==2'>
+				     <div class="order_detailCard_timemsg"></div>
+				     <div class="order_detailCardTime"></div>
+				</div>
+				
+				<form v-if='orderDetail_data.status==0' :id='"form"+orderDetail_data.id'  style="display: none;" method="post" :action="'/weixinpl/mshop/choose_paytype.php?customer_id='+orderDetail_data.customer_id" >
+				    	<input type="hidden" name="post_data" :value='pay_data' />
+				    	<input :id="orderDetail_data.id" @click='getPay_data()' type="button" />
+				</form>
+				
+				<label v-if='orderDetail_data.status==0' :for="orderDetail_data.id">
+				  <div class="order_detailCard_time order_detail_paybtn" style="top: .4rem;">立即支付</div>
+				</label>
+			</div>
+		</div>
+		
+		<div class="order_line"></div>
+		
+		<div class="order_personal">
+			<div class="order_item_title">卡主信息</div>
+			<div class="order_personal_l">
+				<img :src="orderDetail_data.head_img"/>
+			</div>
+			<div class="order_personal_r">
+				<ul>
+					<li>
+						<span class="order_itemr_msg">姓&emsp;名：</span>
+						<span v-text='orderDetail_data.username'></span>
+					</li>
+					<li>
+						<span class="order_itemr_msg">身份证：</span>
+						<span v-text='orderDetail_data.identity_card'></span>
+					</li>
+					<li>
+						<span class="order_itemr_msg">姓&emsp;别：</span>
+						<span v-text='orderDetail_data.sex==1?"男":"女"'></span>
+					</li>
+					<li v-if='orderDetail_data.order_type==2'>
+						<span class="order_itemr_msg">公&emsp;司：</span>
+						<span v-text='orderDetail_data.company_name'></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	    <div class="order_line"></div>
+	    
+	    <div class="order_getCard" v-if='orderDetail_data.order_type==1'>
+	    	<div class="order_item_title">领卡信息</div>
+	    	<ul class="order_item_ul">
+	    		<li>
+	    			<span class="order_itemr_msg">领卡银行：</span>
+	    			<span v-text='orderDetail_data.name'></span>
+	    		</li>
+	    		<li>
+	    			<span class="order_itemr_msg">领卡网点：</span>
+	    			<span v-text='orderDetail_data.branch_name'></span>
+	    		</li>
+	    		<li>
+	    			<div class="order_itemr_msg" style="float: left;">收货地址：</div>
+	    			<div style="margin-left: 1.4rem;"  >{{orderDetail_data.province}}{{orderDetail_data.city}}{{orderDetail_data.area}}</div>
+	    		    <div class="clear"></div>
+	    		</li>
+	    		<li style="margin-top: .03rem;">
+	    			<span class="order_itemr_msg">联系电话：</span>
+	    			<span v-text='orderDetail_data.phone'></span>
+	    		</li>
+	    	</ul>
+	    </div>
+	    <div class="order_line"></div>
+	    <div class="order_msg">
+	    	<div class="order_item_title">订单信息</div>
+	    	<ul class="order_item_ul">
+	    		<li class="order_item_li">
+	    			<span class="order_itemr_msg">订单单号：</span>
+	    			<span v-text='orderDetail_data.batchcode'></span>
+	    		</li>
+	    		<li class="order_item_li" v-if='orderDetail_data.status==1'>
+	    			<span class="order_itemr_msg">支付时间：</span>
+	    			<span v-text='orderDetail_data.updatetime'></span>
+	    		</li>
+	    		<li class="order_item_li" v-if='orderDetail_data.status==1'>
+	    			<span class="order_itemr_msg">实付金额：</span>
+	    			<span>¥{{orderDetail_data.real_pay}}</span>
+	    		</li>
+	    		<li class="order_item_li" v-if='orderDetail_data.status==1'>
+	    			<span class="order_itemr_msg">支付方式：</span>
+	    			<span v-if='orderDetail_data.pay_type==0'>未支付</span>
+	    			<span v-if='orderDetail_data.pay_type==1'>微信支付</span>
+	    			<span v-if='orderDetail_data.pay_type==2'>会员卡余额</span>
+	    			<span v-if='orderDetail_data.pay_type==3'>零钱</span>
+	    			<span v-if='orderDetail_data.pay_type==4'>支付宝</span>
+	    			<span v-if='orderDetail_data.pay_type==5'>后台支付</span>
+	    		</li>
+	    	</ul>
+	    </div>
+	    
+	    <!--客服浮标-->
+	    <div class="float_service" v-if='orderDetail_data.is_customer_service==1' @click='to_service' >
+	    	<img src="img/consult_service.png" style="width: 1.5rem;"/>
+	    </div>
+	    
+	    <div class="order_getmsg">实体卡的邮寄情况可以咨询客服</div>
+	</div>
+	
+	
+	    <script type="text/javascript" src="js/order_detail.js" ></script>
+	    <script>
+	    	$(function(){	
+//	    		window.location.reload();//重新加载
+
+             //5s屏幕小处理 -320
+            if(window.screen.availWidth<=320){
+         	     $('.order_detailCardTime').css('font-size','.22rem');
+            };
+
+
+	    		var vm=new Vue({
+	    			el:'.main',
+             	    data:{
+             	    	customer_id:'',
+             	    	user_id:'',
+             	    	order_id:'',
+             	    	orderDetail_data:'',
+             	    	pay_data:'',
+             	    	hour:'',
+             	    	min:'',
+             	    	second:'',
+             	    	service_url:''
+             	    },
+             	    methods:{
+             	      getPay_data:function(){//获取支付data
+             	      	var id=getPar_WSY('id');
+             			var getPay_val={
+             				customer_id:this._data.customer_id,
+			                user_id:this._data.user_id,
+             				id:id
+             			};
+             			getJSON('get',getPay_val,'/o2o/web/index.php?m=travel_mycard&a=goon_pay').then(function(res){	
+							if(res.errcode !=1000){
+								alert(JSON.stringify(res.errmsg));
+								return;
+							};
+							
+							vm['pay_data']=res.data;
+                            
+							setTimeout(function(){
+								$('#form'+id).submit();
+							},250);
+							
+             			}).catch(function(errContent){
+							console.log(errContent);
+						 });
+             		  },
+             		  look_ecard:function(){
+             		  	location.href='my_travelCard.html?customer_id='+this._data.customer_id;
+             		  },
+             		  to_service:function(){
+             		  	location.href=this._data.service_url;
+             		  }
+             		}
+	    		});
+	    		
+	    		
+	    		vm['customer_id']=getPar_WSY('customer_id');
+	    		vm['order_id']=getPar_WSY('id');
+	    		vm['user_id']=getPar_WSY('user_id');
+	    		
+	    		//数据渲染
+	    		var order_detail=new orderDetail(vm);
+	    		
+	    		order_detail.orderDetail_data();	
+	    		
+	    	})
+	    </script>
+	    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	    <script src="js/weixinInterface.js"></script>
+	</body>
+</html>

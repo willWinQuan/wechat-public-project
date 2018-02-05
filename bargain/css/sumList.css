@@ -1,0 +1,64 @@
+
+/*顶部我的排名*/
+.myKan{
+    width: 100%;
+    background:url('../img/index/backgo1.png') no-repeat 50% 50%;
+    background-size: cover; 
+}
+.myKan-top{
+    padding: .6rem;
+    padding-bottom: .1rem;  
+}
+.myKan-top-frist{
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+/*头像*/
+.myKan-top-uImg{
+    margin: 0 auto;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    margin-top: .2rem;
+    border: 3px solid #fff;
+    background:url('../img/index/person01.png') no-repeat 50% 50%;
+    background-size: cover; 
+}
+/*名字*/
+.myKan-top-uName{
+    color:#eee;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: .35rem;
+    line-height: .6rem;
+}
+
+.myKan-content{
+    color: #eee;
+    font-size: .35rem;
+    padding-bottom: .6rem;
+    line-height:.6rem;
+}
+.myKan-content span{
+    display: block;
+    text-align:center;
+}
+.myKan-content i{
+    display: inline-block;
+    margin-top: .25rem;
+    position: absolute;
+    left: 50%;
+}
+/*排名*/
+.mykan-ranking{
+    float: left;
+    margin-left: 20%;
+}
+.mykan-num{
+    float: right;
+    margin-right: 12%;
+}

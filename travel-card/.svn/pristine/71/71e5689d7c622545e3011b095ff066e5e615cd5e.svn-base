@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/apply_card.css"/>
+		<title>申请办卡</title>
+		<style type="text/css">
+			/*vue编译结束,再渲染数据*/
+        	[v-cloak] {
+			  display: none;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="apply_card" v-cloak>				
+			<div v-if="is_personal_card==1 || is_team_card==1" v-html="boot_page" style="overflow-y: scroll;">
+				{{boot_page}}
+			</div>
+			<div v-if="is_personal_card==1 || is_team_card==1" class="apply_wrap">
+				<div class="apply_tab" v-if="is_personal_card==1 && is_team_card==1">
+					<span onclick="toggle(this)" data-id='1' class="apply_now">{{personal_diy}}</span>
+					<span onclick="toggle(this)" data-id='2'>{{team_diy}}</span>
+					<!--<span v-for="(item,index) in list" @click="toggle(index)" data-id='1' :class="apply_now :index==apply_index">{{personal_diy}}</span>-->
+				</div>
+				<div class="apply_tab team_card" v-if="(is_personal_card==0 && is_team_card==1) || (is_personal_card==1 && is_team_card==0)" style="background: none;">
+					<span class="apply_now">{{is_personal_card==1?personal_diy:team_diy}}</span>
+				</div>
+				<!--咨询客服-->
+				<a v-if="is_service==1" class="consult_service" :href="service_url"> <img src="img/consult_service.png"/> </a>
+				<!--申请办卡-->
+				<div class="apply_card" @click="apply_card">
+					申请办卡
+				</div>
+			</div>
+			
+			<!--<div v-cloak v-if="is_personal_card==0 && is_team_card==0" class="empty_wrap">-->
+			<div v-cloak v-if="is_empty==1" class="empty_wrap">
+				<div class="empty">
+					<img src="img/no_card.png"/>
+					<p>商家没有开启任何办卡套餐哦~</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/vue2.1.6.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/apply_card.js"></script>
+	<script>
+		var share_type_true='';//作为需要分享按钮依据
+	</script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script src="js/weixinInterface.js"></script>
+</html>

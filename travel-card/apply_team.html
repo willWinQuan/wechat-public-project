@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/apply_team.css"/>
+		<title>申请办卡</title>
+		<style type="text/css">
+			/*vue编译结束,再渲染数据*/
+        	[v-cloak] {
+			  display: none;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="app" v-cloak>	
+			<div class="app_content">
+				<div class="company_name_wrap">
+					<div class="company_name">公司名称</div>
+					<input type="text" name="company_name" id="" value="" placeholder="请输入公司名称"/>
+			   </div>
+			<div class="remark">备注：只有公司在平台申请的，才能购买团队卡；其他的只能办理个人卡，详情请咨询在线客服哦~</div>
+			<a v-if="is_service==1" class="consult_service" :href="service_url"> <img src="img/consult_service.png"/> </a>
+			
+			<!--弹窗 Sorry！没有查询到您的公司的信息哦！-->
+			<div v-cloak v-if="capion_status" class="capion_wrap" >
+				<div class="capion">
+					<img  @click='know' src="img/close.png"/>
+					<img src="img/sad.png"/>
+					<p>{{cue_text}}</p>
+					<div @click='know'>知道了</div>
+				</div>
+			</div>
+			<!--遮罩层-->
+			<div v-cloak v-if="mask_status" class="mask"  @click='know'></div>
+			</div>
+
+			<div class="submit" @click="submit()"><a href="#">提交</a></div>
+			
+		</div>
+		<!--<script src="js/set_rem.js"></script>-->
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/vue2.1.6.js"></script>
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<script src="js/weixinInterface.js"></script>
+		<script>
+			var type=getPar_WSY('type')
+			console.log(type)
+			var vm=new Vue({
+			  el: '#app',
+			  data: {
+			    mask_status: false,
+			    capion_status: false,
+			    cue_text:'',
+			    service_url:'',
+			    is_service:'',
+			  },
+			  created:function(){
+			  	$.ajax({
+			  		url:'/o2o/web/index.php?m=travel_card&a=team_page',
+			  		type:'POST',
+			  		dataType:'json',
+			  		success:function(res){
+			  			console.log(res)
+			  			if(res.errcode==1008){
+							window.location.href=res.data;
+							return;
+						};
+			  			vm.is_service=res.is_service;
+			  			vm.service_url=res.service_url;
+			  		}
+			  	})
+			  },
+			  methods:{
+			  	submit:function(){
+			  		var name=$("input[name='company_name']").val();
+			  		$.ajax({
+			  			url:'/o2o/web/index.php?m=travel_card&a=team_check',
+			  			data:{
+			  				name:name,
+			  			},
+			  			type:'POST',
+			  			dataType:'json',
+			  			success:function(res){
+			  				console.log(res)
+			  				if(res.errcode==1008){
+								window.location.href=res.data;
+								return;
+							};
+			  				if(res.errcode==1000){
+			  					var argument=res.team_id+','+name+','+type.substring(0,1);
+			  					window.location.href='apply_info.html?argument='+argument;
+			  				}else{
+			  					vm.mask_status=true;
+			  					vm.capion_status=true;
+			  					vm.cue_text=res.errmsg;
+			  				}
+			  			}
+			  		})
+			  	},
+			  	know:function(){
+			  		this._data.mask_status=false;
+			  		this._data.capion_status=false;
+			  	},
+			  }
+			})
+			
+		</script>
+	</body>
+</html>

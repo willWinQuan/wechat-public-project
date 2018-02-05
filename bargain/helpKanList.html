@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="no" name="apple-touch-fullscreen">
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta http-equiv="pragma" content="nocache">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<link rel="stylesheet" href="css/helpKanList.css" />
+		<title>帮砍名单</title>
+	</head>
+	<body style="opacity: 0;">
+		<div class="main">
+			<!--菜单-->
+			<div class="mianNav">
+				<ul>
+					<li>排名</li>
+					<li>用户</li>
+					<li>砍下金额</li>
+				</ul>
+			</div>
+			<!--帮砍列表-->
+			<div class="helpList clear">
+
+			<div class="list-nodata">
+			   <img  v-if="Nodata == '没有数据...'" src="img/kj_30.png" />
+			   <span v-text="Nodata"></span>
+			   </div>
+
+				<ul v-if="Nodata != '没有数据...'" >
+					<li v-for="(items, index) in listData">
+						<!--左边-->
+						<div class="helpList-left">
+						<!--排名奖牌-->
+
+						<span class="ranking" v-if="index==0" style="background:url('img/index/frist01.png') no-repeat 50% 50%;background-size: contain; color: rgba(255,255,255,0);height: .75rem;">3</span>
+
+						<span class="ranking" v-if="index==1" style="background:url('img/index/second01.png') no-repeat 50% 50%;background-size: contain; color: rgba(255,255,255,0);height: .75rem;">3</span>
+
+						<span class="ranking" v-if="index==2" style="background:url('img/index/three01.png') no-repeat 50% 50%;background-size: contain; color: rgba(255,255,255,0);height: .75rem;">3</span>
+
+						<span class="ranking" v-if="index!=0 && index!=1 && index!=2" style="margin-top: .45rem;" v-text="index+1"></span>
+
+						<!--头像-->
+						<span class="user-img" :style="{backgroundImage: 'url('+ items.user_pic +')'}"></span>
+						<!--用户-->
+						<div class="List-user">
+							<!--名字-->
+							<span v-text="items.user_name"></span>
+							<!--时间-->
+							<em v-text='items.bargain_time'></em>
+						</div>
+						</div>
+						<!--右边 砍下金额-->
+						<div class="helpList-right">
+							<i>¥</i>
+							<span v-text="items.bargain_price"></span>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+		    <!--我的排名-->
+		    <div class="myHelpKan"  style="display: block;"><!--v-if="p_display=='block'"-->
+    	        <!--左边-->
+				<div class="helpList-left">
+				<!--排名 || 奖牌-->	
+				<span class="ranking" v-if="p_data.number=='1'" style="background:url('img/index/frist01.png') no-repeat 50% 50%;background-size: contain; color: rgba(255,255,255,0);height: .75rem;">3</span>
+
+				<span class="ranking" v-if="p_data.numberx=='2'" style="background:url('img/index/second01.png') no-repeat 50% 50%;background-size: contain; color: rgba(255,255,255,0);height: .75rem;">3</span>
+
+				<span class="ranking" v-if="p_data.number=='3'" style="background:url('img/index/three01.png') no-repeat 50% 50%;background-size: contain; color: rgba(255,255,255,0);height: .75rem;">3</span>
+
+				<span class="ranking" v-if="p_data.number!='1' && p_data.number!='2' && p_data.number!='3'" style="margin-top: .45rem;" v-text="p_data.number"></span>					
+				<!-- <span class="ranking">{{p_index}}</span> -->
+				<!--头像-->
+				<span class="user-img" :style="{backgroundImage: 'url('+p_data.user_pic +')'}"></span>
+				<!--用户-->
+				<div class="List-user">
+					<!--名字-->
+					<span v-text="p_data.user_name"></span>
+					<!--时间-->
+					<em v-text="p_data.bargain_time"></em>
+				</div>
+				</div>
+				<!--右边 砍下金额-->
+				<div class="helpList-right">
+					<i>¥</i>
+					<span v-text="p_data.bargain_price"></span>
+				</div>
+		    </div>
+		</div>
+		
+		<script src='js/lib/zepto.min.js'></script>
+		<script src="js/lib/set_rem.js"></script>
+		<script type="text/javascript" src="js/comm/config.js"></script>
+		<script type="text/javascript" src="js/comm/common.js"></script>
+	<!-- 	<script type="text/javascript">
+			init_WSY(); /*customer_id检测*/
+			get_user_id_WSY(); /*网页授权获取用户user_id*/
+	    </script> -->
+		<script type="text/javascript" src="js/lib/vue2.1.6.js" ></script>
+<!-- 		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script> -->
+		<script type="text/javascript" src="js/helpKanList.js" ></script>
+	</body>
+</html>

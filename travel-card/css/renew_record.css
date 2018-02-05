@@ -1,0 +1,60 @@
+body{
+	background: #FFFFFF;
+}
+.record_wrap{
+	padding:0 .8rem;
+    background: #fff;
+    font-size: 1rem;
+}
+.record_item{
+	padding: 1rem 0;
+	border-bottom: 1px solid #EEE;
+}
+.record_item>a{
+	display: block;
+}
+.renew_left{
+	width: 70%;
+	display: inline-block;
+}
+.renew_left>div{
+	font-size:.8rem;
+    color: #bababa;
+    margin-top: .5rem;
+}
+.renew_right{
+	float: right;
+    text-align: right;
+}
+.renew_right>p{
+	color: #FE7C24;
+}
+.renew_right>div{
+	font-size:.9rem;
+    margin-top: .5rem;
+}
+/**/
+.on_card{
+	margin-top: 8rem;
+	text-align: center;
+}
+.on_card img{
+	width: 13rem;
+}
+.on_card div{
+	margin-top: 1.5rem;
+	font-size: 1rem;
+	color: #999999;
+}
+.more_more{
+	text-align: center;
+    line-height: 2rem;
+    font-size: .8rem;
+    color: #c9c9c9;
+    margin: .2rem 0;
+}
+.more_more img{
+	width: 1rem;
+    margin-top: .5rem;
+    margin-right: .2rem;
+}

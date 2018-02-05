@@ -1,0 +1,87 @@
+body{
+	width: 100%;
+	/*position: fixed;*/
+	font-size: 1rem;
+}
+.apply_wrap{
+	width: 100%;
+	/*height: 100vh;*/
+	/*background: url(../img/apply_card.png) no-repeat;*/
+	background-size: 100% 100%;
+	padding-top: 2rem;
+	box-sizing: border-box;
+	text-align: center;
+	position: fixed;
+    top: 0;
+    z-index: 999;
+}
+.apply_tab{
+	/*width: 65%;*/
+	display: inline-block;
+	height: 1.5rem;
+	background: rgba(0,0,0,.3);
+	margin: 0 auto;
+	padding: .3rem .3rem .4rem .3rem;
+	border-radius: 5px;
+}
+.apply_tab>span{
+	border-radius: 5px;
+	color: #fff;
+	/*width: 48%;*/
+	display: inline-block;
+	line-height: 1.5rem;
+	text-align: center;
+	padding: 0 .5rem;
+}
+.apply_tab .apply_now{
+	color:#ffa340;
+	background: #fff;
+}
+/*咨询客服*/
+.consult_service{
+	width: 4rem;
+	height: 4rem;
+	position: fixed;
+	bottom:20%;
+	left: 80%;
+}
+.consult_service>img{
+	width: 4rem;
+	height: 4rem;
+}
+/*申请办卡*/
+.apply_card{
+	width: 90%;
+	background: #fff;
+	position: fixed;
+	bottom: 3rem;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 2.5rem;
+	margin-left: 5%;
+	border-radius: 5px;
+	color: #ffa340;
+}
+/*empty*/
+.empty_wrap{
+	background: #fff;
+	height: 100vh;
+}
+.empty{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -10rem;
+	margin-left: -8rem;
+}
+.empty>img{
+	width: 17rem;
+	height: 14rem;
+	display: block;
+	margin: 0 auto;
+}
+.empty>p{
+	margin-top: .5rem;
+	color: #767676;
+	text-align: center;
+}

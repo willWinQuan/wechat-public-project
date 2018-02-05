@@ -1,0 +1,324 @@
+
+html,body{
+	background: rgb(248,248,248);
+}
+.index_body {
+    overflow-y: hidden;/*为了兼容普通PC的浏览器*/
+    height: 100%;
+    position: fixed;  
+}
+.ecode_genew_msg{
+	display: none;
+    text-align: center;
+    color: #666;
+    font-size: .25rem;
+    left: 66%;
+}
+.no_more{
+	text-align: center;
+    line-height: 88px;
+    color: #666;
+}
+.tab_nav{
+	background: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.nav_item{
+	display: inline-table;
+    width: 48%;
+    text-align: center;
+    position: relative;
+    top: -.3rem;
+}
+
+.divide{
+	display: inline-table;
+    height: .8rem;
+    width: 1px;
+    background: #ccc;
+    margin-top: .2rem;
+}
+.nav_item_underline{
+	width: 50%;
+    margin: 0 auto;
+    height: 3px;
+    background: rgb(255,133,48);
+    border-radius: 3px;
+    position: relative;
+    top: .3rem;
+}
+.myOrder_itemh_licon{
+    background: url(../img/order_list.png) 50% 50% no-repeat;
+    background-size: contain;
+    display: inline-block;
+    width: .32rem;
+    height: .32rem;
+    margin-left: 4%;
+    position: relative;
+    top: .05rem;
+}
+
+.myorder_contentShow li{
+    margin-top: .3rem;
+    background: #fff;
+}
+.myOrder_item{
+	padding-bottom: .15rem;
+}
+.myOrder_item_h{
+	padding: .16rem 0;
+    border-bottom: .1px solid #ccc;
+}
+.myOrder_itemh_l{
+	display: inline-block;
+    width: 82%;
+    color: #666;
+}
+.myOrder_itemh_r{
+	display: inline-block;
+	color: rgb(255,133,48);
+}
+.myOrder_item_m{
+	height: 2.33rem;
+}
+.myOrder_itemm_l{
+	display: inline-block;
+    margin-left: 4%;
+    position: relative;
+    top: -.55rem;
+    width: 45%;
+    height: 80%;
+}
+.myOrder_itemm_l img{
+	width: 100%;
+    height: 100%;
+}
+.myOrder_itemm_r{
+	display: inline-block;
+    margin-left: 2%;
+    position: relative;
+    top: .25rem;
+}
+.myOrder_itemmr_carname{
+	font-weight: 600;
+    color: #555;
+    font-size: .3rem;
+    height: .5rem;
+}
+.myOrder_itemmr_money{
+	padding: .01rem 0;
+    color: rgb(255,50,0);
+}
+.myOrder_itemmr_personalname{
+	position: relative;
+    top: .38rem;
+    font-size: .3rem;
+    color: #787878;
+}
+.gopay{
+	background: rgb(255,133,48);
+    padding: 0 .25rem;
+    text-align: center;
+    color: #eee;
+    font-size: .25rem;
+    line-height: .5rem;
+    border-radius: .08rem;
+    float: right;
+    margin-right: 3.5%;
+}
+
+/*没有内容*/
+.nodata>img{
+	margin: 16% auto;
+    display: block;
+    margin-bottom: 0;
+    width: 52%;
+}
+.nodata_msg{
+	text-align: center;
+    line-height: 1.6rem;
+    font-size: .3rem;
+    color: #999;
+}
+.goapplyCard{
+	width: 70%;
+    background: rgb(254,124,36);
+    line-height: .88rem;
+    text-align: center;
+    color: #eee;
+    margin: 0 auto;
+    border-radius: .6rem;
+}
+label{
+	font-size: .28rem;
+    color: #666;
+}
+
+/*电子卡*/
+.eCard_contentShow li{
+	width: 96%;
+    margin: 0 auto;
+    margin-top: .3rem;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+.isshow_idcardnum{
+	position: relative;
+    top: .96rem;
+    float: right;
+    right: 3%;
+    width: .4rem;
+    height: .22rem;
+}
+.eCard_item_h{
+	margin-top: .25rem;
+}
+.eCard_item_h>img{
+	float: right;
+}
+.eCard_item_hImg{
+	margin-right: 3%;
+	width: .5rem;
+    height: .5rem;
+}
+.eCard_item_hImgT{
+	width: 2.5rem;
+    height: .5rem;
+    margin-right: .16rem;
+}
+.eCard_item_m{
+	clear: both;
+}
+.eCard_itemm_l{
+	display: inline-table;
+}
+.eCard_itemm_l>img{
+	width: 1.1rem;
+    margin-left: .2rem;
+    height: 1.4rem;
+}
+.eCard_itemm_r{
+	display: inline-table;
+    position: relative;
+    top: .15rem;
+    font-size: .3rem;
+    width: 70%;
+}
+.eCard_itemmr_h>span:last-child{
+	margin-left: .36rem;
+}
+.eCard_itemmmr_m{
+	padding: .3rem 0;
+    width: 102%;
+}
+.eCard_itemmmr_m img{
+	position: relative;
+    top: .08rem;
+    float: right;
+    width: .42rem;
+    height: .25rem;
+}
+.eCard_item_f{
+	font-size: .62rem;
+    letter-spacing: .028rem;
+    text-align: center;
+}
+.eCard_item_ftime,.eCard_item_ftime5s{
+	margin-top: .3rem;
+    margin-bottom: .2rem;
+    font-size: .3rem;
+}
+.eCard_item_ftime5s>span:first-child{
+	margin-left: 1%;
+    color: #666;
+    font-size: 0.25rem;
+}
+.eCard_item_ftime5s>span:nth-child(2){
+	font-size: .25rem;
+}
+.eCard_item_ftime5s>span:last-child{
+    float: right;
+    margin-right: 1%;
+    font-weight: 600;
+    color: #444;
+    font-size: .25rem;
+    position: relative;
+    top: 5px;
+}
+.eCard_item_ftime>span:first-child{
+	margin-left: 3%;
+    color: #666;
+    font-size: .27rem;
+}
+.eCard_item_ftime>span:last-child{
+	float: right;
+    margin-right: 3%;
+    font-weight: 600;
+    color: #444;
+}
+.lookdiary{
+    font-size: .28rem;
+    font-weight: 600;
+    color: #333;
+    position: fixed;
+    margin-left: 38%;
+    padding-bottom: .6rem;
+    bottom: 5%;
+}
+.eCard_item_number{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+/*二维码弹框*/
+.ecode_alert{
+	position: absolute;
+    background: #fff;
+    top: 25%;
+    z-index: 999;
+    width: 66%;
+    left: 17%;
+    border-radius: .1rem;
+}
+.ecode_img img{
+	width: 80%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 10%;
+}
+.ecode_time{
+    margin: .12rem auto;
+    font-size: 0.23rem;
+    color: #676767;
+}
+.ecode_new{
+    margin: .3rem auto;
+    text-align: center;
+    margin-top: .08rem;
+}
+.ecode_time_frist{
+	white-space: nowrap;
+    text-align: center;
+    display: block;
+}
+.ecode_time_next{
+	display: block;
+	text-align: center;
+}
+
+
+/*遮罩层*/
+.mask{
+    position: absolute;
+    z-index: 8;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.6);	
+    display: none;
+}

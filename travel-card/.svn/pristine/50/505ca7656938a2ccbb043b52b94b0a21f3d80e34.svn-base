@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/renew.css"/>
+		<title>续费</title>
+		<style type="text/css">
+			/*vue编译结束,再渲染数据*/
+        	[v-cloak] {
+			  display: none;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="app" v-cloak>
+			<div class="card_info">
+				<span>电子卡号</span>
+				<p>{{card_number}}</p>
+				<div>到期时间:{{validity_end}}</div>
+			</div>
+			<div class="select_renew">选择续费套餐</div>
+			<div class="renew_item">
+				<h3>{{renew_price}}元</h3>
+				<p v-if="renew_unit==1">3个月</p>
+				<p v-if="renew_unit==2">12个月</p>
+			</div>
+			<form class="mypay" :action="'/weixinpl/mshop/choose_paytype.php?customer_id='+customer_id" method="post">
+				<input name="post_data" :value="pay_data"  type="hidden"/>
+				<input class="pay_now" :value="'立即支付 ￥'+renew_price" type="submit">
+			</form>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/common.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+	<script src="js/set_rem.js"></script>
+	<script type="text/javascript" src="js/vue2.1.6.js" ></script>
+	<script type="text/javascript" src="js/renew.js" ></script>
+</html>

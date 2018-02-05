@@ -1,0 +1,520 @@
+//获取url上的参数
+var apply_id = getPar_WSY('apply_id');
+var user_id_en = getPar_WSY('user_id_en');
+var activity_id = getPar_WSY('activity_id');
+var web_time = getPar_WSY('web_time');
+var id= getPar_WSY('id'); 
+var is_care="";
+console.log(id)
+console.log(activity_id)
+var vm=new Vue({
+	el:'#enrolled',
+	data:{
+		list:'',
+		day:'',
+		hour:'',
+		mintue:'',
+		seconds:'',
+		Zhour:'',
+		exp_user_name:'',
+		exp_userUrl:'',
+		priced:'',
+		minimum_price:'',
+		buy_price:'',
+		bargainInfo:'',
+		bargain_user_total:'',
+		latest_price:'',
+		jlminprice:'',
+		img:'',
+		name:'',
+		inventory:'',
+		price:'',
+		material:'',
+		material_parent:'',
+		type_parent:'',
+		type:'',
+		error_code:'',
+		activity_expire_code:'',
+		weixin_name:'',
+		money:'',
+		Error:'',
+		data:'',
+		href:'',//已领取没支付跳转到购物车
+		html:'',
+		ruledata:'',
+		time_type:1,
+		activity_expire_desc:'活动已结束'
+	},
+	methods:{
+		enroll:function(){
+			//报名
+			jion();		
+		},
+		home:function(){
+			location.href = 'index.html?customer_id_en='+customer_id_en+'&user_id_en='+user_id_en+'&web_time='+web_time+'&activity_id='+activity_id;
+		},
+		clickMoreList:function(){//点击更多帮砍名单
+			location.href='helpKanList.html?customer_id_en='+customer_id_en+'&user_id_en='+user_id_en+'&web_time='+web_time+'&activity_id='+activity_id+'&apply_id='+apply_id+'';
+		},
+		pay:function(latest_price,buy_price,error_code){
+			//调用支付接口	
+			zhifu()
+			console.log("pay:"+error_code);
+			if(error_code=='1000'){
+				
+				if(Number(latest_price)<=Number(buy_price)){
+					payOpen()
+				}else{
+					var t='您还未满足领取条件，请邀请好友继续砍价吧！'
+					tkshow(t);
+				}
+			}else if(error_code=='1001'){
+				var t='已领取';
+				tkshow(t);
+			}else if(error_code=='1004'){
+				// var t='去往购物车...';
+				// setTimeout("tkshow(t)",1000);
+               location.href=vm.href;
+			}
+		},
+		shuted:function(){
+			tkhide();
+		}
+	}
+})
+
+
+/*支付信息获取***************************开始***/
+function zhifu(){
+	var vm=this.vm;
+	data={customer_id_en:customer_id_en,action_id:apply_id,product_id:id,activity_id:activity_id,user_id_en:user_id_en};
+	var url=HOST_WSY+'/weixinpl/haggling/back/index.php/home/zpq/get_nowprice'
+	$.ajax({
+        url:url,
+        data:data,
+        async:false,
+        type:'get',
+        dataType:'json',
+        success:function(res){
+			console.log(res);
+			payError=res.error_code;
+			product_id=res.data['id'];
+			proids=res.data['proids'];
+			type=res.data['type'];
+			material=res.data['material'];
+			final_price=res.data['price'];
+			post_data=res.data['post_data'];
+			is_supply_id=res.data['is_supply_id']
+			vm.error_code=res.error_code;
+			vm.href=res.href;
+			vm.img=res.data['img'];
+			vm.name=res.data['name'];
+			vm.inventory=res.data['inventory'];
+			vm.price=res.data['price'];
+			vm.material=res.data['material'];
+			vm.material_parent=res.data['material_parent'];
+			vm.type_parent=res.data['type_parent'];
+			vm.type=res.data['type'];
+			//
+			vm.data=res.data;
+			if(res.error_code==1000){
+				vm.href=res.data['href']
+			}
+			if(res.error_code==1004){
+				vm.href=res.href
+			}
+			console.log(vm.href)
+			$('.payTk .input').remove();
+			//添加表达数据
+			if(proids){
+				$('.payTk').prepend('<input name="customer_id" value='+customer_id_en+' hidden type="text" id="customer_id" class="input"/>'+
+						'<input name="pid" value='+product_id+' hidden type="text" class="input"/>'+
+						'<input name="fromtype" value="1" hidden type="text" class="input">'+
+	    				'<input name="sel_pros" value="'+proids+'" hidden type="text" id="value1" class="input">'+
+	    				'<input name="form_bargain_sz" value="'+final_price+'" hidden type="text" id="value2" class="input">'+
+	    				'<input name="form_bargain_sz_data" value="'+post_data+'" hidden type="text" id="value2" class="input">'+
+	    				'<input name="supply_id" value="'+is_supply_id+'" hidden type="text" id="value2" class="input">'+
+	    				'<input name="rcount" value="1" hidden type="text" class="input">')
+			}else{
+				$('.payTk').prepend('<input name="customer_id" value='+customer_id_en+' hidden type="text" id="customer_id" class="input"/>'+
+						'<input name="pid" value='+product_id+' hidden type="text" class="input"/>'+
+						'<input name="fromtype" value="1" hidden type="text" class="input">'+
+	    				//'<input name="sel_pros" value="'+proids+'" hidden type="text" id="value1">'+
+	    				'<input name="form_bargain_sz" value="'+final_price+'" hidden type="text" id="value2" class="input">'+
+	    				'<input name="form_bargain_sz_data" value="'+post_data+'" hidden type="text" id="value2" class="input">'+
+	    				'<input name="supply_id" value="'+is_supply_id+'" hidden type="text" id="value2" class="input">'+
+	    				'<input name="rcount" value="1" hidden type="text" class="input">')
+			}
+        },
+        error:function(res){
+            console.log('请求信息失败')
+        },
+    });
+}
+/*支付信息获取***************************结束***/
+/*渲染数据*************开始*/
+function init(){
+	var vm=this.vm;
+	data={id:id,customer_id_en:customer_id_en,activity_id:activity_id,user_id_en:user_id_en};
+	var url=HOST_WSY+'/weixinpl/haggling/back/index.php/home/front/goodsInfoed'
+	$.ajax({
+        url:url,
+        data:data,
+        async:false,
+        type:'get',
+        dataType:'json',
+        success:function(res){
+        	//生成二维码
+			new QRCode(
+				document.getElementsByClassName("QRcode")[0], 
+				res.qr_code
+				);  // 设置要生成二维码的链接 
+			//点开二维码
+			if(res.ruler!=null){
+			var ruler=res.ruler.replace(/\n/g,'<br>');
+        	console.log(ruler)
+			vm.ruledata=ruler;
+			}
+			if(res.data.length==0){
+				alert("网络故障,请检查一下您的网络是否已连接...");
+				return;
+			}
+			if(res.data=="您没有报名当前商品"){
+				alert("抱歉，您没有此页面信息...")
+			}
+			//活动时间
+			goods_end=new Date(res.data['goods_end_time'])
+			Activity_end=new Date(res.data['activity_end_time'])
+			now=new Date(res.data['nowtime']);
+			star=new Date(res.data['start_time'])
+			//时间差
+			time1=goods_end-now;
+			time2=Activity_end-now;
+			if(res.img.length!=0){
+				vm.list=res.img;
+			}else{
+				vm.list=['../img/index/ad01.jpg'];
+			}
+			vm.exp_user_name=res.data['exp_user_name'];
+			vm.exp_userUrl=res.data['exp_userUrl'];
+			vm.priced=res.data['price'];
+			vm.minimum_price=res.data['minimum_price'];
+			vm.buy_price=res.data['buy_price'];
+			priced=res.data['price'];
+			minimum_price=res.data['minimum_price'];
+			buy_price=res.data['buy_price'];
+			setTimeout(function(){
+				//轮播
+				mySwiper = new Swiper(".swiper-container",{
+				    loop:true,  //用于无限循环切换
+				    autoplay:1000,//轮播间隔时间
+				    speed:1000,//轮播过程时间
+				    //如果需要分页器
+				    pagination:".swiper-pagination",  //默认：null
+				    //当参数为true时，点击分页器指示点分页器会控制Swiper切换，点击后轮播会失效
+				    paginationClickable:true,
+				    //加这个之后，点击autoPlay会重启
+				    //用户操作swiper之后，是否禁止autoplay.默认为true:停止 ，如果设置为false,用户操作swiper之后自动切换不会停止。
+				    // 每次都会重新启动autopaly.
+				    autoplayDisableOnInteraction:false,
+				    //拖动时变成手掌形状
+				    grabCursor:true
+				})
+			},1000)
+			//倒计时函数
+			conduct();
+			//调用函数
+			zhifu();
+        },
+        error:function(res){
+            console.log('请求信息失败')
+        },
+    });
+}
+init();
+//倒计时
+function conduct(){
+	var vm=this.vm;
+	if(goods_end<=Activity_end){
+		time1=time1-1000;
+		var Zhour=parseInt(time1/1000/60/60)
+		var day=parseInt(time1/1000/60/60/24)
+    	var hour=parseInt(time1/1000/60/60%24)
+		var mintue=parseInt(time1/1000/60%60)
+		var seconds=parseInt(time1/1000%60)
+	}else{
+		time2=time2-1000;
+		var Zhour=parseInt(time1/1000/60/60)
+		var day=parseInt(time2/1000/60/60/24)
+    	var hour=parseInt(time2/1000/60/60%24)
+		var mintue=parseInt(time2/1000/60%60)
+		var seconds=parseInt(time2/1000%60)
+	}
+	//
+	if(Zhour<10){
+		Zhour='0'+Zhour;
+	}
+	if(day<10){
+		day='0'+day
+	}
+	if(hour<10){
+		hour='0'+hour
+	}
+	if(mintue<10){
+		mintue='0'+mintue
+	}
+	if(seconds<10){
+		seconds='0'+seconds
+	}
+	//倒计时
+	tt=setTimeout('conduct()',1000)
+	if(time1<=0||time2<=0){
+		clearTimeout(tt)//清除计时器
+		day=0;
+		hour=0;
+		mintue=0;
+		seconds=0;
+		Zhour=0;
+		vm.time_type=0;
+	}else{
+		vm.time_type=1;
+	}
+	vm.day=day;
+	vm.hour=hour;
+	vm.mintue=mintue;
+	vm.seconds=seconds;
+	vm.Zhour=Zhour;
+}
+/*渲染数据*************结束*/
+//实时数据
+function enrolling(){
+	var vm=this.vm;
+	data={apply_id:apply_id,customer_id_en:customer_id_en,activity_id:activity_id};
+	var url=HOST_WSY+'/weixinpl/haggling/back/index.php/home/front/getBargainInfo'
+	$.ajax({
+        url:url,
+        data:data,
+        async:false,
+        type:'get',
+        dataType:'json',
+        success:function(res){
+			console.log(res)
+			vm.jlminprice= res.data['actual_time_price'];
+			vm.bargainInfo=res.data['bargainInfo'];
+			vm.latest_price=res.data['latest_price'];
+			latest_price=res.data['latest_price'];
+			console.log(latest_price)
+			console.log(priced)
+			console.log(buy_price);
+			/*var jlminprice=(Number(latest_price)-Number(minimum_price)).toFixed(2);*/
+			var defprice=Number(priced)-Number(latest_price);
+			var chajia=Number(buy_price)-Number(minimum_price);
+			var buyprice=Number(priced)-Number(buy_price);
+			var gejia=Number(priced)-Number(minimum_price);
+			/*vm.bargain_user_total=res.bargain_user_total;*/
+			/*vm.jlminprice=jlminprice;*/
+			//进度条			
+			//前一半与后一半的计算速度不一样
+			if(Number(priced)>Number(latest_price)){
+				$('.jinduXx_T4img1').css('background-image','url(img/kj_22.png)')
+				$('.jinduXx_T4img1').css('border-color','#FD7D24');
+				
+			}
+			if(Number(latest_price)<=Number(buy_price)){
+				$('.jinduXx_T4img2').css('border-color','#FD7D24')
+				$('.jinduXx_T4img2').css('background-image','url(img/kj_12.png)')
+			}
+			if(Number(latest_price)==Number(minimum_price)){
+				$('.jinduXx_T4img3').css('border-color','#FD7D24')
+				$('.jinduXx_T4img3').css('background-image','url(img/kj_42.png)')
+				if(Number(minimum_price)==0){
+					$('.jinduXx_T4Gm font').html('免费领取')
+				}
+			}
+			if(Number(latest_price)<=Number(buy_price)){
+				$('.FTbutton .FTbutton3').css('background','#F4212B')
+			}
+			if(defprice<buyprice){
+				//$('.jinduXx_Gm').hide()
+				$('.jinduXx_T4Gm span').css('top','-0.21rem');
+				$('.jinduXx_T4Gm font').css('line-height','0.3rem')
+//				$('.jinduXx_T4Gm font').css('font-size','0.189rem')
+				var cha_buy=(Number(latest_price)-Number(buy_price)).toFixed(2);
+				if(cha_buy.length>=9){
+                	$('.jinduXx_T4Gm font').css('top','-1.1rem');
+                	vm.html="仅需砍"+cha_buy+"元即可购买"
+               }else{
+                	 vm.html="仅需砍"+cha_buy+"元即可购买"
+                }
+				
+				var wit=(defprice/buyprice*100/2)+'%';
+				console.log(wit);
+				$('.jinduXx_T4Gm').width(wit)
+			}
+			if(defprice>=buyprice){
+				$('.jinduXx_T4Gm span').css('top','-0.21rem')
+				$('.jinduXx_T4Gm font').css('line-height','0.3rem')
+//				$('.jinduXx_T4Gm font').css('font-size','0.189rem')
+				var cha_buy=(Number(latest_price)-Number(minimum_price)).toFixed(2);
+				if(cha_buy=="0.00"){
+					if(minimum_price!="0.00"){
+						if(minimum_price.length>=5){
+							$('.jinduXx_T4Gm font').css('top','-1.1rem');
+							vm.html="仅需支付"+minimum_price+"元即可领取";	
+						}else{
+							vm.html="仅需支付"+minimum_price+"元即可领取";	
+						}
+					  
+					}else{
+					 $('.jinduXx_T4Gm font').css('top','-0.5rem');	
+				     vm.html="免费领取";
+					}
+				}else{
+				    var fu=Number(cha_buy)+Number(minimum_price);
+				        fu=fu.toFixed(2);
+				    if(fu.toString().length>=5){
+				    	$('.jinduXx_T4Gm font').css('top','-1.1rem');
+				    	vm.html="仅需支付"+fu+"元即可领取";
+				    }else{
+				    	vm.html="仅需支付"+fu+"元即可领取";
+				    }
+				    
+				}
+				$('.jinduXx_Gm').show();
+				if(chajia !=0){
+					var wit=(50+((Number(buy_price)-Number(latest_price))/chajia*100)/2)+'%';
+				    $('.jinduXx_T4Gm').width(wit);
+				}else if(chajia==0){
+					$('.jinduXx_T4Gm').width("100%");
+				}
+			};
+			//计时器
+			/*t=setTimeout("enrolling()",1500);*/
+			//进度条跑完清除定时器
+			if($('.jinduXx_T4Gm').width()>=$('.jinduXx_T').width()){
+				/*$('#ints').width(wit)*/
+				clearInterval(t)	
+			}
+			//展示
+			document.getElementsByTagName('body')[0].style.visibility='visible';
+        },
+        error:function(res){
+            console.log('请求信息失败')
+        },  
+    });
+}
+enrolling()
+t=setInterval('enrolling()',5000)
+//获取活动商品的信息
+function HDxinxi(){
+	var vm=this.vm;
+	var data={
+		id:id,
+		customer_id_en:customer_id_en,
+		user_id_en:user_id_en,
+		activity_id:activity_id
+	};
+	var url=HOST_WSY+'/weixinpl/haggling/back/index.php/home/front/comInfo'
+	$.ajax({
+        url:url,
+        data:data,
+        async:false,
+        type:'get',
+        dataType:'json',
+        success:function(res){
+			console.log(res);
+			completed_status=res.completed_status;
+			buy_status=res.buy_status;
+			vm.activity_expire_code=res.activity_expire_code;
+			vm.inventory=res.inventory;//库存数量
+			is_care=res.is_care;
+			if(res.activity_expire_code!=2){
+				vm.time_type=0;
+				vm.activity_expire_desc=res.activity_expire_desc;
+				clearInterval(t)
+				clearTimeout(tt)//清除计时器
+			}
+        },
+        error:function(res){
+        	console.log('请求信息失败')
+        },  
+    });
+}
+HDxinxi()
+//再次报名
+function jion(){
+	if(idx){
+		id = idx;
+	}
+	var data={
+		id:id,
+		customer_id_en:customer_id_en,
+		activity_id:activity_id,
+		user_id_en:user_id_en,
+		completed_status:completed_status
+	};
+	console.log(data);
+	var url=HOST_WSY+'/weixinpl/haggling/back/index.php/home/front/shareApply'
+	$.ajax({
+        url:url,
+        data:data,
+        async:false,
+        type:'get',
+        dataType:'json',
+        success:function(res){
+			console.log(res)
+			var err_code=res.err_code;
+			var apply_id=res.apply_id;
+			if(err_code==1){
+				location.href = 'enrolled.html?customer_id_en='+customer_id_en+'&user_id_en='+user_id_en+'&id='+id+'&apply_id='+apply_id+'&activity_id='+activity_id+'&web_time='+web_time;
+        	}
+        	if(err_code==0){
+        		
+        		var t=res.data;
+        		tkshow(t);
+        	}
+        },
+        error:function(res){
+        	console.log('请求信息失败')
+        },  
+    });
+}
+/*优惠券*/
+function prompt(){
+	var vm=this.vm;
+	var data = {customer_id_en:customer_id_en,activity_id:activity_id}
+	var url=HOST_WSY+'/weixinpl/haggling/back/index.php/home/zpq/test_coupon'
+	$.ajax({
+        url:url,
+        data:data,
+        async:false,
+        type:'get',
+        dataType:'json',
+        success:function(res){
+        	vm.Error=res.error;
+        	vm.weixin_name=res.data['weixin_name'];
+        	vm.money=res.data['money'];
+        	/*setTimeout('prompt()',1500)*/
+        },
+        error:function(res){
+            console.log('请求信息失败！！！');
+        },  
+    });
+}
+prompt()
+t1=clearInterval('prompt()',5000)
+/*prompt();*/
+//邀请好友
+function Invitation(){
+	var let=$('body').height();
+	$('.mask').height(let);
+	$('.promptBox1').show()
+	$('.instructions').show()
+	$(document).bind('touchmove',function(event) { 
+    	event.preventDefault(); 
+    })
+	 $(document.body).css({
+	   "overflow-x":"hidden",
+	   "overflow-y":"hidden"
+ 	});
+}

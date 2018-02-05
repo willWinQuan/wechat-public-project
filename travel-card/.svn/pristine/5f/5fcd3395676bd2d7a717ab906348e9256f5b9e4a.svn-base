@@ -1,0 +1,39 @@
+body{
+	background: #fff;
+}
+.card_info{
+	background: url(../img/renew.png) no-repeat;
+	background-size: 100% 100%;
+	margin: .3rem .4rem;
+	color: #fff;
+	padding: .3rem .4rem;
+}
+.card_info>p{
+	margin: .2rem 0;
+	font-size: .4rem;
+}
+.select_renew{
+	margin: .2rem .4rem;
+}
+.renew_item{
+	width: 45%;
+	margin: .4rem;
+	background: #FFA340;
+	padding: .4rem;
+	box-sizing: border-box;
+	text-align: center;
+	color: #fff;
+	border-radius: 5px;
+}
+.pay_now{
+	width: 90%;
+	background: #FE7C24;
+	position: fixed;
+	bottom: .5rem;
+	border-radius:10px !important;
+	margin-left: 5%;
+	line-height: .8rem;
+	text-align: center;
+	font-size: .325rem;
+	color: #fff;
+}

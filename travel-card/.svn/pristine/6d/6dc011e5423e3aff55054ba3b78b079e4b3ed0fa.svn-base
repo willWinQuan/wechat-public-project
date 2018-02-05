@@ -1,0 +1,61 @@
+/*获取链接上的传参*/
+var customer_id=getPar_WSY('customer_id')
+var card_id=getPar_WSY('id')
+var vm=new Vue({
+	el:"#app",
+	data:{
+		card_number:'',
+		id:'',
+		identity_card:'',
+		name:'',
+		renew_num:'',
+		renew_price:'',
+		renew_unit:'',
+		sex:'',
+		validity_begin:'',
+		validity_end:'',
+		pay_data:'',
+		customer_id:customer_id,
+	},
+	created:function(){
+		var id=card_id;
+		console.log(id)
+		var data={
+			id:id,
+			customer_id:customer_id
+		}
+		console.log(data)
+		$.ajax({
+			url:'/o2o/web/index.php?m=travel_mycard&a=mycard_renew_detail',
+			data:data,
+			type:'get',
+			async:true,
+			dataType:'json',
+			success:function(res){
+				vm.customer_id=res.data.customer_id;
+				vm.card_number=res.data.card_number;
+				vm.id=res.data.id;
+				vm.identity_card=res.data.identity_card;
+				vm.name=res.data.name;
+				vm.renew_num=res.data.renew_num;
+				vm.renew_price=res.data.renew_price;
+				vm.renew_unit=res.data.renew_unit;
+				vm.sex=res.data.sex;
+				vm.validity_begin=res.data.validity_begin;
+				vm.validity_end=res.data.validity_end;
+			}
+		})
+		//续费接口
+		$.ajax({
+			url:'/o2o/web/index.php?m=travel_mycard&a=renew_op',
+			data:data,
+			type:'get',
+			async:true,
+			dataType:'json',
+			success:function(res){
+				console.log(res)
+				vm.pay_data=res.data;
+			}
+		})
+	}
+})

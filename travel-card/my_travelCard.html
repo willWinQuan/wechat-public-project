@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<!--cdn域名预解析-->
+		<!--<meta http-equiv="x-dns-prefetch-control" content="on"> 	-->
+		<title>我的旅游卡</title>
+        <link rel="stylesheet" type="text/css" href="css/common.css"/>
+        <link rel="stylesheet" type="text/css" href="css/my_travelCard.css"/>
+        <style type="text/css">
+        	/*vue编译结束,再渲染数据*/
+        	[v-cloak] {
+			  display: none;
+		    }
+        </style>
+
+        <!--支撑 js-->
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/vue2.1.6.js"></script>
+        <script type="text/javascript" src="js/set_rem.js"></script>
+	    <script type="text/javascript" src="js/common.js" ></script>
+		<!---->
+	
+	</head>
+	<body style="width: 100%;">
+    
+ <div class="main" style="width: 100%;">
+	<div class="tab_nav">
+      <div class="nav_item" style="color:rgb(255,133,48);">
+      	我的电子卡
+      	<div class="nav_item_underline" v-if='tab_nav_falg'></div>
+      </div>
+      <!--分隔线-->
+      <div class="divide"></div>
+      <div class="nav_item">
+      	我的订单
+      	<div class="nav_item_underline" v-if='!tab_nav_falg'></div>
+      </div>
+      
+	</div>
+	<!--我的订单-->
+	<div class="myorder_contentShow" v-cloak v-if='!tab_nav_falg'>
+		<div class="nodata" v-if='myorder_nodata'>
+			<img v-if='myorder_nodata' src="img/no_card.png"/>
+			<div class="nodata_msg">你还没有订单哦</div>
+			<div class="goapplyCard" @click='jum_getcard()'>我要办卡</div>
+		</div>
+         
+        <ul style="display: block;">
+			<li v-for='item in myOrder_list'>
+				<div class="myOrder_item">
+					<!---->
+					<div class="myOrder_item_h" @click='jump_myOrder_detail(item.id)'>
+						<div class="myOrder_itemh_l">
+							<i class="myOrder_itemh_licon"></i>
+							<span>订单号：</span>
+							<span class="myOrder_num" v-text='item.batchcode'></span>
+						</div>
+						<div class="myOrder_itemh_r" v-if='item.status==0'>待付款</div>
+						<div class="myOrder_itemh_r" v-if='item.status==1'>已完成</div>
+						<div class="myOrder_itemh_r" style="color:#999" v-if='item.status==2'>已失效</div>
+					</div>
+					<!---->
+					<div class="myOrder_item_m" @click='jump_myOrder_detail(item.id)'>
+						<div class="myOrder_itemm_l">
+							<img :src="item.cover_img"/>
+						</div>
+						<div class="myOrder_itemm_r">
+							<div class="myOrder_itemmr_carname">{{item.packname}}</div>
+							<div class="myOrder_itemmr_money">
+								<i>¥</i>
+								<em v-text='item.price'></em>
+						</div>
+						<div class="myOrder_itemmr_personalname">
+								持卡人：{{item.name}}
+							</div>
+						</div>
+					</div>
+				    <!---->
+				    
+				    <form v-if='item.status==0' :id='"form"+item.id'  style="display: none;" method="post" :action="'/weixinpl/mshop/choose_paytype.php?customer_id='+customer_id_m" >
+				    	<input type="hidden" name="post_data" :value='pay_data' />
+				    	<input :id="item.id" @click='getPay_data(item.id)' type="button" />
+				    </form>
+			
+				    <label v-if='item.status==0' :for="item.id">
+				    	<!--v-if='item.order_type==2'-->
+				    	<div class="gopay">立即支付</div>
+				    </label>
+				    <div class="clear"></div>
+				</div>
+			</li>
+
+		</ul>
+		
+		<div v-if='myorder_no_more==true' class="no_more">没有更多...</div>
+		
+	</div>
+	 
+	<!--我的电子卡-->
+	<div class="eCard_contentShow" v-cloak  v-if='tab_nav_falg'>
+		<div class="nodata" v-if='eCard_nodata'>
+			<img v-if='eCard_nodata' src="img/no_card.png"/>
+			<div class="nodata_msg">你还没有电子卡哦</div>
+			<div class="goapplyCard" @click='jum_getcard()'>我要办卡</div>
+		</div>
+	
+		<ul>
+			<li v-for='(item,index) in ecar_list' :style="'background: url('+ecar_back_img+') 50% 50% no-repeat; background-size: cover;'">
+			  <div class="eCard_item">
+				<div class="eCard_item_h">
+					<img class="eCard_item_hImg"  :src="item.qrcode" :id="'qrcode'+item.id" @click="show_ecode(item.id,item.qrcode,item.validity_begin,item.validity_end,item.card_number)">
+					<img class="eCard_item_hImgT" v-if='ecar_logo_img != null && ecar_logo_img !=""' :src="ecar_logo_img"/>		
+				</div>
+				<div class="eCard_item_m">
+					<div class="eCard_itemm_l">
+						<img :src="item.head_img"/>
+					</div>
+					<div class="eCard_itemm_r">
+						<div class="eCard_itemmr_h">
+							<span>
+								<label>姓&nbsp;名：</label>
+								{{item.name}}
+							</span>
+							<span>
+								<label>性&nbsp;别：</label>
+								{{item.sex==1?'男':'女'}}
+							</span>
+						</div>
+						<div class="eCard_itemmmr_m">
+						    <span class="eCard_item_number" >
+						    	<label>身份证号码：</label>
+						    	<span :id="'eitem_number'+item.id">{{item.identity_card}}</span>
+						    </span>
+						</div>
+					</div>
+				</div>
+			    <div class="eCard_item_f">
+			        <!--0987&nbsp;0000000001&nbsp;01-->
+			        {{item.card_number}}
+			    </div>
+			    <div class="eCard_item_ftime">
+			    	<span>
+			    		有效期：{{item.validity_begin}}至{{item.validity_end}}  
+			    	</span>
+			    	<span style="color: red;" v-if='item.validity==0'>
+			    		已过期
+			    	</span>
+			    	<span style="float: right;margin-right: 3%;" v-if='ecar_isopen==1'>
+			    		<a :href="'renew.html?id='+item.id+'&customer_id='+customer_id">点击续费</a>
+			    	</span>
+			    	<div class="clear"></div>
+			    </div>
+			  </div>
+			  
+			</li>
+		   
+		</ul>
+		
+		<div v-if='ecar_no_more==true' class="no_more">没有更多...</div>
+		
+	<div class="lookdiary" @click='jump_renewRecord_jum()'>查看续费记录</div>
+	</div>
+	
+		<!--二维码弹框-->
+	 <div class="ecode_alert" v-cloak v-if='ecode_alert_show'>
+	 	<div class="ecode_img">
+	 		<img :src="ecar_ecode_img"/>
+	 	</div>
+	 	<div class="ecode_time">
+	 		<span class="ecode_time_frist">有效期：{{ecar_ecode_beginTime}}至</span>
+	 		<span class="ecode_time_next">{{ecar_ecode_endTime}}</span>
+	 	</div>
+	 	<div class="ecode_genew_msg">刷新成功...</div>
+	 	<div class="ecode_new" @click='update_ecode()'>
+	 		点击刷新
+	 	</div>
+	 </div>
+	
+	  <!--遮罩层-->
+	 <div class="mask"></div>
+	
+   </div>    
+   
+    <script type="text/javascript" src="js/my_travelCard.js"></script>
+		<!--配置-->
+	<script type="text/javascript">
+        $(function(){
+        	
+//      	window.location.reload();//重新加载
+
+          console.log(window.screen.availWidth);
+          //5s屏幕小配置
+         //可工作屏幕宽度
+//        console.log(window.screen.availWidth)；5s-320
+         if(window.screen.availWidth<=320){
+         	$('.eCard_item_f').css({
+         		'font-size':'.52rem'
+         	});
+         	$('.eCard_item_ftime').addClass('eCard_item_ftime5s').removeClass('eCard_item_ftime');
+         	$('.myOrder_num').css('font-size','.27rem');    
+         };
+
+        });
+	</script>
+    
+    <script src="js/my_travelCard_index.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script src="js/weixinInterface.js"></script>
+</body>	
+</html>
+

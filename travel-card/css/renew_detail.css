@@ -1,0 +1,25 @@
+body{
+	background: #FFFFFF;
+}
+.card_info{
+	padding: .2rem .4rem;
+}
+.card_info>p:last-child{
+	padding: .2rem 0;
+	border-bottom: 1px solid #eee;
+}
+.renew_detail{
+	padding: 0 .4rem;
+}
+.renew_detail>p{
+	margin: .2rem 0;
+	color: #767676;
+}
+.renew_detail>p:first-child{
+	margin: 0;
+}
+.float_service{
+	position: fixed;
+    top: 45%;
+    right: 3%;
+}
