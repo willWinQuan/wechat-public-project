@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="no" name="apple-touch-fullscreen">
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta http-equiv="pragma" content="nocache">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<link rel="stylesheet" href="css/activity-index.css" />
+		<title id="index-title"></title>
+		<style>
+			/*share_start*/
+			#share{position:fixed;bottom:62px;left:90%;width:30px;zoom:1;z-index:49;opacity: 0.8;}
+			#share a{
+				background-image:url(/weixinpl/mshop/images/list_image/wa4.png);background-repeat:no-repeat;display:block;width:30px;height:30px;overflow:hidden;text-indent:-999px;
+				background-size: cover;margin:0;
+			}
+			#share .hideicon{background-position:0 0;}
+			#share a.hideicon:hover{background-position:0 0;}
+			#share .hideicon.close{transform:rotate(180deg);-webkit-transform:rotate(180deg);opacity:1;}
+			#share .homepage{background-position:0 -30px;}
+			#share a.homepage:hover{background-position:0 -30px;}
+			#share .personal{background-position:0 -60px;}
+			#share a.personal:hover{background-position:0 -60px;}
+			#share .pingtuan{background-position:0 -232px;height: 30px;}
+			#share a.pingtuan:hover{background-position:0 -232px;}
+			#share .eye{background-position:0 -90px;}
+			#share a.eye:hover{background-position:0 -90px;}
+			#share .heart{background-position:0 -120px;}
+			#share a.heart:hover{background-position:0 -120px;}
+			#share .chat{background-position:0 -182px;}
+			#share a.chat:hover{background-position:0 -182px;}
+			#share .supply_chat{background-position:0 -182px;}
+			#share a.supply_chat:hover{background-position:0 -182px;}
+			#share a#totop{background-position:0 -210px;cursor:pointer;display: none;}
+			#share a#totop:hover{background-position:0 -210px;}
+		</style>
+		<link href="/weixinpl/mshop/css/floatingwindowrem.css" type="text/css" rel="stylesheet">
+	</head>
+	<body style="visibility: hidden;">
+		<div class="main">
+			<!--帮砍广播条-->
+			<div class="helpBar" v-if='Error==1000'>
+				{{weixin_name}}帮好友砍价，获得一张{{money}}元优惠劵!
+			</div>
+			<!--活动广告-->
+			<div class="ad" :style="{backgroundImage: 'url('+ Activity_logo +')'}">
+				<span></span>
+			</div>
+			<!--活动时间-->
+			<div class="ativityTime">
+				<span v-if="activityStatus==1">距离砍价开始还剩</span>
+				<span v-if="activityStatus==2">距离砍价结束还剩</span>
+				<span v-if="activityStatus==3">活动已经结束</span>
+				<span v-if="activityStatus==4">活动已经终止</span>
+				<div class="ativityTime-show" v-if="activityStatus==1 || activityStatus==2">
+					<span><i></i>{{day}}天{{hour}}小时{{mintue}}分{{seconds}}秒</span>
+				</div>
+			</div>
+			<!--活动商品列表-->
+			<div class="shopList">
+				<ul>
+					<li v-for='(item, index) in list' :id='item.id' :activity_id='item.activity_id' :product_no='item.product_no' :share_status='item.share_status' @click='enroll(item.id,item.activity_id,item.latest_price,item.share_status,item.goods_expire_code,item.Activity_expire_code,item.apply_id)'>
+						<!--左边商品图片-->
+						<div class="shopList-left">
+							<span :style="{backgroundImage: 'url('+ item.default_imgurl +')'}"></span>
+						</div>
+						<!--右边商品decs-->
+						<div class="shopList-right">
+							<!--商品名-->
+							<h5 v-text='item.name'>发烧级台式机I76700K/GTX-1060ti/225GSSD/16G 内存...</h5>
+							<!--商品价格-->
+							<div class="shopPrice">
+								<!--最低价-->
+								<div class="minPrice">
+									<label>最低价</label>
+									<i>¥</i>
+									<span v-text='item.minimum_price'>5900</span>
+								</div>
+								<!--市场价-->
+								<div class="marketPrice">
+									<label>市场价</label>
+									<i>¥</i>
+									<span v-text='item.price'>9900</span>
+								</div>
+							</div>
+                          <!--   <div>{{btnStatusData[index]['goods_expire_code']}}</div> -->
+							<!--立即砍价-->
+							<div class="putPrice put" v-if='activityStatus==1'>
+								活动未开始
+							</div>
+							<div class="putPrice" v-if='Object(btnStatusData[index]).goods_expire_code==2' >
+								立即砍价
+
+							</div>
+							<div class="putPrice put" v-if='Object(btnStatusData[index]).goods_expire_code==3' >
+								活动已结束
+							</div>
+							<div class="putPrice put" v-if='activityStatus==4'>
+								活动已终止
+							</div>
+						</div>
+						<p class="clear"></p>
+					</li>
+				</ul>
+			</div>
+			<!--排行榜&&我的砍价-->
+			<div class="footer">
+				<!--排行榜-->
+				<div class="rankingList" @click="clickRanking()">
+					<i></i>
+					<span>排行榜</span>
+				</div>
+				<!--我的砍价-->
+				<div class="myBargain" @click="clickMyBargain()">
+					<i></i>
+					<span>我的砍价</span>
+				</div>
+			</div>
+		</div>
+	</body>
+		<script src="js/lib/jquery-1.12.1.min.js"></script>
+		<script type="text/javascript" src="js/comm/config.js"></script>
+		<script type="text/javascript" src="js/comm/common.js"></script>
+	<!--导航+底部菜单-->
+	<script>
+        get_navigation('bargain_index');
+//        get_bottom_label('bargain_index');
+	</script>
+	<!--导航+底部菜单-->
+		<script type="text/javascript">
+			init_WSY(); /*customer_id检测*/
+			get_user_id_WSY(); /*网页授权获取用户user_id*/
+	    </script>
+	    <script src='js/lib/zepto.min.js'></script>
+		<script src="js/lib/set_rem.js"></script>
+		<script type="text/javascript" src="js/lib/vue2.1.6.js" ></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<script type="text/javascript" src="js/wxInterface.js"></script>
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript">
+		    access(); //访问统计
+		    //标题
+
+		</script>
+</html>

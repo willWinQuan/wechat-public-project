@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <!DOCTYPE html> -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- <html lang="zh-cn"> -->
+<head>
+<!-- <meta charset="utf-8"/> -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="keywords" content="iPhone"/>
+<meta name="description" content="本公司专业开发高端智能移动设备"/>
+<meta name="author" content="bwin,1138663@qq.com"/>
+<!-- <meta http-equiv="refresh" content="3"/>                          3秒后刷新 -->
+<!-- <meta http-equiv="refresh" content="3;URL=http://www.qq.com"/>    3秒后跳转 -->
+<link type="text/css" href="" rel="stylesheet"/>
+<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.8.3.min.js"></script> 
+<title>404错误提示</title>
+
+<style type="text/css">/*<![CDATA[*/
+ :root{font-size:62.5%;} /* html{font-size: 62.5%;10 ÷ 16 × 100% = 62.5%} */
+ /* img{max-width:100%;}                   //图片自适应指定其最大宽度100%即可 */
+ /* box-sizing:content-box(默认)           //宽高不含内边距和边框(padding+border) */
+ /* box-sizing:border-box(推荐布局模式)    //宽高含padding+border */
+ html,body{padding:0;margin:0;font-family:'微软雅黑',Times New Roman,serif;}
+ body{font-size:1.6rem;}
+
+/* CSS Document */
+.place{height:40px;background:url('__PUBLIC__/ass/images/righttop.gif') repeat-x;font-size:12px;}
+.place span{float:left;margin-left:12px;line-height:40px;font-weight:bold;}
+.place ul{margin:0;padding:0;list-style:none;}
+.placeul li{
+	float:left;
+	padding-left:7px;
+	padding-right:12px;
+	line-height:40px;
+	background:url('__PUBLIC__/ass/images/rlist.gif') no-repeat right;
+}
+.placeul li:last-child{background:none;}
+a:hover{color:#00a4ac;text-decoration:none;}
+a,a:focus{text-decoration:none;color:#000;outline:none;blr:expression(this.onFocus=this.blur());}
+
+/*error 404*/
+/* .error{background:url('__PUBLIC__/ass/images/404.png') no-repeat;width:490px;margin-top:75px;padding-top:65px;} */
+.error{background:url('__PUBLIC__/ass/images/404.png') no-repeat;width:510px;margin-top:75px;padding-top:65px;}
+.error h2{margin:0;padding:0;font-weight:normal;font-size:22px;padding-left:154px;}
+.error p{margin:0;padding:0;padding-left:154px; line-height:35px;color:#6E6E6E;font-size:12px;}
+.reindex{padding-left:154px;}
+.reindex a{
+	width:115px; 
+	height:35px;
+	display:block; 
+	line-height:35px;
+	text-align:center;
+	margin-top:8px;
+	border-radius:3px;
+	font-weight:bold;
+	font-size:14px;
+	color:rgb(255,255,255);
+	background:rgb(60,149,200);
+	behavior:url(js/pie.htc);
+}
+
+/*]]>*/</style>
+</head>
+<body style="background:#f7f7f7;">
+	<div class="place">
+	    <span>位置：</span>
+	    <ul class="placeul">
+		    <li><a href="#">首页</a></li>
+		    <li><a href="#">404错误提示</a></li>
+	    </ul>
+    </div>
+    <div class="error">
+	    <!-- <h2>非常遗憾,您访问的页面不存在！</h2> -->
+	    <h2>您访问的页面已经被外星人劫持了..</h2>
+	    <p>看到这个提示, 就自认倒霉吧！</p>
+	    <div class="reindex">
+	    	<!-- <a href="main.html" target="_parent">返回首页</a> -->
+	    	<a href="__MODULE__/base/baseset?customer_id=false">返回首页</a>
+	    </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+   $(function(){
+	  $('.error').css({'position':'absolute','left':($(window).width()-510)/2});
+	  $(window).resize(function(){  
+	     $('.error').css({'position':'absolute','left':($(window).width()-510)/2});
+	  });  
+   });  
+</script>

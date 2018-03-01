@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/ass/css/yi_ren.css"/>
+		<link rel="stylesheet" href="<{$http}>/weixinpl/common/css_V6.0/<{$theme}>.css"/>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/common.js"></script>
+		<style>
+		 .idBox .idBoxNav p{background:#efefef; color:black; border-color:#efefef; cursor: pointer;}
+		 .yrBc, .yrQx{cursor: pointer;}
+		</style>
+	</head>
+	<body>
+
+<!--列表内容大框开始-->
+<div class="WSY_columnbox">
+	<!--列表头部切换开始-->
+	<div class="WSY_column_header">
+		<div class="WSY_columnnav">
+			<a href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80">砍价活动列表</a>
+			<a href="<{:U('bargain/edit_activity')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">活动入口</a>
+		</div>
+	</div>
+	<!--列表头部切换结束-->
+
+    <div  class="yirenAdministration zong_t">	
+        <form method="get" action="" id="yirenform">
+			<div class="yirenForm">
+			    <input type="hidden" value="<{$customer_id_en}>" name="customer_id_en">
+			    <input type="hidden" value="<{$activity_id}>" name="activity_id">
+				<li class="WSY_position_text">
+				    <span>状态:</span>
+					<a>
+						<select name="option">
+							<option value="">--请选择--</option>
+							<volist name="option" id="op">
+								<option value=<{$op['option_id']}> ><{$op['option_name']}></option>
+							</volist>
+						</select>
+					</a>
+					<a class="WSY_buttontj yirenFormOe" href="javascript:void(0)" onclick="document.getElementById('yirenform').submit();" id="search-button">搜索</a>
+				</li>
+			</div>
+		</form>
+		<table width="97%" class="yirenTable" cellpadding="0" cellspacing="0" >
+			<thead class="WSY_table_header">
+				<tr>
+					<th width="4%"><input type="checkbox"></th>
+					<th width="12%">用户ID</th>
+					<th width="12%">用户名称</th>
+					<th width="12%">帮砍产品</th>
+					<th width="12%">砍下金额</th>
+					<th width="12%">帮砍时间</th>
+					<th width="12%">帮砍次数</th>
+					<th width="12%">发起者</th>
+					<th width="12%">状态</th>
+			  	</tr>
+			</thead>
+			<tbody class="yirenGl" >
+			    <volist name="bargain" id="vo" key="key">
+				  	<tr>
+				  		<td><input type="checkbox"></td>
+				  		<td><{$vo['user_id']}></td>
+				  		<td style="color:green;font-weight:bold;" ><{$vo['weixin_name']}></td>
+				  		<td><{$vo['product_name']}></td>
+				  		<td style="color:orange;font-weight:bold;" >￥ <{$vo['bargain_price']}></td>
+				  		<td><{$vo['bargain_time']}></td>
+				  		<td style="color:orange;font-weight:bold;" ><{$vo['bargain_num']}></td>
+				  		<td style="color:red;font-weight:bold;" ><{$vo['action_name']}></td>
+				  		<td><{$vo['status']}></td>
+				  	</tr>
+			    </volist>
+			</tbody>
+		</table>
+		<!--表格结束-->
+        <!--跳转页面-->
+        <div class="WSY_page">
+        	<ul class="WSY_pageleft" style="width: 70%;">
+        		<{$strPage}>
+        		<div class="WSY_searchbox">
+        			<input class="WSY_page_search" id="WSY_jump_page"/>
+        			<input class="WSY_jump" type="button" value="跳转"/>
+        		</div>
+        	</ul>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function pagehref(obj){
+		var str1=$(obj).attr("page");
+		var str2=$(obj).attr("condition");
+		location.href="?page="+str1+str2+"&activity_id=<{$activity_id}>";
+	}
+	//输入框按回车键触发搜索
+	$('.WSY_position_text').find('input').on('keydown',function(){
+		if( event.keyCode == 13 ){
+			$('#search-button').click();
+		}
+	});
+	function add_product(obj){
+		var key=$(obj).attr("key");
+		var product_id=$(".yirenGl tr").eq(key-1).children("td").eq(1).html();
+		var activity_id=$(obj).attr("jump_activity_id");
+		var customer_id_en=$(obj).attr("customer_id_en");
+		var data= {
+			product_id:product_id,
+			activity_id:activity_id,
+			customer_id_en:customer_id_en
+        }
+        $.ajax({
+            url: '<{$http}>/weixinpl/haggling/back/index.php/workroom_admin/bargain/add_product',
+            type:'get',
+            data:data,
+            dataType:'json',
+            success:function(res){
+            	if(res.error==1000){
+            		alert("添加成功！");
+            	}else if(res.error==1002){
+            		alert("商品已经存在！");
+            	}else{
+            		alert("customer_id错误！");
+            	}
+            },error:function(){
+            	alert("提前方法或其他方法出错！");
+            }
+        });
+	}
+	function jumpto_join(obj){
+		location.href="<{:U('bargain/join')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>"
+	}
+</script>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<script type="text/javascript" src="js/jquery-1.12.1.min.js" ></script>
+		<script type="text/javascript" src="js/set_rem.js" ></script>
+		<title></title>
+		<link rel="stylesheet" href="css/payment.css" />
+	</head>
+	<body>
+		<div class="header">
+			<span class="headerLeft"></span>
+			<span class="headerRight">
+				<span class="buyers">
+					收货人:<font>么么哒</font>&nbsp;&nbsp;&nbsp;
+					<font>13711111111</font>
+				</span>
+				<span class="address">
+					地址:<font>广东省深圳市福田区某某路某某小区某某楼</font>
+				</span>
+			</span>
+		</div>
+		<!---->
+		<div class="nav">
+			<div class="navHeader">
+				<span class="navLeft"></span>
+				<font>hardlyevers官方旗舰店</font>
+				<span class="navRight"></span>
+			</div>
+			<!---->
+			<div class="navContent">
+				<div class="navContentImg">
+					<span class="img_img"></span>
+				</div>
+				<div class="navContentXx">
+					<div class="navContentXxLeft">
+						<p class="left_1">【iphone】Apple/苹果 iphone7 plus</p>
+						<p class="left_2">颜色:<font>黑色</font>&nbsp;&nbsp;规格:<font>32g</font></p>
+						<p class="left_3"><font>7天退换</font></p>
+					</div>
+					<div class="navContentXxRight">
+						<p>￥<font>5800.00</font></p>
+						<p>X<font>1</font></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!---->
+		<div class="details">
+			<div class="detailsNav">
+				<p>
+					<font class="detailsNavLeft">商品总价</font>
+					<font class="detailsNavRight">￥5800.0</font>
+					<div class="clear"></div>
+				</p>
+				<p>
+					<font class="detailsNavLeft">运费</font>
+					<font class="detailsNavRight">￥10.0</font>
+					<div class="clear"></div>
+				</p>
+				<p>
+					<font class="detailsNavLeft">砍价</font>
+					<font class="detailsNavRight">-￥100.0</font>
+					<div class="clear"></div>
+				</p>
+				<p>
+					<font class="detailsNavLeft">使用积分</font>
+					<font class="detailsNavRight">-￥18.0</font>
+					<div class="clear"></div>
+				</p>
+				<p class="detailsNav_c">
+					<font class="detailsNavLeft">订单总价</font>
+					<font class="detailsNavRight">￥4388.0</font>
+					<div class="clear"></div>
+				</p>
+				<p class="realpay">
+					<font class="detailsNavLeft">实付款</font>
+					<font class="detailsNavRight">￥4388.0</font>					
+				</p>
+			</div>
+		</div>
+		<!---->
+		<div class="order">
+			<p>
+				<font>订单编号:</font>
+				<font>123456789</font>
+				<span class="orderCopy">复制</span>
+			</p>
+			<p>
+				<font>支付宝交易号:</font>
+				<font>564313947561</font>
+			</p>
+			<p>
+				<font>创建时间:</font>
+				<font>2107-06-27</font>
+				<font>23:00:00</font>
+			</p>
+			<p>
+				<font>支付时间:</font>
+				<font>2107-06-27</font>
+				<font>23:00:00</font>
+			</p>
+			<p>
+				<font>发货时间:</font>
+				<font>2107-06-27</font>
+				<font>23:00:00</font>
+			</p>
+			<p>
+				<font>成交时间:</font>
+				<font>2107-06-27</font>
+				<font>23:00:00</font>
+			</p>
+		</div>
+		<!---->
+		<div class="reply">
+			<div class="buyers">
+				<p>买家留言:</p>
+				<p>记得发货</p>
+			</div>
+			<div class="seller">
+				<p>商家回复:</p>
+				<p>欢迎下次再来</p>
+			</div>
+		</div>
+		<!---->
+		<div class="footer">
+			<p class="footerpay">
+				你还需要支付:&nbsp;&nbsp;<font>￥4388.0</font>
+			</p>
+			<div class="footerButton">
+				<div>
+					<p class="footerButtonYe">支付余额</p>
+					<p>
+						<font>剩余领取时间:</font>
+						<font>23:00:00</font>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--支付弹框-->
+		<div id="paystyle">
+			<ul id="payment">
+				<li>
+					<font class="styleZf">*支付方法:</font>
+				</li>
+				<li class="payFs paySelected">
+					<span class="payimg1"></span>
+					<span class="zfXx paySelected1">微信支付</span>
+					<span class="payGx payGx1"></span>
+				</li>
+				<li class="payFs">
+					<span class="payimg2"></span>
+					<span class="qbZf paySelected1">找人支付</span>
+					<span class="payGx"></span>
+				</li>
+				<li class="payFs">
+					<span class="payimg3"></span>
+					<span class="qbZf paySelected1">零钱包支付</span>
+					<span class="payGx"></span>
+				</li>
+				<div class="paymentBottum">
+					<div>下一步</div>
+				</div>
+			</ul>
+		</div>
+		<!---->
+		<div class="mask"></div>
+	</body>
+</html>

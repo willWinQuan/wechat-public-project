@@ -1,0 +1,202 @@
+body{
+	font-size: 0.289rem;
+}
+#header{
+	width: 100%;
+	margin-bottom: 0.1rem;
+	background: #FFFFFF;
+}
+#header li{
+	display: inline-block;
+	width: 25%;
+	float: left;
+	text-align: center;
+}
+#header li div{
+	width: 80%;
+	margin-left: 10%;
+	color:#666666;
+	padding-top: 0.2rem;
+}
+#header li div span{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+}
+#header li div .img1{
+	background: url(../img/kj_04.png) no-repeat 50% 50%;
+	background-size: cover;
+}
+#header li div .img2{
+	background: url(../img/kj_06.png) no-repeat 50% 50%;
+	background-size: cover;
+}
+#header li div .img3{
+	background: url(../img/kj_08.png) no-repeat 50% 50%;
+	background-size: cover;
+}
+#header li div .img4{
+	background: url(../img/kj_10.png) no-repeat 50% 50%;
+	background-size: cover;
+}
+/*点击当前*/
+.choice{
+	border-bottom: 2px solid #FF8430;
+}
+.choice p{
+	color: #FF8430;
+}
+/*主展示区*/
+.content{
+	width: 96%;
+	margin-left: 2%;
+	font-size:0.259rem;
+	background: #FFFFFF;
+	display: none;
+}
+.content li{
+	width: 100%;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 0.2rem;
+}
+.content li:nth-child(1){
+	padding-top: 0.2rem;
+}
+.content li .img{
+	width:2rem;
+	height:2rem;
+	background:url(../img/kj_11.png) no-repeat 50% 50%;
+	background-size: cover;
+	margin-bottom: 0.2rem;
+}
+.content li .information{
+	width: 64%;
+	position: relative;
+	display: inline-block;
+	float: right;
+	margin-left: 0.2rem;
+}
+.content li .img{
+	display: inline-block;
+	float: left;
+}
+.xx_z{
+	margin-top:0.15rem;
+	width: 100%;
+}
+.xx_z1 .xx_5{
+	margin: 0.2rem 0 0 0;
+}
+.content li .information .xx_c{
+	margin-top:0.1rem ;
+	margin-bottom:0.05rem ;
+}
+.content li .information .xx_1 font{
+	color:#FF8430;
+}
+.content li .information .xx_c .xx_2 .title{
+	font-size: 0.23rem;
+	border-radius: 5px;
+	display: inline-block;
+	color: #FFFFFF;
+	background: #f4212b;
+	padding: 0 0.2rem;
+}
+.content li .information .xx_c .xx_2 span{
+	font-size: 0.331rem;
+	color: #F4212B;
+}
+.content li .information .xx_3{
+	color: #888888;
+}
+
+.content li .information .xx_z .xx_4{
+	width: 100%;
+	display:-webkit-box;
+	-webkit-box-align:center;
+	-webkit-box-pack:center;
+	height: 0.4rem;
+	position: relative;
+	z-index: 9;
+}
+.content li .information .xx_z .xx_4 .xx_4Jd{
+	width: 100%;
+	height:0.15rem;
+	border-radius:0.2rem ;
+	background:#D1D1D1;
+	top:0.13rem;
+	position: absolute;	
+}
+.content li .information .xx_z .xx_4 .xx_4JdImg{
+	position: absolute;
+	height:0.15rem;
+	top:0.13rem;
+	border-radius:0.2rem ;
+	background: linear-gradient(to left, #FF9900 0%,#FF6600 100%);
+	left: 0;
+}
+.content li .information .xx_z .xx_4 .img1{
+	width: 0.25rem;
+	height: 0.25rem;
+	border: 2px solid #D1D1D1;
+	border-radius:0.3rem ;
+	position: absolute;
+	left:-0.5%;
+	top: 0.06rem;
+	background: url(../img/kj_14.png) no-repeat 50% 50%;
+	background-color: #FFFFFF;
+	background-size:0.15rem;
+	z-index: 99;	
+}
+.content li .information .xx_z .xx_4 .img2{
+	width: 0.25rem;
+	height: 0.25rem;
+	border: 2px solid #D1D1D1;
+	border-radius:0.3rem;
+	background: url(../img/kj_41.png) no-repeat 50% 50%;
+	background-color: #FFFFFF;
+	background-size:0.15rem;
+	z-index: 99;
+	position:relative;	
+}
+.content li .information .xx_z .xx_4 .img3{
+	width: 0.25rem;
+	height: 0.25rem;
+	border: 2px solid #D1D1D1;
+	border-radius:0.3rem ;
+	position: absolute;
+	right:-0.5%;
+	top: 0.06rem;
+	background: url(../img/kj_13.png) no-repeat 50% 50%;
+	background-color: #FFFFFF;
+	background-size:0.15rem;
+	z-index: 99;	
+}
+.content li .information .xx_z .xx_5 span{
+	font-size:0.2rem;
+	display: inline-block;
+	max-width: 60%;
+}
+.content li .information .xx_z .xx_5 .linq{
+	background: #FF8430;
+	color: #FFFFFF;
+	padding: 0.05rem .2rem;
+	border-radius:3px ;
+	float: right;
+	margin-bottom: 0.1rem;
+}
+
+.list-nodata{
+    font-size: .3rem;
+    display: block;
+    width: 2rem;
+    margin: 0 auto;
+    padding: 1rem 0;
+    color: #888;
+    text-align: center;
+}
+.list-nodata span{
+    display: block;
+    padding-left: .2rem;
+    line-height: .5rem;
+}

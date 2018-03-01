@@ -1,0 +1,48 @@
+.nav{
+	width: 100%;
+	font-size: 0.246rem;
+	text-align: center;
+}
+#button{
+	font-size: 0.246rem;
+}
+.nav .navImg{
+	width: 2rem;
+	height: 2rem;
+	margin: 0 auto;
+	margin-top: 1rem;
+	background: url(../img/kj_18.png) no-repeat 50% 50%;
+	background-size: 2rem;
+}
+.nav p{
+	color: #FD7D24;
+	font-size: 0.294rem;
+	margin-top:0.5rem;
+}
+#button{
+	width: 100%;
+}
+#button .buttonJx,#button .buttonDd{
+	width: 4.5rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	border: 1px solid #D1D1D1;
+	margin:0 auto;
+	text-align: center;
+}
+#button .buttonJx{
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+	background-color: #FD7D24;
+	color: #FFFFFF;
+	position: relative;
+}
+#button .buttonJx font{
+	display: inline-block;
+	height: 0.8rem;
+	width: 0.8rem;
+	position: absolute;
+	right: 20%;
+	background: url(../img/kj_19.png) no-repeat 50% 50%;
+	background-size: 0.15rem;
+}

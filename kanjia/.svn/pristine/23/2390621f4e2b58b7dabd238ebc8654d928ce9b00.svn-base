@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<link rel="stylesheet" href="css/myBargain.css" />
+		<title>我的砍价</title>
+	</head>
+	<body>
+		<div id="content"></div>
+		<div id="footer">
+			<p class="button1">
+				<a>我发起的砍价活动</a>
+			</p>
+			<p class="button2">
+				<a>邀请我的的砍价活动</a>
+			</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/set_rem.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.12.1.min.js" ></script>
+	<script type="text/javascript" src="js/myBargain.js" ></script>
+</html>

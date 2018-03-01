@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/ass/css/yi_ren.css"/>
+		<link rel="stylesheet" href="<{$http}>/weixinpl/common/css_V6.0/<{$theme}>.css"/>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/common.js"></script>
+		<style>
+		 .idBox .idBoxNav p{background:#efefef; color:black; border-color:#efefef; cursor: pointer;}
+		 .yrBc, .yrQx{cursor: pointer;}
+		 .product_classify{margin-top:3px;}
+		</style>
+	</head>
+	<body>
+
+<!--列表内容大框开始-->
+<div class="WSY_columnbox">
+	<!--列表头部切换开始-->
+	<div class="WSY_column_header">
+		<div class="WSY_columnnav">
+			<a href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80">砍价活动列表</a>
+			<a href="<{:U('bargain/product')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">产品管理</a>
+		</div>
+	</div>
+	<!--列表头部切换结束-->
+
+    <div  class="yirenAdministration zong_t">	
+        <form method="get" action="" id="yirenform">
+			<div class="yirenForm">
+			    <input type="hidden" value="<{$customer_id_en}>" name="customer_id_en">
+			    <input type="hidden" value="<{$activity_id}>" name="activity_id">
+				<li class="WSY_position_text">
+				    <a>产品ID:
+						<input type="text" value="" name="product_id"/>
+					</a>
+					<a>产品名称:
+						<input type="text" value="" name="product_name"/>
+					</a>
+					<span>产品分类:</span>
+					<a>
+						<{$product_classify}>
+					</a>
+					<span>产品来源:</span>
+					<a>
+						<select name="product_source" style="margin-top:3px;">
+							<option value="">--请选择--</option>
+							<volist name="product_source" id="op2">
+								<option value=<{$op2['option_id']}> ><{$op2['option_name']}></option>
+							</volist>
+						</select>
+					</a>
+					<span>产品标签:</span>
+					<a>
+						<select name="product_label" style="margin-top:3px;">
+							<option value="">--请选择--</option>
+							<volist name="product_label" id="op3">
+								<option value=<{$op3['option_id']}> ><{$op3['option_name']}></option>
+							</volist>
+						</select>
+					</a>
+					<input type="hidden" name="customer_id" value=<{$customer_en}> >
+					<a class="WSY_buttontj yirenFormOe" href="javascript:void(0)" onclick="document.getElementById('yirenform').submit();" id="search-button">搜索</a>
+					<a class="WSY_buttontj yirenFormOe" onclick="add_most(this);" jump_activity_id="<{$activity_id}>" customer_id_en="<{$customer_id_en}>">批量添加</a>
+					<a class="WSY_buttontj yirenFormOe" href="<{:U('bargain/product')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">返回</a>
+				</li>
+			</div>
+		</form>
+		<table width="97%" class="yirenTable" cellpadding="0" cellspacing="0" >
+			<thead class="WSY_table_header">
+				<tr>
+					<th width="6%"><input type="checkbox" id="check_all"></th>
+					<th width="7%">产品ID</th>
+					<th width="7%">规格ID</th>
+					<th width="10%">产品图片</th>
+					<th width="10%">产品名称</th>
+					<th width="10%">价格</th>
+					<th width="10%">销量</th>
+					<th width="10%">库存</th>
+					<th width="10%">标签</th>
+					<th width="10%">创建时间</th>
+					<th width="10%">操作</th>
+			  	</tr>
+			</thead>
+			<tbody class="yirenGl" >
+			    <volist name="bargain" id="vo" key="key">
+				  	<tr class="key_number">
+				  		<td><input type="checkbox" name='check_son'></td>
+				  		<td><{$vo['id']}></td>
+				  		<td><{$vo['next_id']}></td>
+				  		<td><img src="<{$http}><{$vo['default_imgurl']}>" style="width:150px;" /></td>
+				  		<td>
+				  		<{$vo['name']}><br/><{$vo['type']}><{$vo['material']}>
+				  		</td>
+				  		<td>￥ <{$vo['now_price']}></td>
+				  		<td><{$vo['sell_count']}>（件）</td>
+				  		<td><{$vo['storenum']}>（件）</td>
+				  		<td><{$vo['isnew']}><{$vo['ishot']}><{$vo['isvp']}></td>
+				  		<td><{$vo['createtime']}></td>
+				  		<td><p class="WSY_buttontj" id="crowdfund_first_button_<{$key}>" onclick="add_product(this);" key="<{$key}>" jump_activity_id="<{$activity_id}>" customer_id_en="<{$customer_id_en}>" style="cursor:pointer;">选择</p></td>
+				  	</tr>
+			    </volist>
+			</tbody>
+		</table>
+		<!--表格结束-->
+        <!--跳转页面-->
+        <div class="WSY_page">
+        	<ul class="WSY_pageleft" style="width: 70%;">
+        		<{$strPage}>
+        		<div class="WSY_searchbox">
+        			<input class="WSY_page_search" id="WSY_jump_page"/>
+        			<input class="WSY_jump" type="button" value="跳转" id="WSY_jump_page_yy"/>
+        		</div>
+        	</ul>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $("#WSY_jump_page_yy").click(function(){
+    	var WSY_jump_page_xx = $("#WSY_jump_page").val(),
+    	c = "<{$customer_id_en}>",
+        ps = <{$pageNums}>,
+        a = <{$activity_id}>,
+	    p = /^\d+$/g;
+	    if(!WSY_jump_page_xx){
+	    	alert('页码为空');
+	    }
+	    if(!p.test(WSY_jump_page_xx)||WSY_jump_page_xx<0){
+	    	alert('输入页码有误');
+	    }else{
+	    	if(WSY_jump_page_xx>ps){WSY_jump_page_xx = ps;}
+	    	location.href = "<{:U('Bargain/product_show')}>?customer_id_en="+c+"&page="+WSY_jump_page_xx+'&activity_id='+a;
+	    }
+    });
+	$("#check_all").click(function(){
+		//alert(this.checked)
+		if(this.checked){
+			//console.log(1)
+			for(var i=0;i<$('input[name="check_son"]').length;i++){
+				$('input[name="check_son"]').eq(i).prop("checked",true);
+			}
+		}else{
+			//console.log(2)
+			for(var i=0;i<$('input[name="check_son"]').length;i++){
+				$('input[name="check_son"]').eq(i).prop("checked",false);
+			}
+		}
+			// for(var i=0;i<$('input[name="check_son"]').length;i++){
+			// 	//if($('input[name="check_son"]').eq(i).attr("disabled")!="disabled"){
+			// 		$('input[name="check_son"]').eq(i).attr("checked",this.checked);
+			// 	//}
+			// }
+		//check_num()
+	})
+	// $('input[name="check_son"]').click(function(){
+	// 	check_num()
+	// })
+	// function check_num(){
+	// 	var k=0;
+	// 	for(var i=0;i<$('input[name="check_son"]').length;i++){
+	// 		if($('input[name="check_son"]').eq(i).attr("checked")=="checked"){
+	// 			k++;
+	// 		}
+	// 	}
+	// 	//$("#check_num").html(num+k);
+	// }
+	$(function(){
+		first_button_left()
+	})
+	function first_button_left(){
+	    for(var j=1;j<=$(".key_number").length;j++){
+	    	var crowdfund_button_width=$("#crowdfund_first_button_"+j).parent("td").css("width")
+		    var crowdfund_button_number=$("#crowdfund_first_button_"+j).parent("td").children("p").length
+		    var button_width_j=0
+		    for(var i=0;i<crowdfund_button_number;i++){
+		    	width=parseInt($("#crowdfund_first_button_"+j).parent("td").children("p").eq(i).css("width"))
+		    	button_width_j=button_width_j+width+10+8
+		    }
+		    var first_button_left=(parseInt(crowdfund_button_width)-button_width_j)/2+4
+		    $("#crowdfund_first_button_"+j).css("margin-left",first_button_left+"px")
+	    }
+	}
+    function pagehref(obj){
+		var str1=$(obj).attr("page");
+		var str2=$(obj).attr("condition");
+		location.href="?page="+str1+str2+"&activity_id=<{$activity_id}>";
+	}
+	//输入框按回车键触发搜索
+	$('.WSY_position_text').find('input').on('keydown',function(){
+		if( event.keyCode == 13 ){
+			$('#search-button').click();
+		}
+	});
+	function add_product(obj){
+		var key=$(obj).attr("key");
+		var pros_id=$(".yirenGl tr").eq(key-1).children("td").eq(2).html();
+		var product_id=$(".yirenGl tr").eq(key-1).children("td").eq(1).html();
+		var activity_id=$(obj).attr("jump_activity_id");
+		var customer_id_en=$(obj).attr("customer_id_en");
+		var data= {
+			pros_id:pros_id,
+			product_id:product_id,
+			activity_id:activity_id,
+			customer_id_en:customer_id_en
+        }
+        $.ajax({
+            url: '<{$http}>/weixinpl/haggling/back/index.php/workroom_admin/bargain/add_product',
+            type:'get',
+            data:data,
+            dataType:'json',
+            success:function(res){
+            	if(res.error==1000){
+            		//alert("添加成功！");
+            		location.href="<{:U('bargain/product')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>"
+            	}else if(res.error==1002){
+            		alert("商品已经存在！");
+            	}else{
+            		alert("customer_id错误！");
+            	}
+            },error:function(){
+            	alert("提前方法或其他方法出错！");
+            }
+        });
+	}
+	function add_most(obj){
+		var pros_id=new Array();
+		var product_id=new Array();
+		for(var i=0;i<$('input[name="check_son"]').length;i++){
+			if($('input[name="check_son"]').eq(i).prop("checked")==true){
+				pros_id.push($(".yirenGl tr").eq(i).children("td").eq(2).html());
+				product_id.push($(".yirenGl tr").eq(i).children("td").eq(1).html());
+			}
+		}
+		// console.log(pros_id);
+		// console.log(product_id);
+		var activity_id=$(obj).attr("jump_activity_id");
+		var customer_id_en=$(obj).attr("customer_id_en");
+		var data= {
+			pros_id:pros_id,
+			product_id:product_id,
+			activity_id:activity_id,
+			customer_id_en:customer_id_en
+        }
+        $.ajax({
+            url: '<{$http}>/weixinpl/haggling/back/index.php/workroom_admin/bargain/add_product',
+            type:'get',
+            data:data,
+            dataType:'json',
+            success:function(res){
+            	if(res.error==1000){
+            		//alert("添加成功！");
+            		location.href="<{:U('bargain/product')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>"
+            	}else if(res.error==1002){
+            		//alert("商品已经存在！");
+            		location.href="<{:U('bargain/product')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>"
+            	}else{
+            		alert("customer_id错误！");
+            	}
+            },error:function(){
+            	alert("提前方法或其他方法出错！");
+            }
+        });
+	}
+</script>
+</html>

@@ -1,0 +1,1 @@
+var DTPath = "http://sj.vcezh.com/";var SKPath = "http://sj.vcezh.com/skin/default/";var MEPath = "http://sj.vcezh.com/member/";var DTEditor = "kindeditor";var CKDomain = "";var CKPath = "/";var CKPrex = "cvm_";

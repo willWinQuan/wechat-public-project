@@ -1,0 +1,326 @@
+.header{
+	width: 100%;
+	height: 1.8rem;
+	background: #FFFFFF;
+	margin-bottom: 0.1rem;
+}
+.headerLeft,.headerRight{
+	display: inline-block;
+	float: left;
+}
+.headerLeft{
+	width:0.8rem;
+	height: 1.8rem;
+	background:url(../img/kj_15.png) no-repeat 50% 50%;
+	background-size:0.4rem;
+}
+.headerRight{
+	height: 1.8rem;
+	width:80%;
+	font-size: 0.284rem;
+	margin-left: 5%;
+	color:#666666;
+}
+.headerRight .buyers{
+	margin-top: 0.1rem;
+	line-height: 0.8rem;
+	display: block;
+}
+/**/
+.navHeader{
+	width: 100%;
+	height:1rem;
+	font-size: 0.284rem;
+	background: #FFFFFF;
+}
+.navHeader .navLeft{
+	display: inline-block;
+	width: 0.8rem;
+	height: 1rem;
+	background: url(../img/kj_16.png) no-repeat 50% 50%;
+	background-size: 0.4rem;
+	float: left;
+}
+.navHeader font{
+	display: inline-block;
+	line-height: 1rem;
+	margin-left: 5%;
+	color:#666666;
+	float: left;
+}
+.navHeader .navRight{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background: url(../img/kj_17.png) no-repeat 50% 50%;
+	background-size: 0.15rem;
+	float: left;
+}
+/**/
+.navContent{
+	background: #e9e9e9;
+	height: 2.2rem;
+	font-size: 0.246rem;
+	
+}
+.navContentImg,.navContentXx{
+	margin-top: 0.1rem;
+}
+.navContent div{
+	display: inline-block;
+}
+.navContent .navContentImg{
+	width:2rem ;
+	height: 2rem;
+	float: left;
+	margin:0 0.2rem;
+	margin-top:0.07rem;
+	background: #FFFFFF;
+	border: 1px solid #D1D1D1;	
+}
+.navContent .navContentImg .img_img{
+	width:1.7rem ;
+	height:1.8rem;
+	margin: 0.1rem 0.15rem;
+	display: inline-block;
+	background: url(../img/kj_11.png) no-repeat 50% 50%;
+	background-size: 2rem;
+}
+.navContentXx{
+	overflow: hidden;
+	width: 60%;
+}
+.navContentXx div{
+	height: 2.2rem;
+}
+.navContentXx .navContentXxLeft{
+	width: 60%;
+}
+.navContentXx .navContentXxLeft p{
+	margin-bottom: 0.2rem;
+}
+.navContentXx .navContentXxLeft .left_1{
+	color: #666666;
+}
+.navContentXx .navContentXxLeft .left_2{
+	color: #999999;
+}
+.navContentXx .navContentXxLeft .left_3 font{
+	display: inline-block;
+	padding: 0.03rem 0.1rem;
+	background: #F4212B;
+	border-radius:3px ;
+	color: #FFFFFF;
+}
+.navContentXx .navContentXxRight{
+	position: absolute;
+	right: 0.2rem;
+}
+.navContentXx .navContentXxRight p{
+	margin-bottom: 0.5rem;
+	font-weight: 800;
+}
+/**/
+.details{
+	width: 100%;
+	font-size:0.264rem;
+	background: #FFFFFF;
+}
+.details .detailsNav{
+	width: 96%;
+	margin-left: 2%;
+	padding-top: 0.15rem;
+}
+.details .detailsNav p{
+	overflow: hidden;
+	line-height: 0.5rem;
+	color: #666666;
+}
+.details .detailsNav .detailsNavLeft{
+	float: left;
+}
+.details .detailsNav .detailsNavRight{
+	float: right;
+}
+.detailsNav_c{
+	border-bottom: 1px solid #999999;
+}
+.detailsNav_c font{
+	color:#000000;
+}
+.realpay font{
+	color: #F4212B;
+	font-size: 0.294rem;
+	font-weight: 800;
+}
+.realpay font:nth-child(1){
+	color:#0b0a0a;
+}
+/**/
+.order{
+	font-size: 0.246rem;
+	color: #888888;
+	margin: 0.1rem 0 0.1rem 0;
+	padding: 0.2rem 0;
+	background: #FFFFFF;
+}
+.order p{
+	margin: 0 0.2rem;
+}
+.order .orderCopy{
+	float: right;
+	padding: 0.01rem 0.2rem;
+	border: 1px solid #999999;
+	color: #333333;
+}
+/**/
+.reply{
+	font-size: 0.276rem;
+	width: 100%;
+	background: #FFFFFF;
+	padding: 0.2rem 0;
+	margin-bottom: 0.1rem;
+}
+.reply .buyers,.reply .seller{
+	width: 90%;
+	margin: 0 auto;
+	background: #eeeeee;
+	color: #888888;
+	line-height: 0.5rem;
+	margin-bottom: 0.2rem;
+}
+.reply .buyers p:nth-child(1),.reply .seller p:nth-child(1){
+	color: #F4212B;
+}
+.reply .buyers p,.reply .seller p{
+	margin-left: 0.2rem;
+}
+/**/
+.footer{
+	font-size: 0.246rem;
+	text-align: center;
+	width: 100%;
+	background: #FFFFFF;
+}
+.footer .footerpay{
+	width: 100%;
+	color: #666666;
+	line-height: 0.5rem;
+	border-bottom:1px solid #D1D1D1 ;
+}
+.footer .footerpay font{
+	color: #F4212B;
+}
+.footer .footerButton{
+	width: 100%;
+}
+.footer .footerButton div{
+	width: 90%;
+	margin-left: 5%;
+	background: #ff8430;
+	margin-top: 0.2rem;
+	color: #FFFFFF;
+	line-height: 0.5rem;
+	margin-bottom:0.2rem ;
+}
+.footer .footerButton .footerButtonYe{
+	font-size:0.32rem ;
+	line-height: 0.6rem;
+}
+/**/
+#paystyle{
+	background: #FFFFFF;
+	font-size: 0.264rem;
+	position:fixed;
+	z-index:99999;
+	width: 100%;
+	-webkit-transition:0.5s ease all;
+	-moz-transition:0.5s ease all;
+	bottom:-5rem;	
+}
+#payment{
+	width: 96%;
+	margin-left: 2%;
+	padding-bottom: 0.5rem;	
+}
+#payment .styleZf{
+	color: #999999;
+}
+#payment li{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	border-bottom:1px solid #888888;
+}
+.payimg1{
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.8rem;
+	background: url(../img/kj_1_03.png) no-repeat 100% 54%;
+	background-size: 0.45rem;
+	float: left;
+}
+.payimg2{
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.8rem;
+	background: url(../img/kj_1_10.png) no-repeat 100% 50%;
+	background-size: 0.4rem;
+	float: left;
+}
+.payimg3{
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.8rem;
+	background: url(../img/kj_1_16.png) no-repeat 100% 50%;
+	background-size: 0.4rem;
+	float: left;
+}
+.payimg2,.payimg1,.payimg3{
+	margin-right: 0.2rem;
+}
+.qbZf{
+	margin-right: 1.2rem;
+}
+.payfontYe{
+	min-width: 0.6rem;
+}
+.payfont{
+	float: left;
+	color: #fd7d24;
+}		
+.zfXx,.qbZf{
+	float: left;
+}
+.payQr{
+	float: right;
+	color: #fd7d24;
+}
+.payGx{
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.8rem;
+	background: url(../img/kj_1_12.png) no-repeat 50% 50%;
+	float:right;
+	background-size: 0.5rem;			
+}
+.payGx1{
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.8rem;
+	background: url(../img/kj_1_05.png) no-repeat 50% 50%;
+	float:right;
+	background-size: 0.5rem;			
+}
+.paymentBottum{
+	width: 100%;
+}
+.paymentBottum div{
+	width: 90%;
+	margin-left: 5%;
+	background: #FD7D24;
+	color: #FFFFFF;
+	font-size: 0.389rem;
+	text-align: center;
+	line-height: 0.8rem;
+	margin-top: 0.5rem;
+}

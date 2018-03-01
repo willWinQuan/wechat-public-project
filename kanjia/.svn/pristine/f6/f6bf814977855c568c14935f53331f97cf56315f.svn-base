@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="no" name="apple-touch-fullscreen">
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta http-equiv="pragma" content="nocache">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<title>发烧级台式机（I76...</title>
+		<style>
+			/*公共样式*/
+			html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+			img{max-width: 100%;border:none;}
+			a{text-decoration: none;color: black;}
+			body{font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif;-webkit-text-size-adjust:none;}
+			input[type='text'],input[type='number'],input[type='password'],input[type='reset'],input[type='submit'],input[type='button'],input[type='tel'],button,textarea{-webkit-appearance:none; border-radius:0; border:none;} /*去掉苹果的默认UI来渲染按钮*/
+			ol,ul {list-style: none;} 
+			h1,h2,h3,h4,h5,h6 {font-weight: normal;} 
+			textarea{overflow:auto;resize:none;} 
+			*{padding: 0;margin: 0;}
+			.clear{clear: both;}
+			i,em{
+				font-style: normal;
+			}
+			
+			/*顶部导航*/
+			.user-personal{
+				
+			}
+			.user-personal i{
+				
+			}
+			.user-media{
+				
+			}
+			.user-media i{
+				
+			}
+			.product-code{
+				
+			}
+			.product-code i{
+				
+			}
+			/*.swiper-container{
+            width: 600px;
+            height: 300px;
+        }*/
+            /*商品名称*/
+           .mian h5{
+           	    margin: .5rem;
+			    font-size: .96rem;
+			    font-weight: 600;
+			    color: #444;
+			    word-wrap: break-word;
+			    word-break: break-all;  
+           }
+           /*=====砍价进行时===*/
+          .bargainReal-time{
+          	    margin: .5rem;
+          	    margin-top: 1rem;
+          }
+          /*原价*/
+         .costPrice{
+         	    float: left;
+			    margin-left: .5rem;
+			    color: rgb(254,132,47);
+         }
+         .costPrice i{
+         	    font-size: .2rem;
+         }
+         .costPrice span{
+         	    font-size:1.20rem;
+         }
+         .costIcon{
+         	    width: 3rem;
+			    height: 1rem;
+			    font-size: .2rem;
+			    text-align: center;
+			    line-height: .9rem;
+			    margin-top: .3rem;
+			    color: #eee;
+			    margin-left: .2rem;
+	         	background:url('img/index/yuanjia.png') no-repeat 50% 50%;
+				background-size: cover;	
+         }
+         /*砍价过程 */
+        .bargain-pro{
+        	    margin-left: .5rem;
+			    float: left;
+			    width: 60%;
+			    height: 1.4rem;
+			    margin-top: 1rem;
+        	/*箭头*/
+	        	background:url('img/index/jiantou.png') no-repeat 50% 50%;
+				background-size: cover;	
+        }
+        .canKan{
+        	    margin-bottom: .6rem;
+			    margin-top: -1rem;
+			    text-align: center;
+			    color: rgb(244,33,42);
+        }
+        /*砍价icon*/
+        .canKan i:first-child{
+        	display: inline-block;
+		    width: 1.2rem;
+		    height: 1.2rem;
+        	background:url('img/index/kan01.png') no-repeat 50% 50%;
+			background-size: cover;	
+        }
+        /*可购买*/
+        .canpay{
+        	font-size: .2rem;
+		    color: #888;
+		    text-align: center;
+        }
+        /*最低价*/
+        .lowerPrice{
+        	float: right;
+        	margin-right:.5rem;
+        	color: red;
+        }
+        .lowerPrice span{
+        	font-size: 1.2rem;
+        }
+        .lowerPrice i{
+        	font-size: .2rem;
+        }
+        .lowerIcon{
+        	font-size: .2rem;
+		    color: #eee;
+		    margin-top: .3rem;
+		    text-align: center;
+        	background:url('img/index/zuidijia.png') no-repeat 50% 50%;
+			background-size: cover;	
+        }
+        /*剩余台数*/
+        .surplus{
+        	float: right;
+		    font-size: .2rem;
+		    color: #999;
+		    margin-right: -3.79rem;
+		    margin-top: 4rem;
+		    margin-bottom: .5rem;
+        }
+        hr{
+        	display: block;
+        	width: 100%;
+        	clear: both;
+        }
+		</style>
+	</head>
+	<body>
+		<div class="mian">
+			<div class="header">
+				<!--顶部 导航-->
+				<div class="topNav">
+					<!--个人中心-->
+					<span class="user-personal"><i></i>个人中心</span>/
+					<!--语言/视频-->
+					<span class="user-media"><i></i>语音/视频</span>/
+					<!--产品二维码-->
+					<span class="product-code"><i></i>产品二维码</span>/
+				</div>
+				
+				<!--轮播图-->
+				
+				<!--====轮播插件===-->
+				<!--<div class="swiper-container">
+				    <div class="swiper-wrapper">
+				        <div class="swiper-slide" style="background-color: red;">Slide1</div>
+				        <div class="swiper-slide" style="background-color: yellow;">Slide2</div>
+				        <div class="swiper-slide" style="background-color: greenyellow;">Slide3</div>
+				    </div>
+				    <!--如果需要导航按钮-->
+				    <!--<div class="swiper-button-prev"></div>
+				    <div class="swiper-button-next"></div>-->
+				
+				    <!--如果需要分页器-->
+				    <!--<div class="swiper-pagination"></div>
+				</div>-->
+
+			</div>
+			 <!--距离结束仅剩时间-->
+			<div class="countDown">
+			</div>
+			<!--商品名称-->
+			<h5>HKC21 寸高清显示器 高清护眼曲面游戏图形显示器 I76700K/GTX10i16G 内存...</h5>
+			<!--砍价进行时-->
+			<div class="bargainReal-time">
+				<!--原价-->
+				<div class="costPrice">
+					<i>¥</i>
+					<span>9999</span>
+					<div class="costIcon">原价</div>
+				</div>
+				<!--砍价过程-->
+				<div class="bargain-pro">
+					<!--可砍多少-->
+					<div class="canKan">
+						<i></i>
+						<i>¥</i>
+						<span>4000</span>
+					</div>
+					<!--可购买价-->
+					<div class="canpay">
+						<label>可购买</label>
+						<i>¥</i>
+						<span>5000</span>
+					</div>
+				</div>
+				<!--最低价-->
+				<div class="lowerPrice">
+					<i>¥</i>
+					<span>5999</span>
+					<div class="lowerIcon">最低价</div>
+				</div>
+				<!--剩余台数-->
+				<div class="surplus">
+					<label>剩余：</label>
+					<span>99台</span>
+				</div>
+			</div>
+			<hr/>
+			<!--店铺desc-->
+			<div class="storeDesc">
+				<div class="storeDesc-top">
+				<!--店铺logo-->
+				<span></span>
+				<!--店铺名称-->
+				<h5></h5>
+				<!--电话图标-->
+				<i></i>
+				</div>
+				<div class="storeDesc-middle">
+				<ul>
+					<!--收藏-->
+					<li>
+						<span>98710</span>
+						<label>收藏</label>
+					</li>
+					<!--全部商品-->
+					<li>
+						<span>1220</span>
+						<label>全部商品</label>
+					</li>
+					<!--评价-->
+					<li>
+						<span>11520</span>
+						<label>评价</label>
+					</li>
+				</ul>	
+				</div>
+			    <div class="storeDesc-bottom">
+			    	<input type="button"  value="收藏店铺"/>
+			    	<input type="button" value="进入商品"/>
+			    	<input type="button" value="联系客服"/>
+			    </div>
+			</div>
+			<!--tab切换控制-->
+			<div class="tabControl">
+				<ul>
+					<li>详情</li>
+					<li>规格</li>
+					<li>售后保障</li>
+					<li>评价<span id="topic-num">2602</span></li>
+				</ul>
+			</div>
+			<!--商品详情-->
+			<div class="shopDetail">
+				
+			</div>
+			<!--规格-->
+			<!--售后保障-->
+			<!--评论-->
+			<!--砍价活动说明及规则-->
+			<!--页面底部-->
+			<div class="activityShop-footer">
+				<!--左边 活动首页-->
+				<!--右边 按钮-->
+			</div>
+		</div>
+	</body>
+</html>

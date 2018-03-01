@@ -1,0 +1,16 @@
+.cates{
+	width:98%;
+	box-sizing:border-box;
+	margin:0.5rem auto;
+}
+
+input[name=cate_sub][type=submit]{
+	width:10rem;
+	height:2.2rem;
+	color:#fff;
+	border:0;
+	padding:0;
+	cursor:pointer;
+	margin-left:0.1rem;
+	background:rgb(49,126,243);
+}

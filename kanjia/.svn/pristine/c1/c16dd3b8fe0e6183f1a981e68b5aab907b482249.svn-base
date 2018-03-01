@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/ass/css/yi_ren.css"/>
+		<link rel="stylesheet" href="<{$http}>/weixinpl/common/css_V6.0/<{$theme}>.css"/>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/common.js"></script>
+		<style>
+		 .idBox .idBoxNav p{background:#efefef; color:black; border-color:#efefef; cursor: pointer;}
+		 .yrBc, .yrQx{cursor: pointer;}
+		</style>
+	</head>
+	<body>
+
+<!--列表内容大框开始-->
+<div class="WSY_columnbox">
+	<!--列表头部切换开始-->
+	<div class="WSY_column_header">
+		<div class="WSY_columnnav">
+			<a href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80">砍价活动列表</a>
+			<!--<a href="<{:U('bargain/order')}>?customer_id_en=<{$customer_id_en}>&class=80">订单管理</a>-->
+			<a onclick="order('<{$customer_id_en}>')">订单管理</a>
+			<a href="<{:U('bargain/activity_summary')}>?customer_id_en=<{$customer_id_en}>&class=80">活动汇总</a>
+			<a href="<{:U('bargain/product_summary')}>?customer_id_en=<{$customer_id_en}>&class=80" class="white1">产品汇总</a>
+			<a href="<{:U('bargain/user_summary')}>?customer_id_en=<{$customer_id_en}>&class=80">用户汇总</a>
+		</div>
+	</div>
+	<!--列表头部切换结束-->
+
+    <div  class="yirenAdministration zong_t">	
+        <form method="get" action="" id="yirenform">
+			<div class="yirenForm">
+				<li class="WSY_position_text">
+				    <a>产品ID:
+						<input type="text" value="" name="product_id"/>
+					</a>
+					<a>产品名称:
+						<input type="text" value="" name="product_name"/>
+					</a>
+					<span>状态:</span>
+					<a>
+						<select name="option">
+							<option value="">--请选择--</option>
+							<volist name="option" id="op">
+								<option value=<{$op['option_id']}> ><{$op['option_name']}></option>
+							</volist>
+						</select>
+					</a>
+					<input type="hidden" name="customer_id_en" value=<{$customer_id_en}> >
+					<a class="WSY_buttontj yirenFormOe" href="javascript:void(0)" onclick="document.getElementById('yirenform').submit();" id="search-button">搜索</a>
+				</li>
+			</div>
+		</form>
+		<table width="97%" class="yirenTable" cellpadding="0" cellspacing="0" >
+			<thead class="WSY_table_header">
+				<tr>
+					<th width="10%">产品ID</th>
+					<th width="10%">产品名称</th>
+					<th width="10%">对应活动ID</th>
+					<th width="10%">对应活动名称</th>
+					<th width="6%">对应活动状态</th>
+					<th width="6%">参与数量</th>
+					<th width="6%">剩余数量</th>
+					<th width="6%">报名人数</th>
+					<th width="6%">帮砍人数</th>
+					<th width="6%">成功领取数</th>
+					<th width="6%">失败领取数</th>
+					<th width="6%">进行中数</th>
+					<th width="6%">点击量</th>
+					<th width="6%">转发次数</th>
+			  	</tr>
+			</thead>
+			<tbody class="yirenGl" >
+			    <volist name="bargain" id="vo" key="key">
+				  	<tr>
+				  		<td><{$vo['product_no']}></td>
+				  		<td><{$vo['product_name']}></td>
+				  		<td><{$vo['activity_id']}></td>
+				  		<td style="color:green;font-weight:bold;" ><{$vo['activity_title']}></td>
+				  		<if condition="$vo['status'] eq '未发布'" >
+				  		    <td style="color:gray;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<if condition="$vo['status'] eq '进行中'" >
+				  		    <td style="color:green;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<if condition="$vo['status'] eq '已终止'" >
+				  		    <td style="color:red;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<if condition="$vo['status'] eq '已过期'" >
+				  		    <td style="color:red;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<td style="color:orange;font-weight:bold;" ><{$vo['product_num']}>（件）</td>
+				  		<td style="color:orange;font-weight:bold;" ><{$vo['inventory']}>（件）</td>
+				  		<td><{$vo['count_user']}>（人）</td>
+				  		<td><{$vo['count_bargain_user']}>（人）</td>
+				  		<td style="color:red;font-weight:bold;" ><{$vo['count_buy']}>（人）</td>
+				  		<td><{$vo['count_no_buy']}>（人）</td>
+				  		<td><{$vo['count_activitying']}>（人）</td>
+				  		<td style="color:orange;font-weight:bold;" ><{$vo['count_click']}>（次）</td>
+				  		<td style="color:orange;font-weight:bold;" ><{$vo['count_forwarding']}>（次）</td>
+				  	</tr>
+			    </volist>
+			</tbody>
+		</table>
+		<!--表格结束-->
+        <!--跳转页面-->
+        <div class="WSY_page">
+        	<ul class="WSY_pageleft" style="width: 70%;">
+        		<{$strPage}>
+        		<div class="WSY_searchbox">
+        			<input class="WSY_page_search" id="WSY_jump_page"/>
+        			<input class="WSY_jump" type="button" value="跳转"/>
+        		</div>
+        	</ul>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function pagehref(obj){
+		var str1=$(obj).attr("page");
+		var str2=$(obj).attr("condition");
+		location.href="?page="+str1+str2;
+	}
+	//输入框按回车键触发搜索
+	$('.WSY_position_text').find('input').on('keydown',function(){
+		if( event.keyCode == 13 ){
+			$('#search-button').click();
+		}
+	});
+	function order(customer_id_en){
+		location.href= "<{$http}>/weixinpl/back_newshops/Order/order/order.php?customer_id="+customer_id_en+"&shopactivity_mark=1"
+	}
+</script>
+</html>

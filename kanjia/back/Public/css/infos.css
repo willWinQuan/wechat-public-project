@@ -1,0 +1,51 @@
+.title{
+	width:80%;
+	height:3rem;
+	line-height:3rem;
+	margin:5rem auto;
+	margin-bottom:0.6rem;
+	color:#333;
+	font-size:2.2rem;
+	text-indent:8rem;
+	letter-spacing:0.2rem;
+	text-shadow:2px 2px 4px #A0A0A0;
+}
+
+.line{
+	width:80%;
+	height:1px;
+	margin:0 auto;
+	padding:0;
+	background-color:#D5D5D5;
+	overflow:hidden;
+	box-shadow:2px 2px 2px #C2C2C2;
+}
+
+.reg{
+	width:80%;
+	height:80rem;
+	/* border:1px solid #ccc; */
+	padding:1.5rem;	
+	margin:1rem auto;
+	box-sizing:border-box;
+}
+
+input[name=sub]{
+	width:205px !important;
+	height:3rem;
+	line-height:2.6rem;
+	color:#fff;
+	border:0;
+	padding:0;
+	cursor:pointer;
+	margin-left:0;
+	background:rgb(49,126,243);
+}
+
+.space{
+	width:80%;
+	height:5rem;
+	/* background:#ccc; */ 
+	margin:0 auto;
+}
+

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<script type="text/javascript" src="js/jquery-1.12.1.min.js" ></script>
+		<script type="text/javascript" src="js/set_rem.js" ></script>		
+		<title></title>
+		<link rel="stylesheet" href="css/InBargain.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+	</head>
+	<body>
+		<ul class="header">
+			<li class="headerImg">
+				<span class="headerGr"></span>
+				<font>个人中心</font>
+			</li>
+			<li class="headerImg">
+				<span class="headerYy"></span>
+				<font>语音/视频</font>
+			</li>
+			<li>
+				<span class="headerEm"></span>
+				<font>产品二维码</font>
+			</li>
+		</ul>
+		<!--轮播-->
+		<div class="swiper-container">
+			<p>咪乱哒子帮好友砍价，获得一张5元优惠券!</p>
+			<div class="swiper-wrapper">
+				<div class="swiper-slide img1"></div>
+				<div class="swiper-slide img2"></div>
+				<div class="swiper-slide img3"></div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<!--倒计时-->
+		<div class="Countdown">
+			<span>距离结束仅剩:</span>
+			<font class="day">0</font>&nbsp;天
+			<font class="hour">12</font>&nbsp;时
+			<font class="mintue">03</font>&nbsp;分
+			<font class="seconds">30</font>&nbsp;秒
+		</div>
+		<div class="product">
+			<p class="productId">HKC21 寸高清显示器 高清护眼曲面游戏图形显示器 I76700K/GTX10i16G 内存...</p>
+			<div class="productImg">
+				<div class="productImgL">
+					<p>￥<font>9999</font></p>
+					<p>原价</p>
+				</div>
+				<div class="productImgC">
+					<div class="productImgC1">
+						<i></i><font>￥</font><span>4000</span>
+					</div>
+					<div class="productImgC2"></div>
+					<div class="productImgC3">
+						<font>可购买</font>￥<span>4000</span>
+					</div>
+				</div>
+				<div class="productImgB">
+					<p>￥<font>5999</font></p>
+					<p>最低价</p>
+				</div>
+				<p class="clear"></p>
+			</div>
+			<p class="productNum">剩余:<span>99</span>台</p>
+			<p class="clear"></p>
+		</div>
+		<!---->
+		<div class="details">
+			<div class="detailsT">
+				<i></i>
+				<span>hardlyevers官方旗舰店</span>
+				<font>
+					<i></i>
+				</font>
+			</div>
+			<div class="detailsC">
+				<div class="detailsC1 detailsCImg">
+					<p class="collection">89710</p>
+					<font>收藏</font>
+				</div>
+				<div class="detailsC1 detailsCImg">
+					<p class="collection">1220</p>
+					<font>全部商品</font>
+				</div>
+				<div class="detailsC1">
+					<p class="collection">11520</p>
+					<font>评价</font>
+				</div>
+				<p class="clear"></p>
+			</div>
+			<div class="detailsB">
+				<div class="detailsBL">收藏店铺</div>
+				<div class="detailsBC">进入店铺</div>
+				<div class="detailsBR">联系客服</div>
+				<p class="clear"></p>
+			</div>
+			<p class="clear"></p>
+		</div>
+		<!---->
+		<div class="explain">
+			<div class="explainT">
+				<div><font class="xuanze explaintext" onclick="query(this)">详情</font></div>
+				<div><font class="explaintext" onclick="query(this)">规格</font></div>
+				<div><font class="explaintext" onclick="query(this)">售后保障</font></div>
+				<div><font class="explaintext" onclick="query(this)">评价<font class="explainNum">2602</font></font></div>
+				<p class="clear"></p>
+			</div>
+			<div class="explainC">
+				<div class="explainCXq explainC1">
+					<img src="img/kj_37.png" />
+				</div>
+				<div class="explainCGg explainC1" style="display: none;">
+					<!--<p>产品参数:</p>
+					<ul>
+						<li><i></i>证书编号：2007010717236044</li>
+						<li><i></i>证书状态：有效</li>
+						<li><i></i>申请人名称：广东小熊电器有限公司</li>
+						<li><i></i>制造商名称：广东小熊电器有限公司</li>
+						<li><i></i>3C产品型号：ZDQ-201, ZDQ-204, ZDQ-205, ZDQ-206, ZDQ-2011, ZDQ-...</li>
+					</ul>-->
+					<img/>
+				</div>
+				<div class="explainCSh explainC1" style="display: none;">
+					<img/>
+				</div>
+				<div class="explainCPj explainC1" style="display: none;">
+					<p class="explainCPjTitle">商品好评率&nbsp;&nbsp;<font>0.00%</font></p>
+					<ul class="explainCPjLb">
+						<li class="explainCPjLbXz">
+							<p>全部</p>
+							<p>(25)</p>
+						</li>
+						<li>
+							<p>好评</p>
+							<p>(25)</p>
+						</li>
+						<li>
+							<p>中评</p>
+							<p>(25)</p>
+						</li>
+						<li>
+							<p>参评</p>
+							<p>(25)</p>
+						</li>
+						<p class="clear"></p>
+					</ul>
+					<ul class="explainCPjNav">
+						<!---->
+						<li>
+							<div class="explainCPjNavImg"></div>
+							<div class="explainCPjNavEvaluate">
+								<div class="explainCPjNavEvaluateXx">
+									<font class="Name">于玉玉</font>
+									<font class="Evaluate">好评</font>
+									<font class="Time">10月20号</font>
+								</div>
+								<p class="EvaluateDetails">
+									特别喜欢这款毛衣，面料和做工都非常好，版型好看
+								</p>
+								<div class="explainCPjNavPic">
+									<font></font>
+									<font></font>
+									<font></font>
+									<font></font>
+								</div>
+								<p class="explainCPjNavStyle">
+									<font>颜色 : </font><font>白色</font>
+									<span>尺码 : </span><font>M</font>
+								</p>
+								<div class="Additional">
+									<div></div>
+									<p>
+										<font>追加:</font>
+										<span>图片与实图一模一样,已经是第三次光顾了，下次还会来</span>
+									</p>
+								</div>
+								<div class="Reply">
+									<div>
+										<p>商家回复:</p>
+										<span>欢迎下次再来</span>
+									</div>
+								</div>
+							</div>
+							<p class="clear"></p>
+						</li>
+						<!---->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!---->
+		<div class="rule">
+			<div class="ruleContent">
+				<div class="ruleTitle">
+					<font>砍价活动说明及规则</font>
+					<span></span>
+					<!--<img src="img/kj_32.png" />-->
+				</div>
+				<p class="ruleImg"></p>
+				<p class="clear"></p>
+				<div class="ruleExplain">
+					<p class="ruleGuiZe">规则说明</p>
+					<p><font>1.</font>参与该活动需要关注本商城;</p>
+					<p><font>2.</font>参与活动需要在活动期间及商品数量清零之前;</p>
+					<p><font>3.</font>砍价进度可在【我的砍价】查询;</p>
+					<p><font>4.</font>砍价成功后在3个工作日以内发货;</p>
+					<p><font>5.</font>该活动最终解释权归xx商家所有;</p>
+				</div>
+			</div>
+			<!--<img src="img/kj_38.png" />-->
+		</div>
+		<!---->
+		<div class="FTbutton">
+			<div class="FTbutton1">
+				<span></span>
+				<p>活动首页</p>
+			</div>
+			<div class="FTbutton2" style="display: none;">
+				<p class="FTaftButton">邀请好友帮忙砍价</p>
+			</div>
+			<div class="FTbutton3" style="display: none;">
+				<p class="FTaftButton">立即领取</p>
+				<font class="FTTime">剩余领取时间<font class="FTTimeT">23:00:00</font></font>
+			</div>
+			<!---->
+			<div class="FTbutton4">已领取</div>
+		</div>
+		<!---->
+		<!--遮罩层-->
+		<div class="mask"></div>
+		<!--提示框-->
+		<div class="promptBox1">
+			<div class="BoxT"></div>
+			<div class="BoxC">
+				<i></i>
+			</div>
+			<div class="BoxB">
+				<p>见证友情深浅的时刻到了！</p>
+				<p>快去找人帮砍价把，宝贝数量有限哦！</p>
+			</div>
+		</div>
+		<!--提示框-->
+		<p class="instructions"></p>
+		<div class="promptBox2">
+			<div class="BoxT"></div>
+			<div class="BoxC">
+				<i></i>
+			</div>
+			<div class="BoxB">
+				<p>你已领取该商品</p>
+			</div>
+		</div>
+	</body>
+<script src="js/swiper.js"></script>
+<script type="text/javascript" src="js/InBargain.js" ></script>
+</html>

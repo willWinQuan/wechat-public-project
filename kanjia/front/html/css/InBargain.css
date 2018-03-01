@@ -1,0 +1,1074 @@
+.header{
+	width: 100%;
+	height: 0.8rem;
+	background: #FFFFFF;
+	margin-bottom: 0.1rem;
+}
+.header li{
+	font-size: 0.246rem;
+	width: 33.333%;
+	height: 0.8rem;
+	display: inline-block;
+	float: left;
+	line-height: 0.8rem;
+	text-align: center;
+}
+
+.header li .headerGr{
+	display: inline-block;
+	width: 0.3rem;
+	height: 0.3rem;
+	background: url(../img/kj_2_03.png) no-repeat 50% 50%;
+	background-size:cover;
+	vertical-align:-0.03rem
+}
+.header li .headerYy{
+	display: inline-block;
+	width: 0.3rem;
+	height: 0.3rem;
+	background: url(../img/kj_2_05.png) no-repeat 50% 50%;
+	background-size:0.23rem;
+	vertical-align:-0.03rem
+}
+.header li .headerEm{
+	display: inline-block;
+	width: 0.3rem;
+	height: 0.3rem;
+	background: url(../img/kj_2_07.png) no-repeat 50% 50%;
+	background-size:cover;
+	vertical-align:-0.03rem
+}
+.header .headerImg{
+	background: url(../img/kj_20.png) no-repeat 100% 50%;
+}
+/**/
+.swiper-container{
+	width: 100%;
+	height: 5rem;
+	background: #FFFFFF;
+	font-size:0.246rem ;
+	position: relative;
+}
+
+.swiper-container .swiper-wrapper .img1{
+	width: 100%;
+	height: 100%;
+	background: url(http://tupian.enterdesk.com/2015/gha/12/0401/06.jpg) no-repeat 50% 50%;
+	background-size:cover;
+}
+.swiper-container .swiper-wrapper .img2{
+	width: 100%;
+	height: 100%;
+	background: url(http://01.imgmini.eastday.com/mobile/20170531/20170531103908_ebb39ade13c318f755040297c5e8676a_1.jpeg) no-repeat 50% 50%;
+	background-size:cover;
+}
+.swiper-container .swiper-wrapper .img3{
+	width: 100%;
+	height: 100%;
+	background: url(http://08.imgmini.eastday.com/mobile/20170516/20170516004611_05bd19c4b72f6e39eb3ccd943b6247ca_2.jpeg) no-repeat 50% 50%;
+	background-size:cover;
+}
+.swiper-container p{
+	width: 100%;
+	color: #FFFFFF;
+	padding-left: 0.2rem;
+	line-height: 0.5rem;
+	position: absolute;
+	top: 0;
+	z-index: 99;
+	background: rgba(0,0,0,0.5);
+}
+/**/
+.Countdown{
+	font-size: 0.289rem;
+	color: #FFFFFF;
+	background: #F4212B;
+	text-align: center;
+}
+.Countdown font{
+	display: inline-block;
+	font-size: 0.32rem;
+	background: #9c1319;
+	height:0.5rem;
+	width: 0.5rem;
+	line-height: 0.5rem;
+	margin: 0.2rem 0;
+}
+/**/
+.jindu{
+	font-size: 0.276rem;
+	padding-top: 0.2rem;
+	background:#FFFFFF;
+	border-bottom:1px solid #CCCCCC ;
+	margin-bottom: 0.1rem;
+}
+.jindu .jinduXx .jinduXxImg{
+	float: left;
+	margin-left: 0.2rem;
+	width: 1rem;
+	height:1rem;
+	border-radius:1rem ;
+	background: url(../img/kj_01.png) no-repeat 50% 50%;
+	background-size:cover;
+}
+.jindu .jinduXx .jinduXxcard{
+	float: left;
+	margin-left: 0.4rem;
+	margin-bottom: 1rem;
+}
+.jindu .jinduXx .jinduXxcard p{
+	margin-bottom: 0.1rem;
+}
+.jindu .jinduXx .jinduXxcard p font{
+	color: #F4212B;
+}
+/**/
+.jinduXx_T{
+	width: 90%;
+	margin-left: 5%;
+	display:-webkit-box;
+	-webkit-box-align:center;
+	-webkit-box-pack:center;
+	height: 0.4rem;
+	position: relative;
+	z-index: 9;
+}
+.jinduXx_T4{
+	width: 100%;
+	height:0.2rem;
+	border-radius:0.2rem ;
+	background:#D1D1D1;
+	top:0.1rem;
+	position: absolute;
+}
+.jinduXx_T4img1{
+	width: 0.3rem;
+	height: 0.3rem;
+	border: 2px solid #D1D1D1;
+	border-radius:0.3rem ;
+	position: absolute;
+	left:-0.5%;
+	top: 0.01rem;
+	background: url(../img/kj_22.png) no-repeat 50% 50%;
+	background-color: #FFFFFF;
+	background-size:0.15rem;
+	z-index: 99;
+}
+.jinduXx_T4img3{
+	width: 0.3rem;
+	height: 0.3rem;
+	border: 2px solid #D1D1D1;
+	border-radius:0.3rem ;
+	position: absolute;
+	right:-0.5%;
+	top: 0.02rem;
+	background: url(../img/kj_13.png) no-repeat 50% 50%;
+	background-color: #FFFFFF;
+	background-size:0.15rem;
+	z-index: 99;
+}
+.jinduXx_T4img2{
+	width: 0.3rem;
+	height: 0.3rem;
+	border: 2px solid #D1D1D1;
+	border-radius:0.3rem;
+	background: url(../img/kj_21.png) no-repeat 50% 50%;
+	background-color: #FFFFFF;
+	background-size:0.15rem;
+	z-index: 99;
+	position: relative;
+}
+.jinduXx_T4Gm{
+	position: absolute;
+	width: 60%;
+	height:0.2rem;
+	top:0.1rem;
+	border-radius:0.2rem ;
+	background: linear-gradient(to left, #FF9900 0%,#FF6600 100%);
+	left: 0;
+}
+.jinduXx_T4Gm font{
+	position: absolute;
+	right: -1rem;
+	top: -1rem;
+	width: 2rem;
+	line-height: 0.6rem;
+	border-radius:3px ;
+	text-align: center;
+	background:#FD7D24;
+	color: #FFFFFF;
+}
+.jinduXx_T4Gm span{
+	display: inline-block;
+	width:0;
+	height:0;
+	position: absolute;
+	right: -0.15rem;
+	top: -0.4rem;
+	border-left:0.15rem solid transparent;
+	border-right:0.15rem solid transparent;
+	border-top:0.15rem solid #FD7D24;
+}
+.jinduXx_R{
+	width: 90%;
+	margin-left: 5%;
+	position: relative;
+	min-height:1.3rem;
+	text-align: center;
+	margin-top: 0.15rem;
+}
+.jinduXx_T4Text1,.jinduXx_T4Text2,.jinduXx_T4Text3{
+	display: inline-block;
+	font-size: 0.246rem;
+	color: #D1D1D1;
+}
+.jinduXx_T4Text1{
+	position: absolute;
+	left:-0.3rem;
+}
+.jinduXx_T4Text3{
+	position: absolute;
+	right:-0.3rem;
+}
+/**/
+.rank{
+	width: 100%;
+	background: #FFFFFF;
+	border-top:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC ;
+	margin-bottom: 0.1rem;
+}
+.rank .rankNav{
+	width: 96%;
+	margin-left: 2%;
+}
+.rank .rankNav .rankTitle font{
+	font-size: 0.342rem;
+	line-height: 1rem;
+	float: left;
+}
+.rank .rankNav .rankTitle span{
+	font-size:0.276rem;
+	color: #CCCCCC;
+	float: right;
+	line-height: 1rem;
+}
+.rank .rankNav .rankTitle .rankMore{
+	display: inline-block;
+	height: 1rem;
+	width: 0.4rem;
+	background: url(../img/kj_17.png) no-repeat 50% 50%;
+}
+.rank .rankNav .rankNavZs{
+	font-size: 0.324rem;
+	width:100%;
+}
+.rank .rankNav .rankNavZs .rankNavXx{
+	width: 100%;
+	padding-bottom:0.4rem;
+}
+.rank .rankNav .rankNavZs .rankNavXx .rankNavXxImg{
+	width:1rem;
+	height:1rem;
+	background: url(../img/kj_01.png) no-repeat 50% 50%;
+	border-radius:1rem;
+	display: inline-block;
+}
+.rank .rankNav .rankNavZs .rankNavXx .rankNavXxcard{
+	display: inline-block;
+	vertical-align:0.1rem;
+	line-height: 0.5rem;
+	margin-left: 0.2rem;
+}
+.rank .rankNav .rankNavZs .rankNavXx .rankNavXxcard .rankNavXxTime{
+	font-size: 0.279rem;
+	color: #999999;
+}
+.rank .rankNav .rankNavZs .rankNavXx .rankNavXxKj{
+	font-size: 0.298rem;
+	float: right;
+	margin-top: 0.4rem;
+	color: #FFFFFF;
+	background: #FD7D24;
+	padding: 0.05rem 0.2rem;
+	border-radius:0.08rem ;
+}
+/**/
+.rule{
+	width: 100%;
+	background: #FFFFFF;
+	/*border-top:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;*/
+}
+.rule img{
+	width: 100%;
+}
+.rule .ruleContent{
+	width: 96%;
+	margin-left: 2%;
+	font-size: 0.324rem;
+	line-height: 0.8rem;
+}
+.rule .ruleContent .ruleTitle span{
+	display: inline-block;
+	height: 0.8rem;
+	width: 0.4rem;
+	background: url(../img/kj_24.png) no-repeat 50% 50%;
+	vertical-align: -0.299rem;
+	background-size:0.4rem;
+}
+.rule .ruleContent .ruleTitle img{
+	display: inline-block;
+	width: 0.4rem;
+	vertical-align: -0.26rem;
+	float: right;
+	margin-right: 0.2rem;
+	margin-top: 0.35rem;
+}
+.rule .ruleContent .ruleImg{
+	width: 100%;
+	height:1.5rem;
+	background: url(../img/kj_25.png) no-repeat 50% 50%;
+	background-size:contain;
+}
+.ruleExplain{
+	font-size: 0.267rem;
+	line-height: 0.6rem;
+	color: #666666;
+	background: #f7f7f7;
+}
+.ruleExplain p{
+	margin-left: 0.2rem;
+}
+.ruleExplain p font{
+	font-weight: 700;
+}
+.ruleExplain p:nth-child(1){
+	margin-left: 0;
+}
+.ruleExplain .ruleGuiZe{
+	text-align: center;
+	font-size: 0.298rem;
+}
+/**/
+.FTbutton{
+	width: 100%;
+	font-size: 0;
+	padding: 0.2rem 0;
+	background: #FFFFFF;
+	overflow: hidden;
+}
+.FTbutton .FTbutton1,.FTbutton .FTbutton2,.FTbutton .FTbutton3,.FTbutton .FTbutton4{
+	display: inline-block;
+	float: left;
+}
+.FTbutton .FTbutton1 span{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-left:0.3rem;
+	background: url(../img/kj_26.png) no-repeat 50% 50%;
+	background-size: 0.4rem;
+}
+.FTbutton .FTbutton1{
+	margin-top: 0.05rem;
+	margin-left: 3%;
+}
+.FTbutton .FTbutton1 p{
+	font-size: 0.264rem;
+	color: #666666;
+	margin-top: 0.05rem;
+}
+.FTbutton .FTbutton2{
+	color: #FFFFFF;
+	background: #FD7D24;
+	text-align: center;
+	margin-left: 3%;
+	width: 35%;
+	height: 0.9rem;
+}
+.FTbutton .FTbutton2 p{
+	font-size: 0.298rem;
+	line-height: 0.5rem;
+}
+.FTbutton .FTbutton2 font{
+	font-size:0.246rem ;
+}
+.FTbutton .FTbutton3{
+	color: #FFFFFF;
+	background: #FD7D24;
+	text-align: center;
+	height:0.9rem;
+	margin-left: 5%;
+	width:35%;
+}
+.FTbutton .FTbutton3 p{
+	font-size: 0.298rem;
+	line-height: 0.6rem;
+}
+.FTbutton .FTbutton3 font{
+	font-size: 0.16rem;
+}
+.FTbutton .FTbutton4{
+	font-size: 0.298rem;
+	color: #FFFFFF;
+	background: #D1D1D1;
+	text-align: center;
+	line-height:0.9rem;
+	margin-left: 5%;
+	width:70%;
+}
+/*未报名*/
+.product{
+	width: 100%;
+	background: #FFFFFF;
+	margin-bottom: 0.1rem;
+	border-bottom: 1px solid #CCCCCC;
+}
+.product .productId{
+	width: 90%;
+	margin-left: 5%;
+	font-size:0.30rem ;
+	font-weight: 600;
+	padding-top: 0.2rem;
+	padding-bottom: 0.6rem;
+}
+.product .productImg{
+	width: 90%;
+	margin-left: 5%;
+}
+.product .productImg .productImgL{
+	width: 20%;
+	text-align: center;
+	display: inline-block;
+	float: left;
+}
+.product .productImg .productImgL p{
+	font-size: 0.23rem;
+	color: #FD7D24;
+	margin-top: 0.3rem;
+    margin-bottom: 0.1rem;
+}
+.product .productImg .productImgL p:nth-child(1) font{
+	font-size: 0.364rem;
+}
+.product .productImg .productImgL p:nth-child(2){
+	height: 0.5rem;
+	width: 1.2rem;
+	margin: 0 auto;
+	line-height: 0.5rem;
+	background:url(../img/index/yuanjia.png) no-repeat 50% 50%;
+	background-size:contain;
+	color: #FFFFFF;
+}
+.productImgC{
+	font-size: 0.264rem;
+	display: inline-block;
+	width: 60%;
+	text-align: center;
+	float: left;
+}
+.productImgC1{
+	color:#F4212B;
+}
+.productImgC1 i{
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	background: url(../img/index/kan01.png) no-repeat 50% 50%;
+	background-size: contain;
+	vertical-align:-0.15rem
+}
+.productImgC1 span{
+	font-size: 0.364rem;
+}
+.productImgC2{
+	width: 100%;
+	height: 0.3rem;
+	background: url(../img/index/jiantou.png) no-repeat 50% 50%;
+	background-size:cover;
+}
+.productImgC3{
+	width: 100%;
+	color: ;
+	font-size: 0.264rem;
+	text-align: center;
+}
+.product .productImg .productImgB{
+	width: 20%;
+	text-align: center;
+	display: inline-block;
+	float: left;
+}
+.product .productImg .productImgB p{
+	font-size: 0.23rem;
+	color: #FD7D24;
+	margin-top: 0.3rem;
+    margin-bottom: 0.1rem;
+}
+.product .productImg .productImgB p:nth-child(1) font{
+	font-size: 0.364rem;
+}
+.product .productImg .productImgB p:nth-child(2){
+	height: 0.5rem;
+	width: 1.2rem;
+	margin: 0 auto;
+	line-height: 0.5rem;
+	background:url(../img/index/yuanjia.png) no-repeat 50% 50%;
+	background-size:contain;
+	color: #FFFFFF;
+}
+.productNum{
+	margin-right: 5%;
+	font-size: 0.269rem;
+	line-height: 0.8rem;
+	margin-top: 0.2rem;
+	float: right;
+	color:#666666;
+}
+/**/
+.details{
+	width: 100%;
+	background: #FFFFFF;
+	font-size: 0rem;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 0.1rem;
+}
+.details .detailsT{
+	width: 96%;
+	margin-left: 2%;
+	overflow: hidden;
+	border-bottom: 1px solid #CCCCCC;
+}
+.details .detailsT>i{
+	display: inline-block;
+	width: 25%;
+	height: 1rem;
+	background: url(../img/kj_34.png) no-repeat 50% 50%;
+	background-size: contain;
+	margin: 0.2rem 0;
+	float: left;
+	outline: 1px solid #999999;
+}
+.details .detailsT span{
+	display: inline-block;
+	width: 60%;
+	font-size: 0.34rem;
+	float: left;
+	text-align: center;
+	line-height: 1.4rem;
+}
+.details .detailsT font{
+	display: inline-block;
+	width: 15%;
+	height: 1.4rem;
+	float: left;
+	background: url(../img/kj_36.png) no-repeat 0% 50%;
+}
+.details .detailsT font>i{
+	display: inline-block;
+	width: 100%;
+	height: 1.4rem;
+	background: url(../img/kj_35.png) no-repeat 50% 50%;
+	background-size:0.3rem;	
+}
+.details .detailsC{
+	font-size: 0.2984rem;
+	width: 100%;
+}
+.details .detailsC .detailsC1{
+	width: 33.333333%;
+	float: left;
+	text-align: center;
+	margin: 0.2rem 0;
+}
+.details .detailsC .detailsCImg{
+	background: url(../img/kj_36.png) no-repeat 100% 50%;
+}
+.details .detailsC .detailsC1 font{
+	color: #666666;
+}
+.details .detailsB{
+	font-size: 0.324rem;
+	width: 100%;
+}
+.details .detailsB div{
+	width: 30%;
+	margin-left: 2.5%;
+	padding: 0.1rem 0;
+	margin-bottom: 0.2rem;
+	float: left;
+	text-align: center;
+	outline: 1px solid #CCCCCC;
+}
+/**/
+.explain{
+	width: 100%;
+	border-top:1px solid #CCCCCC ;
+	line-height: 0.8rem;
+} 
+.explain .explainT{
+	font-size: 0.286rem;
+	width: 100%;
+	margin-bottom: 0.1rem;
+	border-bottom: 1px solid #CCCCCC;
+	background: #FFFFFF;
+}
+.explain .explainT div{
+	width: 25%;
+	text-align: center;
+	float:left;
+}
+.explainNum{
+	color: #FF0000;
+}
+.explaintext{
+	display: inline-block;
+}
+.explainCPj{
+	width: 100%;
+	background: #FFFFFF;
+}
+.explainCPjTitle{
+	font-size: 0.276rem;
+	margin-left: 5%;
+}
+.explainCPjTitle font{
+	color: #F4212B;
+}
+.explainCPjLb{
+	width: 90%;
+	margin-left: 5%;
+}
+.explainCPjLb li{
+	width: 25%;
+	float: left;
+	text-align: center;
+	font-size: 0.276rem;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	border:1px solid #999999;
+	border-left:0 ;
+}
+.explainCPjLb li:nth-child(1){
+	border-left:1px solid #999999;
+}
+.explainCPjLb li p{
+	line-height: 0.40rem;
+	color: #999999;
+}
+.explainCPjLbXz p{
+	color: #F4212B !important;
+}
+/**/
+.explainCPjNav{
+	margin-top: 0.5rem;
+	width: 90%;
+	margin-left: 5%;
+	font-size: 0.276rem;
+}
+.explainCPjNav li .explainCPjNavImg{
+	width: 1rem;
+	height:1rem;
+	border-radius:1rem ;
+	background: url(../img/kj_01.png) no-repeat 50% 50%;
+	background-size:cover;
+	float: left;
+}
+.explainCPjNav li .explainCPjNavEvaluate{
+	float: left;
+	margin-left: 0.2rem;
+	line-height: 0.3rem;
+	max-width: 79%;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 0.2rem;
+}
+.explainCPjNav li .explainCPjNavEvaluate .explainCPjNavEvaluateXx{
+	line-height: 0.7rem;
+	color: #888888;
+}
+.explainCPjNavEvaluateXx .Evaluate{
+	display: inline-block;
+    margin-left: 0.1rem;
+    width: 1rem;
+    background: #F4212B;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 0.4rem;
+    border-radius: 0.4rem;
+}
+.explainCPjNavEvaluateXx .Time{
+	float: right;
+}
+.EvaluateDetails{
+	color:#666666;
+	margin-bottom: 0.4rem;
+}
+.explainCPjNavPic{
+	width:100%;
+}
+.explainCPjNavPic font{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background: url(../img/index/person01.png) no-repeat 50% 50%;
+	background-size: cover;
+}
+.explainCPjNavStyle{
+	margin-top: 0.2rem;
+	color: #888888;
+	margin-bottom: 0.2rem;
+}
+.explainCPjNavStyle span{
+	margin-left: 0.6rem;
+}
+.Additional{
+	width: 100%;
+	background: #eeeeee;
+	line-height: 0.5rem;
+	font-size: 0.289rem;
+	padding-top: 0.1rem;
+	color: #666666;
+	position: relative;
+	margin-bottom: 0.2rem;
+}
+.Additional p{
+	margin-left: 0.2rem;
+}
+.Additional div{
+	width: 0;
+    height: 0;
+    position: absolute;
+    top: -0.1rem;
+    border-left: 0.2rem solid transparent;
+    border-right: 0.2rem solid transparent;
+    border-bottom: 0.2rem solid #eeeeee;
+}
+.Additional font{
+	color: #F4212B;
+}
+.Reply{
+	width: 100%;
+	background: #eeeeee;
+	line-height: 0.5rem;
+	font-size: 0.289rem;
+	padding-top: 0.1rem;
+	color: #666666;
+	margin-bottom: 0.2rem;
+}
+.Reply>div{
+	margin-left: 0.2rem;
+}
+.Reply>div p{
+	color: #F4212B;
+}
+/*选择当前添加class*/
+.xuanze{
+	border-bottom:0.05rem solid #FD7D24;
+}
+/**/
+.explainC{
+	width: 100%;
+}
+.explainC .explainCXq,.explainC .explainCGg,.explainC .explainCSh,.explainC .explainCPj{
+	width: 100%;
+}
+.explainC .explainCXq img,.explainC .explainCGg img,.explainC .explainCSh img{
+	width: 100%;
+}
+/***********************可能需要删除的样式     开始****************************/
+/*.explainC .explainCGg{
+	width: 100%;
+	display: none;
+}
+.explainC .explainCGg p{
+	color: #CCCCCC;
+	font-size: 0.246rem;
+	margin-left: 0.2rem;
+}
+.explainC .explainCGg ul li{
+	margin-left: 0.4rem;
+	font-size: 0.17rem;
+	color: #666666;
+}
+.explainC .explainCGg ul li i{
+	display: inline-block;
+	width: 0.15rem;
+	height: 0.15rem;
+	background: #000000;
+	border-radius:0.15rem ;
+	margin-right: 0.1rem;
+}*/
+/***********************可能需要删除的样式          结束****************************/
+/*第一个弹框*/
+.promptBox{
+	width: 80%;
+	position:fixed;
+	top: 30%;
+	left:10%;
+	font-size: 0.246rem;
+	text-align: center;
+	z-index: 9999;
+	display: none;
+}
+.promptBox .BoxC{
+	color:#FD7D24;
+	background: #FFFFFF;
+	border-top-left-radius:5px;
+	border-top-right-radius: 5px;
+}
+.promptBox .BoxC i{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background: url(../img/kj_27.png) no-repeat 50% 50%;
+	background-size:0.8rem ;
+	padding: 0.3rem 0;
+}
+.promptBox .BoxC p{
+	padding-bottom: 0.2rem;
+}
+.promptBox .BoxB{
+	line-height: 0.94rem;
+	background: #FD7D24;
+	color: #FFFFFF;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+.promptBox .BoxT{
+	width: 0.5rem;
+	height: 0.5rem;
+	border: 0.02rem solid #FFFFFF;
+	border-radius:0.5rem ;
+	background: url(../img/kj_28.png) no-repeat 50% 50%;
+	background-size:0.3rem;
+	position: absolute;
+	top: -1.2rem;
+	right: 5%;
+}
+.promptBox .BoxT:after{
+	content: "";
+    position: relative;
+    display: block;
+    width: 0.02rem;
+    height: 1.5rem;
+    background-color: #FFF;
+    top: 0.5rem;
+    left: 50%;
+    margin-left: -0.01rem;
+}
+/*第二个弹框*/
+.promptBox1{
+	width: 80%;
+	position:fixed;
+	top: 40%;
+	left:10%;
+	font-size: 0.246rem;
+	text-align: center;
+	z-index: 9999;
+	display: none;
+}
+.promptBox1 .BoxC{
+	color:#FD7D24;
+	background: #FFFFFF;
+	border-top-left-radius:5px;
+	border-top-right-radius: 5px;
+}
+.promptBox1 .BoxC i{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background: url(../img/kj_29.png) no-repeat 50% 50%;
+	background-size:1rem ;
+	padding: 0.3rem 0;
+}
+.promptBox1 .BoxB{
+	line-height: 0.4rem;
+	background: #FFFFFF;
+	color:#FD7D24;
+	padding-bottom: 0.2rem;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+.promptBox1 .BoxT{
+	width: 0.5rem;
+	height: 0.5rem;
+	border: 0.02rem solid #FFFFFF;
+	border-radius:0.5rem ;
+	background: url(../img/kj_28.png) no-repeat 50% 50%;
+	background-size:0.3rem;
+	position: absolute;
+	top: -1.2rem;
+	right: 5%;
+}
+.promptBox1 .BoxT:after{
+	content: "";
+    position: relative;
+    display: block;
+    width: 0.02rem;
+    height: 1.5rem;
+    background-color: #FFF;
+    top: 0.5rem;
+    left: 50%;
+    margin-left: -0.01rem;
+}
+/*第二个弹框*/
+.promptBox2{
+	width: 80%;
+	position:fixed;
+	top: 40%;
+	left:10%;
+	font-size: 0.246rem;
+	text-align: center;
+	z-index: 9999;
+	display: none;
+}
+.promptBox2 .BoxC{
+	color:#FD7D24;
+	background: #FFFFFF;
+	border-top-left-radius:5px;
+	border-top-right-radius: 5px;
+}
+.promptBox2 .BoxC i{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background: url(../img/kj_30.png) no-repeat 50% 50%;
+	background-size:1rem ;
+	padding: 0.3rem 0;
+}
+.promptBox2 .BoxB{
+	line-height: 0.8rem;
+	background:#FD7D24;
+	color:#FFFFFF;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+.promptBox2 .BoxT{
+	width: 0.5rem;
+	height: 0.5rem;
+	border: 0.02rem solid #FFFFFF;
+	border-radius:0.5rem ;
+	background: url(../img/kj_28.png) no-repeat 50% 50%;
+	background-size:0.3rem;
+	position: absolute;
+	top: -1.2rem;
+	right: 5%;
+}
+.promptBox2 .BoxT:after{
+	content: "";
+    position: relative;
+    display: block;
+    width: 0.02rem;
+    height: 1.5rem;
+    background-color: #FFF;
+    top: 0.5rem;
+    left: 50%;
+    margin-left: -0.01rem;
+}
+/*指示图标*/
+.instructions{
+	width: 1.2rem;
+	height: 1.2rem;
+	background: url(../img/kj_31.png) no-repeat 50% 50%;
+	background-size: 1.2rem;
+	position: fixed;
+	top: 0.1rem;
+	right: 0.4rem;
+	z-index: 999;
+	display: none;
+}
+/*按钮切换*/
+.FTaftButton{
+	line-height: 0.9rem !important;
+	position: relative;
+}
+/*支付弹框*/
+.payTk{
+	width: 100%;
+	font-size: 0.246rem;
+	background: #FFFFFF;
+	position: fixed;
+	z-index: 999;
+	-webkit-transition:0.5s ease all;
+	-moz-transition:0.5s ease all;
+	bottom:-5rem;
+	visibility: hidden;
+}
+.payTk .payTkEsc{
+	width: 0.7rem;
+	height: 0.7rem;
+	background:#FFFFFF;
+	position: absolute;
+	right: 0.3rem;
+	top: -0.35rem;
+	border-radius:0.7rem;
+}
+.payTk .payTkEsc font{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius:0.7rem;
+	background: url(../img/kj_43.png) no-repeat 50% 50%;
+	background-size:0.4rem;
+}
+.payTkNav{
+	padding-top: 0.1rem;
+}
+.payTkNav,.guige,.number{
+	width: 96%;
+	margin-left: 2%;
+}
+.payTkNav .payTkNavImg{
+	float: left;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: url(../img/kj_11.png) no-repeat 50% 50%;
+	background-size: cover;
+}
+.payTkNav .payTkNavText{
+	float: left;
+	height: 1.5rem;
+	width: 73%;
+    margin-left: 2%;
+}
+.payTkNavJg{
+	color: #FF0000;
+}
+.payTkNav .payTkNavText .payTkNavt{
+	line-height:1rem;
+	width: 100%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.guige div{
+	display: inline-block;
+}
+.guige .guigeText{
+	display: inline-block;
+	line-height: 0.8rem;
+	width: 1.5rem;
+}
+.guige div font{
+	display: inline-block;
+	padding: 0.05rem 0.1rem;
+	border: 1px solid #CCCCCC;
+	margin-right: 0.1rem;
+}
+.number span{
+	float: right;
+}
+.number{
+	line-height: 0.6rem;
+}
+.payButton{
+	text-align: center;
+	font-size: 0.345rem;
+	line-height: 0.8rem;
+	background: #FF0000;
+	color:#FFFFFF;
+	width: 100%;
+}

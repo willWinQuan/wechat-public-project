@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/ass/css/yi_ren.css"/>
+		<link rel="stylesheet" href="<{$http}>/weixinpl/common/css_V6.0/<{$theme}>.css"/>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/common.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/calender/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="<{$http}>/weixinpl/js/WdatePicker.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/calender/demo.js"></script>
+		<style>
+		 .idBox .idBoxNav p{background:#efefef; color:black; border-color:#efefef; cursor: pointer;}
+		 .yrBc, .yrQx{cursor: pointer;}
+		</style>
+	</head>
+	<body>
+
+<!--列表内容大框开始-->
+<div class="WSY_columnbox">
+	<!--列表头部切换开始-->
+	<div class="WSY_column_header">
+		<div class="WSY_columnnav">
+		    <a href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80">砍价活动列表</a>
+			<!--<a href="<{:U('bargain/create')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>" class="white1">活动编辑</a>-->
+		</div>
+	</div>
+	<!--列表头部切换结束-->
+
+    <div  class="yirenAdministration zong_t">	
+        <form method="get" action="" id="yirenform">
+			<div class="yirenForm">
+				<li class="WSY_position_text">
+					<if condition="$activity_status eq '未发布'" >
+					    <a class="WSY_buttontj yirenFormOe" href="<{:U('bargain/product')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">产品管理</a>
+					    <!--<a class="WSY_buttontj yirenFormOe" href="<{:U('bargain/create')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">编辑活动</a>-->
+					</if>
+					<span>状态:</span>
+					<a>
+						<select name="option">
+							<option value="">--请选择--</option>
+							<volist name="option" id="op">
+								<option value=<{$op['option_id']}> ><{$op['option_name']}></option>
+							</volist>
+						</select>
+					</a>
+					<a class="yirenPt">时间:
+						<input type="text" name="activity_start_time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"/>
+						-
+						<input type="text" name="activity_end_time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"/>
+					</a>
+					<a class="yirenPt">搜索:
+						<input type="text" name="everything" />
+					</a>
+					<input type="hidden" name="customer_id_en" value=<{$customer_id_en}> >
+					<input type="hidden" name="activity_id" value=<{$activity_id}> >
+					<a class="WSY_buttontj yirenFormOe" href="javascript:void(0)" onclick="document.getElementById('yirenform').submit();" id="search-button">搜索</a>
+				</li>
+			</div>
+		</form>
+		<table width="97%" class="yirenTable" cellpadding="0" cellspacing="0" >
+			<thead class="WSY_table_header">
+				<tr>
+					<th width="3%"><input  type="checkbox" ></th>
+					<th width="3%">ID</th>
+					<th width="5%">商品图片</th>
+					<th width="5%">商品名称</th>
+					<th width="5%">商品数量</th>
+					<th width="5%">市场价</th>
+					<th width="5%">可购买价</th>
+					<th width="5%">最低价</th>
+					<th width="5%">下单数</th>
+					<th width="5%">失败数</th>
+					<th width="5%">进行数</th>
+					<th width="5%">剩余商品数量</th>
+					<th width="15%">活动时间</th>
+					<th width="5%">状态</th>
+					<th width="15%">操作</th>
+			  	</tr>
+			</thead>
+			<tbody class="yirenGl" >
+			    <volist name="bargain" id="vo" key="key">
+				  	<tr>
+				  		<td><input  type="checkbox"></td>
+				  		<td><{$vo['id']}></td>
+				  		<td><img src="<{$vo['product_pic']}>" style="width:150px;" /></td>
+				  		<td><{$vo['product_name']}></td>
+				  		<td style="color:orange;font-weight:bold;" ><{$vo['product_num']}>（件）</td>
+				  		<td>￥ <{$vo['price']}></td>
+				  		<td>￥ <{$vo['buy_price']}></td>
+				  		<td>￥ <{$vo['minimum_price']}></td>
+				  		<td style="color:green;font-weight:bold;" ><{$vo['count_buy']}>（人）</td>
+				  		<td><{$vo['count_no_buy']}>（人）</td>
+				  		<td><{$vo['count_activitying']}>（人）</td>
+				  		<td style="color:orange;font-weight:bold;" ><{$vo['inventory']}>（件）</td>
+				  		<td>开始时间：<{$vo['start_time']}><br/>结束时间：<{$vo['end_time']}></td>
+				  		<if condition="$vo['status'] eq '未发布'" >
+				  		    <td style="color:gray;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<if condition="$vo['status'] eq '进行中'" >
+				  		    <td style="color:green;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<if condition="$vo['status'] eq '已终止'" >
+				  		    <td style="color:red;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<if condition="$vo['status'] eq '已过期'" >
+				  		    <td style="color:red;font-weight:bold;" ><{$vo['status']}></td>
+				  		</if>
+				  		<td class="caozuo">
+				  		    <p class="WSY_buttontj" onclick="jumpto_apply(<{$vo['id']}>,<{$activity_id}>);" style="cursor:pointer;" >发起者</p>
+				  			<p class="WSY_buttontj" onclick="jumpto_join(<{$vo['id']}>,<{$activity_id}>);" style="cursor:pointer;" >帮助者</p>
+				  			<if condition="$activity_status eq '未发布'" >
+				  			<p class="WSY_buttontj" onclick="jumpto_create(this);" style="cursor:pointer;" >编辑商品</p>
+				  			</if>
+				  			<if condition="$activity_status eq '未发布'" >
+				  			<p class="WSY_buttontj" onclick="delete_k(<{$vo['id']}>,<{$key}>,'<{$customer_id_en}>')" style="cursor:pointer;" >删除</p>
+				  			</if>
+				  		</td>
+				  	</tr>
+			    </volist>
+			</tbody>
+		</table>
+		<!--表格结束-->
+        <!--跳转页面-->
+        <div class="WSY_page">
+        	<ul class="WSY_pageleft" style="width: 70%;">
+        		<{$strPage}>
+        		<div class="WSY_searchbox">
+        			<input class="WSY_page_search" id="WSY_jump_page"/>
+        			<input class="WSY_jump" type="button" value="跳转" id="WSY_jump_page_yy"/>
+        		</div>
+        	</ul>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $("#WSY_jump_page_yy").click(function(){
+    	var WSY_jump_page_xx = $("#WSY_jump_page").val(),
+    	c = "<{$customer_id_en}>",
+    	a = "<{$activity_id}>",
+        ps = <{$pageNums}>,
+	    p = /^\d+$/g;
+	    if(!WSY_jump_page_xx){
+	    	alert('页码为空');
+	    }
+	    if(!p.test(WSY_jump_page_xx)||WSY_jump_page_xx<0){
+	    	alert('输入页码有误');
+	    }else{
+	    	if(WSY_jump_page_xx>ps){WSY_jump_page_xx = ps;}
+	    	location.href = "<{:U('Bargain/edit_activity')}>?customer_id_en="+c+"&page="+WSY_jump_page_xx+'&activity_id='+a;
+	    }
+    });
+	function delete_k(id,key,customer_id_en){
+		var k=confirm("是否删除此商品？");
+		if(k){
+			delete_goods(id,customer_id_en);
+			$(".yirenGl tr").eq(key-1).css("display","none");
+		}
+	}
+	//输入框按回车键触发搜索
+	$('.WSY_position_text').find('input').on('keydown',function(){
+		if( event.keyCode == 13 ){
+			$('#search-button').click();
+		}
+	});
+	function delete_goods(id,customer_id_en){
+		var data= {
+			product_id:id,
+			customer_id_en:customer_id_en
+        }
+        $.ajax({
+            url: '<{$http}>/weixinpl/haggling/back/index.php/workroom_admin/bargain/delete_goods',
+            type:'get',
+            data:data,
+            dataType:'json',
+            success:function(res){
+            	if(res.error==1000){
+            	}else if(res.error==1002){
+            		alert("删除不成功！");
+            	}else{
+            		alert("customer_id_en错误！");
+            	}
+            },error:function(){
+            	alert("提前方法或其他方法出错！");
+            }
+        });
+	}
+
+	function jumpto_create(obj){
+		location.href="<{:U('bargain/product')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>"
+	}
+
+	function jumpto_apply(product_id,activity_id){
+		location.href="<{:U('bargain/apply')}>?customer_id_en=<{$customer_id_en}>&class=80&product_id="+product_id+"&activity_id="+activity_id;
+	}
+
+	function jumpto_join(product_id,activity_id){
+		location.href="<{:U('bargain/join')}>?customer_id_en=<{$customer_id_en}>&class=80&product_id="+product_id+"&activity_id="+activity_id;
+	}
+
+</script>
+</html>

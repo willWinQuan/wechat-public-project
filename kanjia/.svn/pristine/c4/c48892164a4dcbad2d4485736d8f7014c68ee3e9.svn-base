@@ -1,0 +1,579 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>订单列表</title>
+        <link rel="stylesheet" href="__PUBLIC__/ass/css/yi_ren.css"/>
+		<link rel="stylesheet" href="<{$http}>/weixinpl/common/css_V6.0/<{$theme}>.css"/>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/calender/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/calender/lhgcalendar.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/calender/demo.js"></script>
+		<script type="text/javascript" src="<{$http}>/weixinpl/common_shop/jiushop/js/region_select.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#demo_inp1').calendar();
+				$('#img').calendar({ id:'#cal3' });
+			});
+		</script>
+	    <style>
+	        .operation-btn{display:inline-block;padding: 5px 10px;background-color: #06a7e1;color: #fff;border-radius: 2px;cursor:pointer;text-align: center;margin: 2px 0;}
+	        .header-left{margin-left:15px;margin-top: 10px;}
+			.user_img{width: 50px;border-radius: 30px;}
+			.cz_img{
+				margin-left: 5px;
+			    width: 20px;
+			    height: 20px;
+			    cursor: pointer;
+			}
+			.xq_left div{
+				height: 35px;
+				line-height: 26px;
+			}
+			.xq_left .top{
+				border-bottom: 1px solid #ececec;;
+			    margin-left: 10px;
+			    margin-right: 15px;
+			    margin-bottom: 6px;
+			    height:40px;
+			}
+			.xq_left .top font{
+				display: block;
+			    float: left;
+			    height: 26px;
+			    text-align: right;
+			    line-height: 26px;
+			    background: #f4f4f4;
+			    font-size: 14px;
+			    margin-top: 5px;
+			    padding:2px 10px;
+			}
+			.xq_left div .b{
+				display: block;
+			    float: left;
+			    height: 26px;
+			    text-align: right;
+			    line-height: 26px;
+			    background: #f4f4f4;
+			    font-size: 14px;
+			    padding-left: 10px;
+                margin-left: 10px;
+			}
+			.xq_left div .span{
+				display: block;
+			    float: left;
+			    line-height: 26px;
+			    font-size: 14px;
+			    margin-left: 4px;
+			}
+			.xq_left div .bc{
+				margin: 10px;
+				padding: 4px 10px;
+			}
+		</style>
+	</head>
+	<body>
+<!--内容框架开始-->
+<div class="WSY_content" id="WSY_content_height">
+                    <pre class="prettyprint" id="start_time" hidden >
+						$.calendar({ format:'yyyy-MM-dd HH:mm:ss' });
+					</pre>
+					<pre class="prettyprint" id="end_time" hidden >
+						$.calendar({ format:'yyyy-MM-dd HH:mm:ss' });
+					</pre>
+       <!--列表内容大框开始-->
+<div class="WSY_columnbox">
+				    <div class="WSY_column_header">
+						<div class="WSY_columnnav">
+							<a href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80">砍价活动列表</a>
+							<a href="<{:U('bargain/order')}>?customer_id_en=<{$customer_id_en}>&class=80" class="white1">订单管理</a>
+							<a href="<{:U('bargain/activity_summary')}>?customer_id_en=<{$customer_id_en}>&class=80">活动汇总</a>
+							<a href="<{:U('bargain/product_summary')}>?customer_id_en=<{$customer_id_en}>&class=80">产品汇总</a>
+							<a href="<{:U('bargain/user_summary')}>?customer_id_en=<{$customer_id_en}>&class=80">用户汇总</a>
+						</div>
+					</div>
+    <div class="WSY_data">
+    	<div class="WSY_list">
+    	    <form action="" method="get" id="bargain_search" >
+    	    <input type="hidden" value="<{$customer_id_en}>" name="customer_id_en">
+			<div class="header-left">
+				<span>活动ID：</span><input type="text" name="activity_id" id="activity_id" onkeyup="clearInt(this)" />
+				<span>订单号：</span><input type="text" name="batchcode" id="batchcode" onkeyup="clearInt(this)" />
+				<span>手机号：</span><input type="text" name="phone" id="phone" onkeyup="clearInt(this)" />
+				<span>状态：</span>
+				<select name="pay_status" id="pay_status" >
+					<option value="0" >全部</option>
+					<option value="1" >未付款</option>
+					<option value="2" >已付款</option>
+				</select>
+			</div>
+			<div class="header-left">
+				<!--<span>收货人：</span><input type="text" id="goods_man" name="goods_man" />-->
+				<span>用户名：</span><input type="text" id="user_name" name="user_name" />
+				<select id="time_select" name="time_select" >
+					<option value="1" >下单时间</option>
+					<option value="2" >支付时间</option>
+				</select>
+				<input type="text" class="runcode" name="start_time" id="start_time" />
+				至
+				<input type="text" class="runcode" name="end_time" id="end_time" />
+			</div>
+			</form>
+			<ul class="WSY_righticon" style="margin-right:5%;">
+				<li style="margin-right: 20px;"><a class="WSY_buttontj yirenFormOe" id="search-button">搜索</a></li> 
+            	<li style="margin-right: 20px;"><a class="WSY_buttontj yirenFormOe" onclick="exportExcel();">导出</a></li>
+            	<!--<li style="margin-right: 20px;"><a class="WSY_buttontj yirenFormOe" onclick="exportkd1();">导出快递信息</a></li>-->        
+        	</ul>
+        </div>
+        <table width="97%" class="yirenTable" cellpadding="0" cellspacing="0" >
+			<thead class="WSY_table_header">
+				<tr>
+					<th width="5%"><input type="checkbox" id="qx" >全选</th>	
+					<th width="25%">产品</th>	
+					<th width="10%">收货人</th>	
+					<th width="10%">实付金额</th>
+					<th width="20%">订单号</th>	
+					<th width="10%">订单状态</th>
+					<th width="10%">物流状态</th>
+					<th width="10%">邀请人</th>	
+					<!--<th width="10%">操作</th>-->
+			  	</tr>
+			</thead>
+			<tbody class="yirenGl" >
+			    <volist name="bargain" id="vo" key="key">
+			        <tr >
+			            <td colspan="8" style="height:55px;background:#ececec;text-align:left;padding-left:25px;" >
+			            	编号：<{$vo['batchcode']}> 下单时间 <{$vo['order_time']}> <{$vo['order_status']}>
+			            	<if condition="$vo['paystyle'] neq ''" >
+			            	支付方式：<{$vo['paystyle']}> <font style="color:#06a7e1;cursor: pointer;" onclick="goto_order()" >[<{$vo['pay_batchcode']}>(点击查看)]</font>
+			            	</if>
+			            </td>
+			        </tr>
+				  	</tr>
+				  		<td style="height:90px"><input type="checkbox" name="items" ></td>
+				  		<td style="height:90px;text-align:left;">
+				  		    <img src="<{$vo['product_pic']}>" style="width:100px;float:left;" >
+				  		    <div style="float:left;">
+				  		    <{$vo['product_name']}><br/>
+				  		    ￥：<{$vo['money']}><br/>
+				  		    数量：1<br/>
+				  		    外部标识：<{$vo['foreign_mark']}>
+				  		    </div>
+				  		</td>
+				  		<td style="height:90px"><{$vo['name']}>（<{$vo['weixin_name']}>）<br/><{$vo['phone']}>
+				  		</td>
+				  		<td style="height:90px;color:green;">￥<{$vo['money']}></td>
+				  		<td style="height:90px;color:#06a7e1;"><font onclick="goto_order()" style="cursor: pointer;">点击订单号进入操作页面<br/><{$vo['batchcode']}></font></td>
+				  		<td style="height:90px;"><{$vo['order_status']}></td>
+				  		<td style="height:90px;"><{$vo['delivery']}></td>
+				  		<!--
+				  		<if condition="$vo['order_status'] eq '待支付'" >
+				  		    <td style="height:90px;color:red;font-weight:bold;"><{$vo['order_status']}></td>
+				  		</if>
+				  		<if condition="$vo['order_status'] eq '已支付'" >
+				  		    <td style="height:90px;color:orange;font-weight:bold;"><{$vo['order_status']}></td>
+				  		</if>
+				  		<if condition="$vo['order_status'] eq '待退款'" >
+				  		    <td style="height:90px;color:orange;font-weight:bold;"><{$vo['order_status']}></td>
+				  		</if>
+				  		<if condition="$vo['order_status'] eq '已退款'" >
+				  		    <td style="height:90px;color:orange;font-weight:bold;"><{$vo['order_status']}></td>
+				  		</if>
+				  		<if condition="$vo['order_status'] eq '已完成'" >
+				  		    <td style="height:90px;color:green;font-weight:bold;"><{$vo['order_status']}></td>
+				  		</if>
+				  		<if condition="$vo['order_status'] eq '退款失败'" >
+				  		    <td style="height:90px;color:red;font-weight:bold;"><{$vo['order_status']}></td>
+				  		</if>
+				  		<if condition="$vo['delivery'] eq '未发货'" >
+				  		    <td style="height:90px;color:red;font-weight:bold;"><{$vo['delivery']}></td>
+				  		</if>
+				  		<if condition="$vo['delivery'] eq '已发货'" >
+				  		    <td style="height:90px;color:orange;font-weight:bold;"><{$vo['delivery']}></td>
+				  		</if>
+				  		<if condition="$vo['delivery'] eq '已签收'" >
+				  		    <td style="height:90px;color:green;font-weight:bold;"><{$vo['delivery']}></td>
+				  		</if>
+				  		-->
+				  		<td style="height:90px"><{$vo['parent_weixin_name']}></td>
+				  		<!--
+				  		<td style="height:90px">
+				  		    <!--
+				  			<img src="__PUBLIC__/ass/img/icon44.png" title="订单详情" class="cz_img" onclick="xq(<{$key}>);" />
+				  			<img src="__PUBLIC__/ass/img/icon11.png" title="订单日志" class="cz_img" onclick="rz(<{$key}>);" />
+				  			<img src="__PUBLIC__/ass/img/icon52.png" title="修改收件地址" class="cz_img" onclick="xg(<{$key}>);" />
+				  			<img src="__PUBLIC__/ass/img/icon42.png" title="发货" class="cz_img" onclick="fh(<{$key}>);" />
+				  			<img src="__PUBLIC__/ass/img/icon44.png" title="订单详情" class="cz_img" onclick="goto_order()" />
+				  			<img src="__PUBLIC__/ass/img/icon11.png" title="订单日志" class="cz_img" onclick="goto_order()" />
+				  			<img src="__PUBLIC__/ass/img/icon52.png" title="修改收件地址" class="cz_img" onclick="goto_order()" />
+				  			<img src="__PUBLIC__/ass/img/icon42.png" title="发货" class="cz_img" onclick="goto_order()" />
+				  			<img src="__PUBLIC__/ass/img/icon51.png" title="返佣记录" class="cz_img" />
+				  		</td>
+				  		-->
+				  	</tr>
+				  	<tr>
+				  		<td colspan="8" style="border-left:0px;border-right:0px;border-bootom:0px;height:0px;text-align:left;" >
+			                <div style="display:none;" class="xq" >
+			            	    <div style="height:360px;border:1px solid #d8d8d8;float:left;width:700px;margin:20px;">
+									<div style="width:700px;" class="xq_left" ><div class="top" ><font>订单信息</font></div></div>
+									<div style="width:350px;float:left;" class="xq_left" >
+									<div><b class="b">订单号：</b><span class="span"><{$vo['batchcode']}></span></div>
+									<div><b class="b">下单时间：</b><span class="span"><{$vo['order_time']}></span></div>
+									<div><b class="b">支付时间：</b><span class="span"><{$vo['pay_time']}></span></div>
+									<div><b class="b">支付方式：</b><span class="span"><{$vo['payments']}></span></div>
+									<div><b class="b">收货方式：</b><span class="span">快递()</span></div>
+									<div><b class="b">买家姓名：</b><span class="span"><{$vo['user_name']}></span></div>
+									<div><b class="b">微信名称：</b><span class="span"><{$vo['weixin_name']}></span></div>
+									<div><b class="b">买家电话：</b><span class="span"><{$vo['user_tel']}></span></div>
+									<div><b class="b">邮费：</b><b class="span" style="color:red;">免邮</b></div>
+									</div>
+									<div style="width:350px;float:left;" class="xq_left" >
+									<div><b class="b">订单金额：</b><b class="span" style="color:red;">￥<{$vo['money']}></b></div>
+									<div><b class="b">总优惠金额：</b><b class="span" style="color:skyblue;">￥<{$vo['bargain_price']}></b></div>
+									<div><b class="b">使用购物币：</b><span class="span">0.00</span></div>
+									<div><b class="b">使用积分：</b><span class="span">0.00</span></div>
+									<div><b class="b">使用优惠券张数：</b><span class="span">0</span></div>
+									<div><b class="b">使用优惠券总金额：</b><span class="span">0.00</span></div>
+									<div><b class="b">实付金额：</b><b class="span" style="color:red;">￥<{$vo['money']}></b></div>
+									</div>
+								</div>
+								<div style="height:360px;border:1px solid #d8d8d8;float:left;width:700px;margin:20px;">
+									<div style="width:700px;" class="xq_left" ><div class="top" ><font>收货信息</font></div></div>
+									<div style="width:350px;float:left;" class="xq_left" >
+									<div><b class="b">收货人：</b><span class="span"><{$vo['user_name']}></span></div>
+									<div><b class="b">收货电话：</b><span class="span"><{$vo['user_tel']}></span></div>
+									<div><b class="b">收货地址：</b><span class="span"><{$vo['province']}><{$vo['city']}><{$vo['district']}><{$vo['addr']}></span></div>
+									<div><b class="b">订单备注：</b><span class="span"><{$vo['remark']}></span></div>
+									<div>
+									<b class="b">物流公司：</b>
+									<if condition="$vo['logistics_status'] eq 2">
+									<span class="span"><{$vo['logistics_company']}></span>
+									<elseif condition="$vo['logistics_status'] eq 3"/>
+									<span class="span">已收货</span>
+									<else />
+									<span class="span logistics_companys">未发货</span>
+									</if>
+									</div>
+									<if condition="$vo['logistics_status'] eq 1" >
+									<div  class="bcsh" >
+									<a class="WSY_buttontj yirenFormOe bc" onclick="save_logistics('<{$vo['batchcode']}>','<{$customer_id_en}>',<{$key}>)">保存</a>
+									</div>
+									</if>
+									</div>
+									<div style="width:350px;float:left;" class="xq_left" >
+									<div><b class="b">物流单号：</b><input type="text" value="<{$vo['logistics_num']}>" disabled="true" class="wuliu_dh"></div>
+									<div>
+									<b class="b">物流备注：</b>
+									<textarea rows="2" cols="30" style="overflow:hidden;line-height:26px;" disabled="true" class="wuliu_bz"><{$vo['logistics_remark']}></textarea>
+									</div>
+									<div style="margin-top:30px;">
+									<b class="b">商家备注：</b>
+									<textarea rows="2" cols="30" style="overflow:hidden;line-height:26px;" class="customer_remark"><{$vo['customer_remark']}></textarea>
+									</div>
+									</div>
+								</div>
+			            	</div>
+			            	<div style="display:none;" class="rz" >
+								<div style="border:1px solid #d8d8d8;float:left;width:1000px;margin:20px 0px 20px 500px;" class="log_parent" >
+									<div style="width:1000px;" class="xq_left" ><div class="top" ><font>订单日志</font></div></div>
+									<div style="width:1000px;float:left;" class="xq_left log">
+									<volist name="vo['log']" id="v2">
+									<div>
+									<b class="b">时间：</b>
+									<span class="span"><{$v2['time']}></span>
+									<b class="b">操作：</b> 
+									<span class="span"><{$v2['operates']}></span>
+									<b class="b">描述：</b>
+									<span class="span"><{$v2['operate_detail']}></span>
+									<b class="b">操作人：</b>
+									<span class="span"><{$v2['customer_id']}></span>
+									</div>
+									</volist>
+									</div>
+								</div>
+			            	</div>
+			            	<div style="display:none;" class="xg" >
+								<div style="height:300px;border:1px solid #d8d8d8;float:left;width:500px;margin:20px 0px 20px 1000px;">
+									<div style="width:500px;" class="xq_left" ><div class="top" ><font class="expkd">修改收件地址(
+									<if condition="$vo['logistics_status'] eq 2"><{$vo['logistics_company']}>
+									<elseif condition="$vo['logistics_status'] eq 3"/>已收货
+									<else />未发货
+									</if>
+									)</font></div></div>
+									<div style="width:500px;float:left;" class="xq_left">
+									<div><b class="b">收件人姓名：</b><input type="text" value="<{$vo['user_name']}>" class="expkd_user_name" ></div>
+									<div><b class="b">收件人手机：</b><input type="text" value="<{$vo['user_tel']}>" class="expkd_user_tel" ></div>
+									<div>
+									<b class="b">省级：</b>
+									<select name="province_<{$key}>" id="province_<{$key}>" value="<{$vo['province']}>" class="expkd_user_province" >
+									</select>
+									</div>
+									<div>
+									<b class="b">市级：</b>
+									<select name="city_<{$key}>" id="city_<{$key}>" value="<{$vo['city']}>" class="expkd_user_city" >
+									</select>
+									</div>
+									<div>
+									<b class="b">区级：</b>
+									<select name="area_<{$key}>" id="area_<{$key}>" value="" class="expkd_user_area" >
+									</select>
+									</div>
+									<div><b class="b">详细地址：</b><input type="text" value="<{$vo['addr']}>" class="expkd_user_addr" ></div>
+									<div><a class="WSY_buttontj yirenFormOe bc">确定</a><a class="WSY_buttontj yirenFormOe bc">取消</a></div>
+									</div>
+								</div>
+			            	</div>
+			            	<div style="display:none;" class="fh" >
+								<div style="height:360px;border:1px solid #d8d8d8;float:left;width:800px;margin:20px 0px 20px 700px;">
+									<div style="width:800px;" class="xq_left" ><div class="top" ><font>收货信息</font></div></div>
+									<div style="width:400px;float:left;" class="xq_left" >
+									<div><b class="b">收货人：</b><span class="span"><{$vo['user_name']}></span></div>
+									<div><b class="b">收货电话：</b><span class="span"><{$vo['user_tel']}></span></div>
+									<div><b class="b">收货地址：</b><span class="span"><{$vo['province']}><{$vo['city']}><{$vo['district']}><{$vo['addr']}></span></div>
+									<div><b class="b">订单备注：</b><span class="span"><{$vo['remark']}></span></div>
+									<div>
+									<b class="b">物流公司：</b>
+									<select name="courier" class="logistics_company">
+									<option value="模拟">模拟</option>
+									<option value="顺丰">顺丰</option>
+									</select>
+									</div>
+									<if condition="$vo['logistics_status'] eq 1" >
+									<div class="qdfh" >
+									<a class="WSY_buttontj yirenFormOe bc" onclick="courier(<{$key}>,'<{$vo['batchcode']}>','<{$customer_id_en}>');" >确定发货</a><a class="WSY_buttontj yirenFormOe bc">取消</a>
+									</div>
+									</if>
+									</div>
+									<div style="width:400px;float:left;" class="xq_left" >
+									<div><b class="b">物流单号：</b><input type="text" value="" placeholder="请填写物流单号" class="logistics_num" ></div>
+									<div>
+									<b class="b">物流备注：</b>
+									<textarea rows="2" cols="30" style="overflow:hidden;line-height:26px;" placeholder="请填写物流备注" class="logistics_remark" ></textarea>
+									</div>
+									<div style="margin-top:30px;">
+									<b class="b">商家备注：</b>
+									<textarea rows="2" cols="30" style="overflow:hidden;line-height:26px;" disabled="true" ><{$vo['customer_remark']}></textarea>
+									</div>
+									</div>
+								</div>
+			            	</div>
+			            </td>	
+			            </tr>
+			            <script>
+			            new PCAS('province_<{$key}>', 'city_<{$key}>', 'area_<{$key}>',"<{$vo['province']}>","<{$vo['city']}>","<{$vo['district']}>");	
+			            </script>
+			    </volist>
+			</tbody>
+		</table>
+    	</div>
+        <!--翻页开始-->
+        <div class="WSY_page">
+        	<ul class="WSY_pageleft" style="width: 70%;">
+        		<{$strPage}>
+        		<div class="WSY_searchbox">
+        			<input class="WSY_page_search" id="WSY_jump_page"/>
+        			<input class="WSY_jump" type="button" value="跳转"/>
+        		</div>
+        	</ul>
+        </div>
+        <!--翻页结束-->
+    </div>
+</div>
+</div>
+<!--内容框架结束-->
+</body>
+<script>
+    //
+    for(var i=0;i<$(".log_parent").length;i++){
+    	var log_child=$(".log").eq(i).children("div").length;
+    	var log_parent_height=log_child*30+60+"px";
+    	$(".log_parent").eq(i).css("height",log_parent_height);
+    }
+    //数字过滤
+	function clearInt(obj){
+		if(obj.value.length==1){obj.value=obj.value.replace(/[^1-9]/g,'')}else{obj.value=obj.value.replace(/\D/g,'')}
+	}
+	//导出
+	function exportExcel(){
+
+		var activity_id = $("#activity_id").val();
+		var batchcode = $("#batchcode").val();
+		var phone = $("#phone").val();
+		var pay_status = $("#pay_status").val();
+		var goods_man = $("#goods_man").val();
+		var user_name = $("#user_name").val();
+		var time_select = $("#time_select").val();
+		var start_time = $("#start_time").val();
+		var end_time = $("#end_time").val();
+
+		var url='http://shenzhen.weisanyun.cn/weixinpl/haggling/back/index.php/workroom_admin/bargain/test_experot_order';
+		url += '?customer_id_en=<{$customer_id_en}>';
+		if( activity_id != '' && activity_id > 0 ){
+			url += '&activity_id='+activity_id;
+		}
+		if( batchcode != '' && batchcode > 0 ){
+			url += '&batchcode='+batchcode;
+		}
+		if( phone != '' ){
+			url += '&phone='+phone;
+		}
+		if( pay_status != '' ){
+			url += '&pay_status='+pay_status;
+		}
+		if( goods_man > 0 ){
+			url += '&goods_man='+goods_man;
+		}
+		if( user_name != '' ){
+			url += '&user_name='+user_name;
+		}
+		if( time_select != '' ){
+			url += '&time_select='+time_select;
+		}
+		if( start_time != '' ){
+			url += '&start_time='+start_time;
+		}
+		if( end_time != '' ){
+			url += '&end_time='+end_time;
+		}
+		document.location = url;
+	}
+
+	//全选
+	$("#qx").click(function(){
+		$("[name=items]:checkbox").attr("checked",this.checked);
+	});
+	$("[name=items]:checkbox").click(function(){
+		var flag=true;
+		$("[name=items]:checkbox").each(function(){
+			if(!this.checked){
+				flag=false;
+			}
+		});
+		$("#qx").attr("checked",flag);
+	})
+	//显示切换
+	function xq(key){
+		$(".rz").css("display","none");
+		$(".xg").css("display","none");
+		$(".fh").css("display","none");
+		if($(".xq").eq(key-1).css("display")=="none"){
+			$(".xq").eq(key-1).css("display","block");
+		}else{
+			$(".xq").css("display","none");
+		}
+	}
+	function rz(key){
+		$(".xq").css("display","none");
+		$(".xg").css("display","none");
+		$(".fh").css("display","none");
+		if($(".rz").eq(key-1).css("display")=="none"){
+			$(".rz").eq(key-1).css("display","block");
+		}else{
+			$(".rz").css("display","none");
+		}
+	}
+	function xg(key){
+		$(".rz").css("display","none");
+		$(".xq").css("display","none");
+		$(".fh").css("display","none");
+		if($(".xg").eq(key-1).css("display")=="none"){
+			$(".xg").eq(key-1).css("display","block");
+		}else{
+			$(".xg").css("display","none");
+		}
+	}
+	function fh(key){
+		$(".rz").css("display","none");
+		$(".xg").css("display","none");
+		$(".xq").css("display","none");
+		if($(".fh").eq(key-1).css("display")=="none"){
+			$(".fh").eq(key-1).css("display","block");
+		}else{
+			$(".fh").css("display","none");
+		}
+	}
+
+	//输入框按回车键触发搜索
+	$('.header-left').find('input').on('keydown',function(){
+		if( event.keyCode == 13 ){
+			$('#search-button').click();
+		}
+	});
+	//enter搜索
+	$('#search-button').click(function(){
+		$("#bargain_search").submit();
+	})
+
+	function goto_order(){
+		location.href="http://shenzhen.weisanyun.cn/weixinpl/back_newshops/Order/order/order.php?customer_id=<{$customer_id_en}>";
+	}
+	function save_logistics(batchcode,customer_id_en,key){
+		var remark=$(".customer_remark").eq(key-1).val();
+		var data= {
+			remark:remark,
+			batchcode:batchcode,
+			customer_id_en:customer_id_en
+        }
+        $.ajax({
+            url: 'http://shenzhen.weisanyun.cn/weixinpl/haggling/back/index.php/workroom_admin/bargain/save_logistics',
+            type:'get',
+            data:data,
+            dataType:'json',
+            success:function(res){
+            	alert(res.data)
+            },error:function(){
+            	//alert("提前方法或其他方法出错！");
+            }
+        });
+	}
+	//发货
+	function courier(key,batchcode,customer_id_en){
+		var k=confirm("是否确定发货？");
+		if(k){
+			var logistics_company=$(".logistics_company").eq(key-1).val();
+			var logistics_num=$(".logistics_num").eq(key-1).val();
+			var logistics_remark=$(".logistics_remark").eq(key-1).val();
+			var data= {
+				logistics_company:logistics_company,
+				logistics_num:logistics_num,
+				logistics_remark:logistics_remark,
+				batchcode:batchcode,
+				customer_id_en:customer_id_en
+	        }
+	        $.ajax({
+	            url: 'http://shenzhen.weisanyun.cn/weixinpl/haggling/back/index.php/workroom_admin/bargain/courier',
+	            type:'get',
+	            data:data,
+	            dataType:'json',
+	            success:function(res){
+	            	if(res.error==1000){
+	            		$(".bcsh").eq(key-1).remove();
+	            		$(".qdfh").eq(key-1).remove();
+	            		$(".logistics_companys").eq(key-1).html(logistics_company);
+	            		var log_height=$(".log_parent").eq(key-1).css("height");
+	            		var temp_height=parseInt(log_height)+30;
+	            		var new_height=temp_height+"px";
+	            		$(".log_parent").eq(key-1).css("height",new_height);
+	            		$(".log").eq(key-1).append('<div>'+
+									'<b class="b">时间：</b>'+
+									'<span class="span">'+res.data.time+'</span>'+
+									'<b class="b">操作：</b>'+
+									'<span class="span">'+res.data.operate+'</span>'+
+									'<b class="b">描述：</b>'+
+									'<span class="span">'+res.data.operate_detail+'</span>'+
+									'<b class="b">操作人：</b>'+
+									'<span class="span">'+res.data.customer_id+'</span>'+
+									'</div>');
+	            		$(".wuliu_dh").eq(key-1).val(logistics_num)
+	            		$(".wuliu_bz").eq(key-1).html(logistics_remark)
+	            	}
+	            	alert(res.data.note);
+	            },error:function(){
+	            	//alert("提前方法或其他方法出错！");
+	            }
+	        });
+		}
+	}
+
+</script>
+</html>

@@ -1,0 +1,55 @@
+.lunbo{
+	width:710px; 
+	height:300px;
+	background:#FAFAFA;
+	overflow:hidden;
+	position:relative;
+	z-index:0;
+}
+
+.lunbo ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	position:absolute;
+	background:rgba(102,180,244,.5);
+	border-radius:10px;
+	z-index:2;
+	left:42%;
+	bottom:8px;
+}
+
+.lunbo li{
+	float:left;
+	width:12px;
+	height:12px;
+	background:rgba(255,255,255,.8);
+	text-align:center;
+	line-height:12px;
+	border-radius:10px;
+	margin-left:10px;
+	opacity:0.7;
+}
+
+.lunbo div{
+	width:30px;
+	height:60px;
+	position:absolute;
+	background:rgba(0,0,0,.1);
+	text-align:center;
+	line-height:60px;
+	font-size:30px;
+	color:#555;
+	display:none;
+}
+
+#left{	
+	left:0px;
+	top:120px;
+}
+
+#right{
+	right:0px;
+	top:120px;
+}
+

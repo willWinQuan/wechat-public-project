@@ -1,0 +1,72 @@
+/*CSS Reset*/
+body{margin:0;background-color:#e4e4e4;behavior:url(../ie-css3.htc);}
+a{text-decoration:none;}
+*{font-size:12px;color:#323232;}
+li{list-style-type:none;}
+input,img,textarea{margin:0;padding:0;border:none;}
+ul,dt,dd,dl,p{margin:0;padding:0;}
+h1,h2,h3,h4,h5{padding:0;margin:0;}
+cite{font-style:normal;}
+i{font-style:normal;}
+
+iframe{border:0;}
+
+/*WSY_columnbox 内容内部框架*/
+.WSY_columnbox{overflow:hidden;margin-left:2%;width:95%;height:100%;background-color:#fff;background-color: rgb( 251, 251, 251 );box-shadow: 0px 3px 6px 0px rgb( 193, 193, 193 );
+	margin-top:15px;margin-bottom:20px;}
+.WSY_column_header{height:38px;background-color:#f4f4f4;border-bottom:solid 1px #d8d8d8;border-radius:2px 2px 0 0;}
+.WSY_columnnav a{display:inline;float:left;line-height:37px;padding-left:15px;padding-right:15px;font-size:14px;color:#646464; cursor:pointer;}
+.WSY_columnnav a:hover{background-color:#fff;border-bottom:solid 2px #06a7e1;}
+#WSY_columnnav li{background-color:#04a7e1;color:#fff;border-radius:3px 3px 0 0;}
+#WSY_columnnav .WSY_return{display:block;float:right;padding-left:10px;padding-right:10px;line-height:28px;background-color:#04a7e1;color:#fff;border-radius:3px;margin:5px 10px 0 0;}
+
+
+
+/*数据统计*/
+*{font-family:微软雅黑,黑体;}
+.statisticsbox{display:block;overflow:hidden;width:100%; }
+.statistics_div01{overflow:hidden;}
+.statistics_div01 dl{display:block;float:left;}
+.statisticsbox dl{display:block;margin:1% 1%;}
+/*.statisticsbox dl dt{background:#efefef;border-left:solid 10px #888;height:38px;overflow:hidden;}*/
+.statisticsbox dl dt a{display:block;line-height:38px;font-weight:bold;font-size:15px;margin-left:10px;}
+.statisticsbox dl dt span{font-weight:normal;font-size:15px;}
+.statisticsbox b{color:red;font-size:15px;padding:0 3px;}
+.statistics_div01 .statistics_ul01 dt a{background:url(../../../images/Data/qushiicon/qushi_icon_03.png) no-repeat left center;}
+.statistics_div01 .statistics_ul02 dt a{background:url(../../../images/Data/qushiicon/qushi_icon_05.png) no-repeat left center;}
+.statistics_div02 .statistics_ul03 dt a{background:url(../../../images/Data/qushiicon/qushi_icon_10.png) no-repeat left center;}
+.statistics_div01 .statistics_ul01{width:38%;}
+.statistics_div01 .statistics_ul02{width:58%;}
+.statistics_div01 dl dd{border:solid 1px #e8e8e8;padding:10px 20px;background:#f9f9f9;}
+.statistics_div01 dl .data_dd01{border-bottom:none;}
+.statistics_div01 dl .data_dd02{border-top:none;}
+.statisticsbox dd{display:block;overflow:hidden;}
+.statisticsbox dd a{display:block;float:left;width:50%;font-size:14px;}
+
+.data_div{border:solid 1px #e8e8e8;overflow:hidden;background:#f9f9f9;}
+.statistics_div02 dd{display:block;float:left;width:49.9%;overflow:hidden;}
+.statistics_div02 .data_dd03{border-right:solid 1px #e8e8e8;}
+.statistics_div02 dd ul{display:block;float:left;margin:20px 0px;width:45%;}
+.statistics_div02 dd ul li{display:block;font-size:14px;text-align:center;}
+.statistics_div02 dd ul .tj{line-height:44px;font-family:Arial;font-weight:bold;color:#323232;font-size:24px;}
+.statistics_div02 dd ul .rise{background:url(../../../images/Data/qushiicon/dor_icon01.png) no-repeat right center;padding-right:12px;margin-left:5px;}
+.statistics_div02 dd ul .fall{color:#3ab454;background:url(../../../images/Data/qushiicon/dor_icon02.png) no-repeat right center;padding-right:12px;margin-left:5px;}
+
+.statistics_div03{overflow:hidden;}
+.statistics_div03 dl{display:block;float:left;width:48%;}
+.statistics_div03 .statistics_ul04 dt a{background:url(../../../images/Data/qushiicon/qushi_icon_14.png) no-repeat left center;}
+.statistics_div03 .statistics_ul05 dt a{background:url(../../../images/Data/qushiicon/qushi_icon_17.png) no-repeat left center;}
+.statistics_div03 .statistics_ul06 dt a{background:url(../../../images/Data/qushiicon/qushi_icon_21.png) no-repeat left center;}
+.statistics_div03 .statistics_ul07 dt a{background:url(../../../images/Data/qushiicon/qushi_icon_24.png) no-repeat left center;}
+
+/*图表统计*/
+.bishu,.bishu1{overflow:hidden;border:solid 1px #e8e8e8;}
+.bishu dd{display:block;float:left;width:49.9%;height:80px;border-bottom:solid 1px #e8e8e8;padding-top:16px;}
+.bishu iframe{width:100%;height:230px;}
+.bishu1 iframe{width:100%;height:300px;}
+.statistics_div03 dd a{width:auto;display:block;float:none;text-align:center;}
+.bishu .tj{font-size:26px;font-weight:bold;padding-top:14px;}
+.bishu .jr_tongji{border-right:solid 1px #e8e8e8;}
+.bishu .jr_tongji a{color:#069dd3;}
+.bishu .zr_tongji a{color:#858585;}
+.bishu_tj iframe{width:300px;display:block;margin:auto;}

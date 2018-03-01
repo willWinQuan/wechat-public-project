@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<link rel="stylesheet" href="css/helpBargain.css" />
+		<title>帮砍价的商品</title>
+	</head>
+	<body>
+		<ul id="header">
+			<li class="headerLi">
+				<div class="choice">
+					<span class="img1"></span>
+					<p class="notes">全部</p>
+				</div>
+			</li>
+			<li class="headerLi">
+				<div>
+					<span class="img2"></span>
+					<p class="notes">进行中</p>
+				</div>
+			</li>
+			<li class="headerLi">
+				<div>
+					<span class="img3"></span>
+					<p class="notes">已完成</p>
+				</div>
+			</li>
+			<li class="headerLi">
+				<div>
+					<span class="img4"></span>
+					<p class="notes">已过期</p>
+				</div>
+			</li>
+			<p class="clear"></p>
+		</ul>
+		<ul class="content">
+
+			   
+			<!-- <li>
+				<div class="img"></div>
+				<div class="information">
+					<p class="xx_1">
+						<font>【进行中】</font>
+						<span>高清显示器 高清护眼曲面游戏图形显示器</span>
+					</p>
+					<div class="xx_c">
+						<p class="xx_2">
+							<font class="title">最低价</font>
+							<span>￥<font>5900</font></span>
+						</p>
+						<p class="xx_3">
+							(已帮<font class="card_id">李三</font>砍价￥<font class="money">5.00</font>)
+						</p>
+					</div>				
+					<div class="xx_z">
+						<div class="xx_4">
+							<div class="xx_4Jd"></div>
+							<div class="img1"></div>
+							<div class="img2"></div>
+							<div class="img3"></div>							
+							<div class="xx_4JdImg"></div>
+							<p class="clear"></p>
+						</div>
+						<div class="xx_5" style="display: none;">
+							<span>剩余时间 <font>00:00:10</font></span>
+							<font class="linq">立即领取</font>
+						</div>
+					</div>
+				</div>
+				<p class="clear"></p>
+			</li> -->
+			<!-- <li>
+				<div class="img"></div>
+				<div class="information">
+					<p class="xx_1">
+						<font>【已完成】</font>
+						<span>高清显示器 高清护眼曲面游戏图形显示器</span>
+					</p>
+					<div class="xx_c">
+						<p class="xx_2">
+							<font class="title">最低价</font>
+							<span>￥<font>5900</font></span>
+						</p>
+						<p class="xx_3">
+							(已帮<font class="card_id">李三</font>砍价￥<font class="money">5.00</font>)
+						</p>
+					</div>				
+					<div class="xx_z">
+						<div class="xx_4" style="display: none;">
+							<span class="img1"></span>
+							<span class="img2"></span>
+							<span class="img3"></span>							
+							<div></div>
+						</div>
+					</div>
+				</div>
+				<p class="clear"></p>
+			</li>				 -->
+		</ul>
+	</body>
+		<script src='js/lib/zepto.min.js'></script>
+		<script src="js/lib/set_rem.js"></script>
+		<script type="text/javascript" src="js/comm/config.js"></script>
+		<script type="text/javascript" src="js/comm/common.js"></script>
+		<script type="text/javascript">
+			init_WSY(); /*customer_id检测*/
+			get_user_id_WSY(); /*网页授权获取用户user_id*/
+	    </script>
+		<script type="text/javascript" src="js/lib/vue2.1.6.js" ></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<script type="text/javascript" src="js/helpBargain.js" ></script>
+</html>

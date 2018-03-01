@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/ass/css/yi_ren.css"/>
+		<link rel="stylesheet" href="<{$http}>/weixinpl/common/css_V6.0/<{$theme}>.css"/>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/calender/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="<{$http}>/weixinpl/js/WdatePicker.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/ass/calender/demo.js"></script>
+		<style>
+		 .yirenForm{margin-top: 20px;}
+		 .yiji{height:35px;font-size:15px;line-height:35px;}
+		 .erji{height:30px;font-size:13px;line-height:30px;margin-left:50px;}
+		 .erji_ img{float: left;margin:0 6px 0 6px;}
+		 .erji_ font{height:80px;font-size:13px;line-height:87px;float: left;}
+		 .erji_ font:nth-child(1){margin-left:50px;}
+		 .tj{height:40px;font-size:18px;line-height:40px;}
+		 .erji,.erji_,.tj,.yiji{margin-bottom: 15px;}
+		 .clear{clear: both;}
+		</style>
+	</head>
+	<body>
+	<!--表单提交本页面-->
+		<iframe name="myiframe" style="display:none;" onload="iframeLoad(this);"></iframe>
+	<!--表单提交本页面-->
+<!--列表内容大框开始-->
+<div class="WSY_columnbox">
+	<!--列表头部切换开始-->
+	<div class="WSY_column_header">
+		<div class="WSY_columnnav">
+		    <a href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80">砍价活动列表</a>
+		    <if condition="empty($bargain) neq true">
+		    <a href="<{:U('bargain/create')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>" class="white1">新建活动/编辑</a>
+		    <else/>
+			<a href="<{:U('bargain/create')}>?customer_id_en=<{$customer_id_en}>&class=80" class="white1">新建活动/编辑</a>
+			</if>
+		</div>
+	</div>
+	<!--列表头部切换结束-->
+    <div  class="yirenAdministration zong_t">	
+			<div class="yirenForm">
+				<li class="WSY_position_text">
+				<!--日历插件-->
+				<!--
+				<pre class="prettyprint" id="activity_start_time" hidden >
+					$.calendar({ format:'yyyy-MM-dd HH:mm:ss' });
+				</pre>
+				<pre class="prettyprint" id="activity_end_time" hidden >
+					$.calendar({ format:'yyyy-MM-dd HH:mm:ss' });
+				</pre>
+				-->
+				<!--日历插件-->
+				<!--上传图片-->
+				<form action="<{:U('bargain/upload_pic')}>" id="upload" method="post" enctype="multipart/form-data" target="myiframe" >
+				    <input type="hidden" value="<{$customer_id_en}>" name="customer_id_en" >
+					<input type="file" name="pic" id="fileToUpload" onchange="fileSelected();" hidden >
+				</form>
+				<form method="get" action="create_activity" onsubmit="return check_form();">
+				<input type="hidden" value="<{$customer_id_en}>" name="customer_id_en">
+				<input type="text" value="" id="pic_target" name="logo" hidden>
+				<!--上传图片-->
+				<if condition="empty($bargain) neq true" >
+					<if condition="$bargain[0]['activity_status'] eq 1">
+					<volist name="bargain" id="vo" key="key">
+					    <input type="hidden" value="<{$vo['id']}>" name="activity_id">
+						<p class="yiji">基本信息</p>
+						<p class="erji">活动名称
+						<input type="text" name="title" value="<{$vo['activity_title']}>" style="width:425px;" >
+						</p>
+					    <p class="erji">活动时间
+					    <input type="text" value="开始时间" disabled="true" style="width:55px;line-height:15px" ><input value="<{$vo['activity_start_time']}>" style="width:145px;text-align:center;" type=text id=begintime name=begintime onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'endtime\')}',minDate:'<{$now_time}>'});" >
+					    -
+					    <input type="text" value="结束时间" disabled="true" style="width:55px;line-height:15px" ><input value="<{$vo['activity_end_time']}>" style="width:145px;text-align:center;" type=text id=endtime name=endtime onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'begintime\')}'});" >
+					    </p>
+					    <p class="erji_"><font>头部banner</font>
+					    <!--<img src="<{$vo['activity_logo']}>" style="width:80px;height:80px;" id="updatepic" >-->
+					    <if condition="empty($vo['activity_logo']) neq true" >
+					    	<img src="<{$vo['activity_logo']}>" style="width:80px;height:80px;" onclick="fileSelect();" id="updatepic" >
+					    <else />
+					    	<img src="__PUBLIC__/ass/img/add_pic.png" style="width:80px;height:80px;" onclick="fileSelect();" id="updatepic" >
+					    </if>
+					    <font>案例 建议图片大小：1080*200px </font> 
+					    </p>
+					    <div class="clear"></div>
+					    <p class="yiji">报名者规则</p>
+					    <p class="erji">可报名活动总次数
+					    <input type="number" name="a_n" value="<{$vo['apply_number']}>" style="width:208px;text-align:center;" >
+					    0为不限制
+					    </p>
+					    <p class="erji">可报名单个商品活动次数
+					    <input type="number" name="s_p_a_n" value="<{$vo['apply_number_single']}>" style="text-align:center;" >
+					    0为不限制
+					    </p>
+					    <p class="yiji">参与者规则</p>
+					    <p class="erji">可参与活动总次数
+					    <input type="number" name="p_n" value="<{$vo['play_number']}>"  style="width:208px;text-align:center;" >
+					    0为不限制
+					    </p>
+					    <p class="erji">单个商品砍价总次数
+					    <input type="number" name="s_p_b_n" value="<{$vo['play_number_single']}>" style="width:195px;text-align:center;" >
+					    0为不限制
+					    </p>
+					    <p class="erji">砍价范围
+					    <input type="number" name="b_min_p" step="0.01" value="<{$vo['bargain_min_price']}>" style="text-align:center;" >
+					    -
+					    <input type="number" name="b_max_p" step="0.01" value="<{$vo['bargain_max_price']}>" style="text-align:center;" >
+					    单位：元 比如：0.17元
+					    </p>
+					    <p class="yiji">参与者优惠劵规则</p>
+					    <p class="erji">
+					    <if condition="$vo['is_coupon'] eq 0" >
+					    <input type="radio" name="is_coupon" value="0" checked >不赠送优惠劵
+					    <input type="radio" name="is_coupon" value="1" >只能获得一张优惠劵
+					    <input type="radio" name="is_coupon" value="2" >可获得多张优惠劵
+					    </if>
+					    <if condition="$vo['is_coupon'] eq 1" >
+					    <input type="radio" name="is_coupon" value="0" >不赠送优惠劵
+					    <input type="radio" name="is_coupon" value="1" checked >只能获得一张优惠劵
+					    <input type="radio" name="is_coupon" value="2" >可获得多张优惠劵
+					    </if>
+					    <if condition="$vo['is_coupon'] eq 2" >
+					    <input type="radio" name="is_coupon" value="0" >不赠送优惠劵
+					    <input type="radio" name="is_coupon" value="1" >只能获得一张优惠劵
+					    <input type="radio" name="is_coupon" value="2" checked >可获得多张优惠劵
+					    </if>
+					    </p>
+					    <p class="erji">
+					    选择优惠劵
+					    <select name="coupon_id" id="select" >
+					        <option value="" >--请选择--</option>
+					        <volist name="coupons" id="vl" key="key">
+					    		<option value="<{$vl['id']}>" ><{$vl['title']}></option>
+					    	</volist>
+					    	<input type="text" value="<{$vo['coupon_id']}>" hidden id="coupon_id_select" >
+					    </select>
+					    设置新的优惠劵
+					    <a href="<{$coupon_http}>" >添加优惠劵</a>
+					    获得优惠劵概率
+					    <input type="text" name="coupon_probability" value="<{$vo['coupon_probability']}>" style="text-align:center;" >%
+					    </p>
+					    <p class="yiji">
+					    公众号
+					    </p>
+					    <p class="erji">是否关注公众号
+					    <select name="is_care">
+					        <if condition="$vo['is_care'] eq 1" >
+					        	<option selected value="1" >是</option>
+					    		<option value="0" >否</option>
+					        </if>
+					    	<if condition="$vo['is_care'] eq 0" >
+					        	<option value="1" >是</option>
+					    		<option selected value="0" >否</option>
+					        </if>
+					    </select>
+					    </p>
+					    <p class="yiji">
+					    	砍价活动说明及规则
+					    </p>
+					    <p class="erji">
+<textarea rows="7" cols="40" name="ruler" ><{$vo['ruler']}>
+</textarea>
+						</p>
+					    <p class="tj" style="margin-top: 90px;" ><input type="submit" class="WSY_buttontj yirenFormOe"></a></p>
+					</div>
+					</volist>
+					<else />
+					<volist name="bargain" id="vo" key="key">
+					    <input type="hidden" value="<{$vo['id']}>" name="activity_id" readonly="readonly" style="background-color:#cccccc;">
+						<p class="yiji">基本信息</p>
+						<p class="erji">活动名称
+						<input type="text" name="title" value="<{$vo['activity_title']}>" style="width:425px;background-color:#cccccc;" readonly="readonly" >
+						</p>
+					    <p class="erji">活动时间
+					    <input type="text" value="开始时间" disabled="true" style="width:55px;line-height:15px" ><input value="<{$vo['activity_start_time']}>" style="width:145px;text-align:center;background-color:#cccccc;" type=text id=begintime name=begintime onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'endtime\')}',minDate:'<{$now_time}>'});" readonly="readonly" >
+					    -
+					    <input type="text" value="结束时间" disabled="true" style="width:55px;line-height:15px" ><input value="<{$vo['activity_end_time']}>" style="width:145px;text-align:center;background-color:#cccccc;" type=text id=endtime name=endtime onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'begintime\')}'});" readonly="readonly" >
+					    </p>
+					    <p class="erji_"><font>头部banner</font>
+					    <!--<img src="<{$vo['activity_logo']}>" style="width:80px;height:80px;" id="updatepic" >-->
+					    <if condition="empty($vo['activity_logo']) neq true" >
+					    	<img src="<{$vo['activity_logo']}>" style="width:80px;height:80px;" onclick="fileSelect();" id="updatepic" >
+					    <else />
+					    	<img src="__PUBLIC__/ass/img/add_pic.png" style="width:80px;height:80px;" onclick="fileSelect();" id="updatepic" >
+					    </if>
+					    <font>案例 建议图片大小：1080*200px </font> 
+					    </p>
+					    <div class="clear"></div>
+					    <p class="yiji">报名者规则</p>
+					    <p class="erji">可报名活动总次数
+					    <input type="number" name="a_n" value="<{$vo['apply_number']}>" style="width:208px;text-align:center;background-color:#cccccc;" readonly="readonly" >
+					    0为不限制
+					    </p>
+					    <p class="erji">可报名单个商品活动次数
+					    <input type="number" name="s_p_a_n" value="<{$vo['apply_number_single']}>" style="text-align:center;background-color:#cccccc;" readonly="readonly" >
+					    0为不限制
+					    </p>
+					    <p class="yiji">参与者规则</p>
+					    <p class="erji">可参与活动总次数
+					    <input type="number" name="p_n" value="<{$vo['play_number']}>"  style="width:208px;text-align:center;background-color:#cccccc;" readonly="readonly">
+					    0为不限制
+					    </p>
+					    <p class="erji">单个商品砍价总次数
+					    <input type="number" name="s_p_b_n" value="<{$vo['play_number_single']}>" style="width:195px;text-align:center;background-color:#cccccc;" readonly="readonly" >
+					    0为不限制
+					    </p>
+					    <p class="erji">砍价范围
+					    <input type="number" name="b_min_p" step="0.01" value="<{$vo['bargain_min_price']}>" style="text-align:center;background-color:#cccccc;" readonly="readonly">
+					    -
+					    <input type="number" name="b_max_p" step="0.01" value="<{$vo['bargain_max_price']}>" style="text-align:center;background-color:#cccccc;" readonly="readonly" >
+					    单位：元 比如：0.17元
+					    </p>
+					    <p class="yiji">参与者优惠劵规则</p>
+					    <p class="erji">
+					    <if condition="$vo['is_coupon'] eq 0" >
+					    <input type="radio" name="is_coupon" value="0" checked >不赠送优惠劵
+					    <input type="radio" name="is_coupon" value="1" >只能获得一张优惠劵
+					    <input type="radio" name="is_coupon" value="2" >可获得多张优惠劵
+					    </if>
+					    <if condition="$vo['is_coupon'] eq 1" >
+					    <input type="radio" name="is_coupon" value="0" >不赠送优惠劵
+					    <input type="radio" name="is_coupon" value="1" checked >只能获得一张优惠劵
+					    <input type="radio" name="is_coupon" value="2" >可获得多张优惠劵
+					    </if>
+					    <if condition="$vo['is_coupon'] eq 2" >
+					    <input type="radio" name="is_coupon" value="0" >不赠送优惠劵
+					    <input type="radio" name="is_coupon" value="1" >只能获得一张优惠劵
+					    <input type="radio" name="is_coupon" value="2" checked >可获得多张优惠劵
+					    </if>
+					    </p>
+					    <p class="erji">
+					    选择优惠劵
+					    <select name="coupon_id" id="select" >
+					        <option value="" >--请选择--</option>
+					        <volist name="coupons" id="vl" key="key">
+					    		<option value="<{$vl['id']}>" ><{$vl['title']}></option>
+					    	</volist>
+					    	<input type="text" value="<{$vo['coupon_id']}>" hidden id="coupon_id_select" >
+					    </select>
+					    设置新的优惠劵
+					    <a href="<{$coupon_http}>" >添加优惠劵</a>
+					    获得优惠劵概率
+					    <input type="text" name="coupon_probability" value="<{$vo['coupon_probability']}>" style="text-align:center;" >%
+					    </p>
+					    <p class="yiji">
+					    公众号
+					    </p>
+					    <p class="erji">是否关注公众号
+					    <select name="is_care">
+					        <if condition="$vo['is_care'] eq 1" >
+					        	<option selected value="1" >是</option>
+					    		<option value="0" >否</option>
+					        </if>
+					    	<if condition="$vo['is_care'] eq 0" >
+					        	<option value="1" >是</option>
+					    		<option selected value="0" >否</option>
+					        </if>
+					    </select>
+					    </p>
+					    <p class="yiji">
+					    	砍价活动说明及规则
+					    </p>
+					    <p class="erji">
+<textarea rows="7" cols="40" disabled name="ruler"><{$vo['ruler']}>
+</textarea>
+						</p>
+					    <!-- <a style="margin-top: 80px;" href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80" class="WSY_buttontj yirenFormOe" >返回</a> -->
+					    <p class="tj" style="margin-top: 90px;"><input type="submit" class="WSY_buttontj yirenFormOe"></a></p>
+					</div>
+					</volist>
+					</if>
+				<else />
+					<p class="yiji">基本信息</p>
+					<p class="erji">活动名称
+					<input type="text" name="title" style="width:425px;"></p>
+				    <p class="erji">活动时间
+				    <input type="text" value="开始时间" disabled="true" style="width:55px;line-height:15px"><input style="width:145px;text-align:center;" type=text id=begintime name=begintime onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'endtime\')}',minDate:'<{$now_time}>'});" >
+				    -
+				    <input type="text" value="结束时间" disabled="true" style="width:55px;line-height:15px"><input style="width:145px;text-align:center;" type=text id=endtime name=endtime onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'begintime\')}'});" >
+				    </p>
+				    <div class="erji_">
+				    	<font>头部banner</font>
+					    <!--<img src="__PUBLIC__/ass/img/insert_pic.png" style="width:80px;height:80px;"  >-->
+					    <img src="__PUBLIC__/ass/img/add_pic.png" style="width:80px;height:80px;" onclick="fileSelect();" id="updatepic" >
+					    <font>案例 建议图片大小：1080*200px </font>
+					    <p class="clear"></p>
+				    </div>
+				    <p class="yiji">报名者规则</p>
+				    <p class="erji">可报名活动总次数
+				    <input type="number" name="a_n" style="width:208px;text-align:center;" >
+				    0为不限制
+				    </p>
+				    <p class="erji">可报名单个商品活动次数
+				    <input type="number" name="s_p_a_n" style="text-align:center;" >
+				    0为不限制
+				    </p>
+				    <p class="yiji">参与者规则</p>
+				    <p class="erji">可参与活动总次数
+				    <input type="number" name="p_n" style="width:208px;text-align:center;" >
+				    0为不限制
+				    </p>
+				    <p class="erji">单个商品砍价总次数
+				    <input type="number" name="s_p_b_n" style="width:195px;text-align:center;" >
+				    0为不限制
+				    </p>
+				    <p class="erji">砍价范围
+				    <input type="number" name="b_min_p" step="0.01" style="text-align:center;" >
+				    -
+				    <input type="number" name="b_max_p" step="0.01" style="text-align:center;" >
+				    单位：元 比如：0.17元
+				    </p>
+				    <p class="yiji">参与者优惠劵规则</p>
+				    <p class="erji">
+				    <input type="radio" name="is_coupon" value="0" >不赠送优惠劵
+				    <input type="radio" name="is_coupon" value="1" >只能获得一张优惠劵
+				    <input type="radio" name="is_coupon" value="2" >可获得多张优惠劵
+				    </p>
+				    <p class="erji">
+				    选择优惠劵
+				    <select name="coupon_id">
+				        <option value="" >--请选择--</option>
+				        <volist name="coupons" id="vl" key="key">
+				    		<option value="<{$vl['id']}>" ><{$vl['title']}></option>
+				    	</volist>
+				    </select>
+				    设置新的优惠劵
+				    <a href="<{$coupon_http}>" >添加优惠劵</a>
+				    获得优惠劵概率
+				    <input type="text" name="coupon_probability" style="text-align:center;" >%
+				    </p>
+				    <p class="yiji">
+				    公众号
+				    </p>
+				    <p class="erji">是否关注公众号
+				    <select name="is_care">
+				    	<option value="1" >是</option>
+				    	<option value="0" >否</option>
+				    </select>
+				    </p>
+				    <p class="yiji">
+				    	砍价活动说明及规则
+				    </p>
+				    <p class="erji">
+<textarea rows="7" cols="40" name="ruler">规则说明
+1.参与该活动需要关注本商城
+2.报名活动需要在活动期间及商品数量清零之前
+3.砍价进度可在“我的砍价”查询
+4.砍价成功后在3个工作日以内发货
+5.该活动的最终解释权归商家所有
+</textarea>
+					</p>
+				    <p class="tj" style="margin-top: 90px;"><input type="submit" class="WSY_buttontj yirenFormOe"></a></p>
+				</div>
+				</if>
+				</li>
+			</form>
+			</div>
+    </div>
+</div>
+</body>
+<script>
+	for(var i=0;i<$("#select").children("option").length;i++){
+		if($("#select").children("option").eq(i).val()==$("#coupon_id_select").val()){
+			$("#select").children("option").eq(i).attr("selected","selected");
+		}
+	}
+    function fileSelect() {
+    	document.getElementById("fileToUpload").click(); 
+    }
+    function iframeLoad(iframe){
+    	var doc = iframe.contentWindow.document;
+    	var html = doc.body.innerHTML;
+    	if(html != ''){
+	    	var obj = eval("("+html+")") ;
+	    	//判断返回的状态
+	    	if(obj.error!=1000){
+	    		alert(obj.data);
+	    	}else{
+	    		var str=obj.data;
+	    		//var newstr=str.replace(/\/ig, '');
+	    		//alert(newstr);
+	    		$("#updatepic").attr("src",str);
+	    		$("#pic_target").val(str);
+	    	}
+	    }
+	}
+    function fileSelected() {
+    	$('#upload').submit();
+    }
+    function check_form(){
+    	if(!$("input[name='title']").val()){
+    		alert("缺少标题");
+    		return false;
+    	}
+    	if(!$("input[name='begintime']").val()){
+    		alert("缺少开始时间");
+    		return false;
+    	}
+    	if(!$("input[name='endtime']").val()){
+    		alert("缺少结束时间");
+    		return false;
+    	}
+    	if($("input[name='begintime']").val()==$("input[name='endtime']").val()){
+    		alert("活动时间设置有误");
+    		return false;
+    	}
+    	if(!$("input[name='a_n']").val()){
+    		alert("缺少可报名次数");
+    		return false;
+    	}
+    	if(!$("input[name='s_p_a_n']").val()){
+    		alert("缺少单个商品可报名次数");
+    		return false;
+    	}
+    	if($("input[name='a_n']").val()!=0){
+    		if($("input[name='s_p_a_n']").val()==0){
+    			alert("可报名次数应该大于或等于单个商品可报名次数");
+    			return false;
+    		}
+    	}
+    	if($("input[name='a_n']").val()==0 || $("input[name='s_p_a_n']").val()==0){
+
+    	}else{
+    		if(eval($("input[name='a_n']").val())<eval($("input[name='s_p_a_n']").val())){
+    			alert("可报名次数应该大于或等于单个商品可报名次数");
+    			return false;
+    		}
+    	}
+    	if(!$("input[name='p_n']").val()){
+    		alert("缺少可砍价次数");
+    		return false;
+    	}
+    	if(!$("input[name='s_p_b_n']").val()){
+    		alert("缺少单个商品可砍价次数");
+    		return false;
+    	}
+    	if($("input[name='p_n']").val()!=0){
+    		if($("input[name='s_p_b_n']").val()==0){
+    			alert("可参与活动总次数应该大于或等于单个商品砍价总次数");
+    			return false;
+    		}
+    	}
+    	if($("input[name='p_n']").val()==0 || $("input[name='s_p_b_n']").val()==0){
+
+    	}else{
+    		if(eval($("input[name='p_n']").val())<eval($("input[name='s_p_b_n']").val())){
+    			alert("可参与活动总次数应该大于或等于单个商品砍价总次数");
+    			return false;
+    		}
+    	}
+    	if(!$("input[name='b_min_p']").val()){
+    		alert("缺少砍价范围");
+    		return false;
+    	}
+    	if(!$("input[name='b_max_p']").val()){
+    		alert("缺少砍价范围");
+    		return false;
+    	}
+    	if(eval($("input[name='b_min_p']").val())>eval($("input[name='b_max_p']").val())){
+    		alert("砍价范围有误");
+    		return false;
+    	}
+    	// alert($("textarea[name='ruler']").val())
+    	// if(!$("input[name='is_coupon']").val()){
+    	// 	alert("缺少");
+    	// 	return false;
+    	// }
+    	// if(!$("input[name='is_care']").val()){
+    	// 	alert("缺少标题");
+    	// 	return false;
+    	// }
+    }
+</script>
+</html>

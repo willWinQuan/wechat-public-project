@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__/ass/css/yi_ren.css"/>
+		<link rel="stylesheet" href="<{$http}>/weixinpl/common/css_V6.0/<{$theme}>.css"/>
+		<script type="text/javascript" src="__PUBLIC__/ass/js/jquery-1.11.1.js"></script>
+		<style>
+		 .idBox .idBoxNav p{background:#efefef; color:black; border-color:#efefef; cursor: pointer;}
+		 .yrBc, .yrQx{cursor: pointer;}
+		</style>
+	</head>
+	<body>
+
+<!--列表内容大框开始-->
+<div class="WSY_columnbox">
+	<!--列表头部切换开始-->
+	<div class="WSY_column_header">
+		<div class="WSY_columnnav">
+			<a href="<{:U('bargain/main')}>?customer_id_en=<{$customer_id_en}>&class=80">砍价活动列表</a>
+			<!--<a href="<{:U('bargain/edit_activity')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">活动入口</a>-->
+		</div>
+	</div>
+	<!--列表头部切换结束-->
+
+    <div  class="yirenAdministration zong_t">	
+        <form method="get" action="" id="yirenform">
+			<div class="yirenForm">
+				<li class="WSY_position_text">
+				    <a class="WSY_buttontj yirenFormOe" href="<{:U('bargain/product_show')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">添加产品</a>
+				</li>
+			</div>
+		</form>
+		<table width="97%" class="yirenTable" cellpadding="0" cellspacing="0" >
+			<thead class="WSY_table_header">
+				<tr>
+					<th width="5%">产品ID</th>
+					<th width="10%">产品图片</th>
+					<th width="10%">产品名称</th>
+					<th width="5%">市场价</th>
+					<th width="10%">可购买价</th>
+					<th width="10%">最低价</th>
+					<th width="10%">商品数量</th>
+					<th width="20%">活动时间</th>
+					<th width="10%">报名者报名次数</th>
+					<th width="10%">参与者砍价次数</th>
+			  	</tr>
+			</thead>
+			<tbody class="yirenGl" >
+			<if condition="empty($bargain) neq true" >
+			<form action="<{:U('bargain/save_product')}>" method="get" id="tj" >
+			    <input type="hidden" value="<{$count}>" name="count" >
+			    <input type="hidden" value="<{$customer_id_en}>" name="customer_id_en" >
+			    <input type="hidden" value="<{$activity_id}>" name="activity_id" >
+			    <input type="hidden" value="80" name="class" >
+			    <volist name="bargain" id="vo" key="key">
+				  	<tr>
+				  		<td><{$vo['product_no']}><input type="hidden" value="<{$vo['id']}>" name="id<{$key}>"></td>
+				  		<td><img src="<{$vo['product_pic']}>" style="width:150px;" /></td>
+				  		<td><{$vo['product_name']}></td>
+				  		<td>￥ <{$vo['price']}><input type="text" value="<{$vo['price']}>" style="text-align:center;width:110px;" name="price<{$key}>" hidden id="price<{$key}>" key="<{$key}>" ></td>
+				  		<td>
+				  			<input type="number" value="<{$vo['buy_price']}>" style="text-align:center;width:110px;" name="buy_price<{$key}>" onKeyup="check_price(this);" id="buy_price<{$key}>" key="<{$key}>" price_type="1" >
+				  		</td>
+				  		<td>
+				  			<input type="number" value="<{$vo['minimum_price']}>" style="text-align:center;width:110px;" name="minimum_price<{$key}>" onKeyup="check_price(this);" id="minimum_price<{$key}>" key="<{$key}>" price_type="2" >
+				  		</td>
+				  		<td>
+				  			<input type="number" value="<{$vo['product_num']}>" style="text-align:center;width:110px;" name="product_num<{$key}>" onKeyup="check_zhengshu(this);" >
+				  		</td>
+				  		<!--<td>
+				  			<input type="number" value="<{$vo['time']}>" style="text-align:center;width:110px;" name="time<{$key}>" onKeyup="check_zhengshu3(this);" >
+				  		</td>-->
+				  		<td>开始时间：<{$vo['start_time']}><br/>结束时间：<{$vo['end_time']}></td>
+				  		<td>
+				  			<input type="text" value="<{$vo['apply_number']}>" style="text-align:center;width:110px;" name="apply_number<{$key}>" onkeyup="if(<{$vo['all_apply_number']}>==0){
+				  				this.value=this.value.replace(/\D/g,'')
+				  			}else{
+				  				if(this.value!=''){
+				  					if(this.value > <{$vo['all_apply_number']}> || this.value <= 0){
+					  					this.value=<{$vo['apply_number']}>
+					  				}else{
+					  					this.value=this.value.replace(/\D/g,'')
+					  				}
+				  				}else{
+				  					
+				  				}
+				  			}" onblur="
+				  			if(this.value!=''){
+				  				
+			  				}else{
+			  					this.value=<{$vo['apply_number']}>
+			  				}
+				  			">
+				  		</td>
+				  		<td>
+				  			<input type="text" value="<{$vo['play_number']}>" style="text-align:center;width:110px;" name="play_number<{$key}>" onkeyup="
+				  			if(<{$vo['all_play_number']}>==0){
+				  				this.value=this.value.replace(/\D/g,'')
+				  			}else{
+				  				if(this.value!=''){
+				  					if(this.value > <{$vo['all_play_number']}> || this.value <= 0){
+					  					this.value=<{$vo['play_number']}>
+					  				}else{
+					  					this.value=this.value.replace(/\D/g,'')
+					  				}
+				  				}else{
+				  					
+				  				}
+				  			}" onblur="
+				  			if(this.value!=''){
+				  				
+			  				}else{
+			  					this.value=<{$vo['play_number']}>
+			  				}
+			  				">
+				  		</td>
+				  	</tr>
+			    </volist>
+			</form>
+			<else />
+			</if>
+			</tbody>
+		</table>
+		<div style="padding:10px 0 0 950px;color:red;" >
+		<p><b>提示：</b>1、报名次数和砍价次数：不填写默认使用总次数，"0"为不限制</p>
+		</div>
+		<div class="yirenForm">
+				<li class="WSY_position_text">
+				    <a class="WSY_buttontj yirenFormOe" href="<{:U('bargain/edit_activity')}>?customer_id_en=<{$customer_id_en}>&class=80&activity_id=<{$activity_id}>">返回</a>
+				    <if condition="empty($bargain) neq true" >
+				    	<a class="WSY_buttontj yirenFormOe" onclick="tj()" >保存</a>
+				    <else />
+				    </if>
+				</li>
+		</div>
+		<!--表格结束-->
+        <!--跳转页面-->
+        <div class="WSY_page">
+        	<ul class="WSY_pageleft" style="width: 70%;">
+        		<{$strPage}>
+        		<div class="WSY_searchbox">
+        			<input class="WSY_page_search" id="WSY_jump_page"/>
+        			<input class="WSY_jump" type="button" value="跳转"/>
+        		</div>
+        	</ul>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+	function delete_k(id,key){
+		var k=confirm("是否删除此活动？");
+		if(k){
+			delete_activity(id);
+			$(".yirenGl tr").eq(key).remove();
+		}
+	}
+	function delete_activity(id){
+		///if()
+	}
+	function tj(){
+		$("#tj").submit();
+	}
+	function check_price(obj){
+		key=$(obj).attr("key");
+		var reg=/^[0-9]+(\.[0-9]{1,2})?$/;
+		if($(obj).attr("price_type")==1){
+			yuan=$("#buy_price"+key).val()
+			if(!reg.test($("#buy_price"+key).val())){
+				alert("金额设置有误，最小精确到0.01")
+				$("#buy_price"+key).val('');
+			}
+			if(eval($("#buy_price"+key).val())>eval($("#price"+key).val())){
+				alert("金额设置有误，不得大于现价");
+				//String(yuan);
+				yuan=yuan.substring(0,yuan.length-1);
+				$("#buy_price"+key).val(yuan);
+			}
+		}else if($(obj).attr("price_type")==2){
+			yuan=$("#minimum_price"+key).val()
+			if(!reg.test($("#minimum_price"+key).val())){
+				alert("金额设置有误，最小精确到0.01")
+				$("#minimum_price"+key).val('');
+			}
+			// console.log($("#price"+key).val());
+			// console.log($("#buy_price"+key).val());
+			// console.log($("#minimum_price"+key).val());
+			if(eval($("#minimum_price"+key).val())>eval($("#price"+key).val())){
+				alert("金额设置有误，不得大于现价");
+				yuan=yuan.substring(0,yuan.length-1);
+				$("#minimum_price"+key).val(yuan);
+			}else if(eval($("#minimum_price"+key).val())>eval($("#buy_price"+key).val())){
+				alert("金额设置有误，不得大于可购买价");
+				yuan=yuan.substring(0,yuan.length-1);
+				$("#minimum_price"+key).val(yuan);
+			}
+		}
+	}
+	function check_zhengshu(obj){
+		var reg=/^\d+$/;
+		if(!reg.test($(obj).val())){
+			alert("请填写大于零的整数")
+			$(obj).val('')
+		}
+	}
+	function check_zhengshu3(obj){
+		var reg=/^\d+$/;
+		var tag='.';
+		str=$(obj).val()
+		console.log(str)
+		if(str.indexOf(tag)!=-1){
+			alert("请输入大于零的整数")
+			$(obj).val('')
+		}else if($(obj).val()==0){
+			alert("请输入大于零的整数")
+			$(obj).val('')
+		}else if(!reg.test($(obj).val())){
+			alert("请输入大于零的整数")
+			$(obj).val('')
+		}
+	}
+	function check_zhengshu2(obj){
+		var reg=/^\d+$/;
+		if($(obj).val()=='-'){
+			$(obj).val(-1)
+		}else if($(obj).val()=='' || $(obj).val()==-1 || $(obj).val()==0){
+
+		}else{
+			if(!reg.test($(obj).val())){
+				alert("输入有误")
+				$(obj).val('')
+			}
+		}
+	}
+	//$('.WSY_buttontj').click(function(){
+		// var reg=/^$|^\d+$/;
+		// for(var i=1;i<=$("#tj").children("tr").length;i++){
+		// 	if($('.buy_price').val()<0){
+		// 		alert('价格输入有误')
+		// 	}else if($('.buy_price').val()>0 && $('.buy_price').val()<0.01){
+		// 		alert('价格输入有误')
+		// 	}
+		// 	else if($('.buy_price').val()<$('.min_price').val()){
+		// 		alert('最低价不能大于可购买价')
+		// 	}
+		// 	else if(!reg.test($('.apply_number').val())||!reg.test($('.play_number').val())){
+		// 		alert('次数请输入-1或大于等于0的整数');
+		// 	}
+		// }
+	//})
+</script>
+</html>

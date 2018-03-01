@@ -1,0 +1,36 @@
+#content{
+	width: 100%;
+	background: url(../img/kj_01.png) no-repeat 50% 0%;
+	background-size: cover;	
+}
+#footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 3rem;
+	font-size: 0.287rem;
+	background-color: #FFFFFF;
+}
+.button1{
+	margin-top: 0.5rem;
+}
+.button1,.button2{
+	width: 100%;
+	height: 1rem;
+	line-height: 1rem;
+	text-align: center;
+}
+.button1 a,.button2 a{
+	display: inline-block;
+	border: 1px solid #ff8430;
+	line-height: 0.8rem;
+	width: 5rem;
+	border-radius:3px ;
+}
+.button1 a{
+	background-color: #FF8430;
+	color: #FFFFFF;
+}
+.button2 a{
+	color: #FF8430;
+}

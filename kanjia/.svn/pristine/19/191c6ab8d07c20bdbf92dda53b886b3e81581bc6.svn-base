@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <meta content="no" name="apple-touch-fullscreen">
+	    <meta name="MobileOptimized" content="320"/>
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name=apple-mobile-web-app-capable content=yes>
+	    <meta name=apple-mobile-web-app-status-bar-style content=black>
+	    <meta http-equiv="pragma" content="nocache">
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<link rel="stylesheet" href="css/myBargain.css" />
+		<title>我的砍价</title>
+	</head>
+	<body>
+		<div id="content"></div>
+		<div id="footer">
+			<p class="button1">
+				<a :href="url1">我发起的砍价活动</a>
+			</p>
+			<p class="button2" >
+				<a :href="url2">邀请我的砍价活动</a>
+			</p>
+		</div>
+	</body>
+		<script src='js/lib/zepto.min.js'></script>
+		<script src="js/lib/set_rem.js"></script>
+		<script type="text/javascript" src="js/comm/config.js"></script>
+		<script type="text/javascript" src="js/comm/common.js"></script>
+		<script type="text/javascript">
+			init_WSY(); /*customer_id检测*/
+			get_user_id_WSY(); /*网页授权获取用户user_id*/
+	    </script>
+		<script type="text/javascript" src="js/lib/vue2.1.6.js" ></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script type="text/javascript" src="js/myBargain.js" ></script>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="no" name="apple-touch-fullscreen">
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta http-equiv="pragma" content="nocache">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<link rel="stylesheet" href="css/xincommon.css" />
+		<link rel="stylesheet" href="css/helpKanList.css" />
+		<title>帮砍名单</title>
+	</head>
+	<body>
+		<div class="main">
+			<!--菜单-->
+			<div class="mianNav">
+				<ul>
+					<li>排名</li>
+					<li>用户</li>
+					<li>砍下金额</li>
+				</ul>
+			</div>
+			<!--帮砍列表-->
+			<div class="helpList clear">
+				<ul>
+					<li>
+						<!--左边-->
+						<div class="helpList-left">
+						<!--排名奖牌-->						
+						<i name="frist"></i>
+						<!--头像-->
+						<span class="user-img"></span>
+						<!--用户-->
+						<div class="List-user">
+							<!--名字-->
+							<span>YYSD</span>
+							<!--时间-->
+							<em>2017-06-22 20:11</em>
+						</div>
+						</div>
+						<!--右边 砍下金额-->
+						<div class="helpList-right">
+							<i>¥</i>
+							<span>158.00</span>
+						</div>
+					</li>
+					<li>
+						<!--左边-->
+						<div class="helpList-left">
+						<!--排名奖牌-->						
+						<i name="sencond"></i>
+						<!--头像-->
+						<span class="user-img"></span>
+						<!--用户-->
+						<div class="List-user">
+							<!--名字-->
+							<span>小可可</span>
+							<!--时间-->
+							<em>2017-06-22 20:11</em>
+						</div>
+						</div>
+						<!--右边 砍下金额-->
+						<div class="helpList-right">
+							<i>¥</i>
+							<span>157.00</span>
+						</div>
+					</li>
+					<li>
+						<!--左边-->
+						<div class="helpList-left">
+						<!--排名奖牌-->						
+						<i name="three"></i>
+						<!--头像-->
+						<span class="user-img"></span>
+						<!--用户-->
+						<div class="List-user">
+							<!--名字-->
+							<span>压压岁</span>
+							<!--时间-->
+							<em>2017-06-22 20:11</em>
+						</div>
+						</div>
+						<!--右边 砍下金额-->
+						<div class="helpList-right">
+							<i>¥</i>
+							<span>150.00</span>
+						</div>
+					</li>
+					<li>
+						<!--左边-->
+						<div class="helpList-left">
+						<!--排名 || 奖牌-->						
+						<span class="ranking">4</span>
+						<!--头像-->
+						<span class="user-img"></span>
+						<!--用户-->
+						<div class="List-user">
+							<!--名字-->
+							<span>鱿鱼丝</span>
+							<!--时间-->
+							<em>2017-06-22 20:11</em>
+						</div>
+						</div>
+						<!--右边 砍下金额-->
+						<div class="helpList-right">
+							<i>¥</i>
+							<span>140.00</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		    <!--我的排名-->
+		    <div class="myHelpKan">
+    	        <!--左边-->
+				<div class="helpList-left">
+				<!--排名 || 奖牌-->						
+				<span class="ranking">4</span>
+				<!--头像-->
+				<span class="user-img"></span>
+				<!--用户-->
+				<div class="List-user">
+					<!--名字-->
+					<span>鱿鱼丝</span>
+					<!--时间-->
+					<em>2017-06-22 20:11</em>
+				</div>
+				</div>
+				<!--右边 砍下金额-->
+				<div class="helpList-right">
+					<i>¥</i>
+					<span>140.00</span>
+				</div>
+		    </div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,126 @@
+<?php
+/**
+ * Created by Zend
+ * Author: Tung(binn)
+ * Date: 2017/6/22
+ +--------------------------------
+ */
+namespace Vendor\lib;
+#use GuzzleHttp\json_decode;
+class Com{
+	/**
+	 * @param $customer_id
+	 * @return boolean|string
+	 */
+	public function getToken($customer_id){
+		if(!$customer_id){return false;}
+		$temp = '';
+		$list = [];
+		$timestamp = time();
+		$c['isvalid'] = true;
+		$c['customer_id'] = intval($customer_id);
+		$ge = new \Vendor\lib\Inc();
+		$result = M()->table(DB_NAME.'.weixin_menus')->field('appid,appsecret,access_token,get_token_time,expires_token_time')->where($c)->select();  
+		if(!$result){return false;}
+		foreach($result as $key=>$v){if($v['appid']){$temp = $v;break;}}
+		if($temp['expires_token_time']>=$timestamp){return $temp['access_token'];}
+		$url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$temp['appid'].'&secret='.$temp['appsecret'];
+		$Rt = json_decode($ge->gethttp($url));
+		$list['get_token_time'] = $timestamp;
+		$list['access_token'] = $Rt->access_token;    
+		$list['expires_token_time'] = $timestamp+$Rt->expires_in;
+		$resultInt = M()->table(DB_NAME.'.weixin_menus')->data($list)->where($c)->save();
+		if(!$resultInt){return false;} 
+		return $Rt->access_token;
+	}
+	
+	/**
+	 * @desc 获取 appid|appsecret
+	 * @param $customer_id
+	 * @return boolean|string
+	 */
+	public function WxComm($customer_id,$appid=false){
+		if(!$customer_id){return false;}
+		$list = '';
+		$c['isvalid'] = true;
+		$c['customer_id'] = intval($customer_id);
+		$result = M()->table(DB_NAME.'.weixin_menus')->field('appid,appsecret')->where($c)->select();
+		if(!$result){return false;}
+		foreach($result as $key=>$v){if($v['appid']){$list = $v;break;}}
+		if(!$appid){return implode('@',$list);}
+		return $list['appid'];
+	}
+	
+	/**
+	 * @desc 获取jsapi_ticket
+	 * @return boolean|mixed|string
+	 */
+	public function get_jsapi_ticket($customer_id){
+		if(!$customer_id){return false;}
+		$c['isvalid'] = true;
+		$c['customer_id'] = $customer_id;
+		$i = new \Vendor\lib\Inc();
+		$result = M()->table(DB_NAME.'.weixin_menus')->field('jsapi_ticket,jsapi_time,jsapi_expire_time')->where($c)->find();
+		if($result['jsapi_expire_time']<=time()){     
+			$interfaceUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$this->getToken($customer_id).'&type=jsapi';  
+			$result_k = json_decode($i->gethttp($interfaceUrl));
+			if(empty($result_k->errcode)){
+				$kj['jsapi_time'] = time();
+				$kj['jsapi_ticket'] = $result_k->ticket;
+				$kj['jsapi_expire_time'] = time()+$result_k->expires_in;
+				$where_c['isvalid'] = 1;
+				$where_c['customer_id'] = $customer_id;
+				$resultInt = M()->table(DB_NAME.'.weixin_menus')->data($kj)->where($where_c)->save();
+				if($resultInt===false){
+					$result_s['err_code'] = 1002;
+					$result_s['data'] = 'jsapi_ticket设置失败';
+					return $this->ajaxReturn($result_s,'json');
+				} return $result_k->ticket;
+			}
+		} return $result['jsapi_ticket'];
+	}
+	
+	/**
+	 * @desc 微信js-sdk 页面参数
+	 * @param $customer_id
+	 * @return boolean|StdClass
+	 */
+	public function weixinDisplay($customer_id){
+		if(!$customer_id){return false;}
+		$timestamp = time();    
+		$nonceStr = randcode(); 
+		$url = $_SERVER['HTTP_REFERER'];
+		$jsapi_ticket = $this->get_jsapi_ticket($customer_id);
+		if(strpos($url,'#')!==false){$url = strchr($url,'#',true);}
+		$appid = $this->WxComm($customer_id,1);
+		$signature = sha1('jsapi_ticket='.$jsapi_ticket.'&noncestr='.$nonceStr.'&timestamp='.$timestamp.'&url='.$url); 
+		return ['appid'=>$appid,'timestamp'=>$timestamp,'nonceStr'=>$nonceStr,'signature'=>$signature];
+	}
+	//获取openid
+	public function get_openid($user_id){
+		if(!$user_id){return false;}
+		$c['id'] = $user_id;
+		$c['isvalid'] = true;
+		$wlist = M()->table(DB_NAME.'.weixin_users')->field('weixin_fromuser')->where($c)->find();
+		return $wlist['weixin_fromuser'];
+	}
+	//获取微信用户昵称和头像
+	public function getwxInfo($user_id,$customer_id){
+		$array = array();
+		$token = $this->getToken($customer_id);
+		$openid = $this->get_openid($user_id);
+		$i = new \Vendor\lib\Inc();
+		$url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$token.'&openid='.$openid.'&lang=zh_CN';
+		$temp = json_decode($i->gethttp($url),true);
+		$array['nickname'] = $temp['nickname'];
+		$array['headimgurl'] = $temp['headimgurl'];
+		$array['subscribe'] = $temp['subscribe'];
+		return $array;
+		//
+	}
+	
+	
+	
+}
+
+
